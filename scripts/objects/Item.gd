@@ -2,7 +2,9 @@ extends RigidBody2D
 
 class_name Item
 
+var item_id: String = ""
 var type: Utils.ItemType = Utils.ItemType.FRUIT
+var score: int = 0
 var is_dragging: bool = false
 var was_interacted: bool = false
 var velocity_cache: Vector2 = Vector2.ZERO
@@ -50,9 +52,23 @@ func _physics_process(_delta):
 		global_position = target_pos
 		# Calculate velocity for throw...
 
-func activate(start_pos: Vector2, new_type: Utils.ItemType):
+func activate(start_pos: Vector2, new_item_id: String):
 	global_position = start_pos
-	type = new_type
+	
+	item_id = new_item_id
+	var data = Utils.ITEM_DATA[item_id]
+	type = data.type
+	score = data.score
+	
+	if data.texture_path != "":
+		var tex = load(data.texture_path)
+		if tex:
+			sprite.texture = tex
+			sprite.modulate = Color.WHITE # Reset color if using real texture
+	else:
+		# Fallback to color tint
+		sprite.modulate = data.color
+	
 	is_dragging = false
 	was_interacted = false
 	freeze = false
@@ -62,11 +78,7 @@ func activate(start_pos: Vector2, new_type: Utils.ItemType):
 	linear_velocity = Vector2.ZERO
 	angular_velocity = 0.0
 	
-	# Set Texture based on type
-	if type == Utils.ItemType.FRUIT:
-		sprite.modulate = Color(1, 0, 0) # Red for fruit placeholder
-	else:
-		sprite.modulate = Color(0, 0, 0) # Black for bomb placeholder
+	# Set Texture based on type (Handled in activate)
 
 func deactivate():
 	visible = false

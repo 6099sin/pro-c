@@ -33,10 +33,10 @@ func process_item(item: Item):
 	play_hit_effect(item.type)
 	
 	if item.type == Utils.ItemType.FRUIT:
-		GameManager.add_score(10)
+		GameManager.add_score(item.score)
 		SignalBus.request_sfx.emit("pop")
 	else:
-		GameManager.add_score(-10)
+		GameManager.add_score(item.score)
 		SignalBus.request_sfx.emit("explosion")
 		# Maybe trigger game over or penalty?
 		# GameManager.end_game() # if bombs are fatal

@@ -51,10 +51,21 @@ func spawn_item(item: Item):
 	var start_x = -50 if randf() < 0.5 else screen_w + 50
 	var start_y = randf_range(screen_h * 0.6, screen_h * 0.85)
 	
-	# Determine Type (10% chance for bomb)
-	var type = Utils.ItemType.TRAP if randf() < 0.1 else Utils.ItemType.FRUIT
+	var all_items = Utils.ITEM_DATA.keys()
+	var picked_id = all_items.pick_random()
 	
-	item.activate(Vector2(start_x, start_y), type)
+	# Weighted spawn logic if needed (e.g. less bombs), but for now random is fine
+	# Or implement simple weight: Try to get a fruit 80% of time
+	if randf() < 0.8:
+		# Force restart if we got a trap, to bias towards fruit (Primitive weighting)
+		while Utils.ITEM_DATA[picked_id].type == Utils.ItemType.TRAP:
+			picked_id = all_items.pick_random()
+	else:
+		# Force restart if we got a fruit, to bias towards trap
+		while Utils.ITEM_DATA[picked_id].type == Utils.ItemType.FRUIT:
+			picked_id = all_items.pick_random()
+	
+	item.activate(Vector2(start_x, start_y), picked_id)
 	
 	# Calculate Velocity (Arc toward centerish)
 	var force_x = randf_range(200, 400)
