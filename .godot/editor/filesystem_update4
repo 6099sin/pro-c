@@ -1,2 +1,7 @@
 res://scripts/core/Utils.gd
 res://scenes/objects/Item.tscn
+res://scenes/core/Main.tscn
+res://scenes/objects/main.gd
+res://scripts/objects/Spawner.gd
+res://scenes/ui/HUD.tscn
+res://scenes/objects/Basket.tscn

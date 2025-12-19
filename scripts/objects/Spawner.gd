@@ -17,6 +17,7 @@ func _ready():
 	call_deferred("init_pool")
 	
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
+	spawn_timer.start()
 
 func init_pool():
 	if not item_scene: return

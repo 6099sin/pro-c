@@ -10,8 +10,10 @@ atlas = ExtResource("2_8h4xb")
 region = Rect2(80, 16, 16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n5qg5"]
+radius = 102.4207
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8h4xb"]
+radius = 149.45903
 
 [node name="Item" type="RigidBody2D"]
 collision_layer = 2
