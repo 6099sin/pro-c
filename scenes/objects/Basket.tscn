@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://basketscene"]
+
+[ext_resource type="Script" uid="uid://wybb8hedthjj" path="res://scripts/objects/Basket.gd" id="1_basket"]
+[ext_resource type="Texture2D" uid="uid://tlcsc7o6ssay" path="res://assets/Sprites/Basic_Plants.png" id="2_begjd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gegod"]
+atlas = ExtResource("2_begjd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7cnpb"]
+
+[node name="Basket" type="Node2D"]
+script = ExtResource("1_basket")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_gegod")
+
+[node name="SnapZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SnapZone"]
+shape = SubResource("CircleShape2D_7cnpb")
+
+[node name="CenterPoint" type="Marker2D" parent="."]
+position = Vector2(0, -10)

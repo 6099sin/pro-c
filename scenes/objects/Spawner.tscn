@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://spawnerscene"]
+
+[ext_resource type="Script" uid="uid://ccbual12geg1h" path="res://scripts/objects/Spawner.gd" id="1_spawner"]
+[ext_resource type="PackedScene" uid="uid://itemscene" path="res://scenes/objects/Item.tscn" id="2_csrir"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_spawner")
+item_scene = ExtResource("2_csrir")
+
+[node name="SpawnTimer" type="Timer" parent="."]

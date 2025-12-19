@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://itemscene"]
+
+[ext_resource type="Script" uid="uid://dignuyh7tk07c" path="res://scripts/objects/Item.gd" id="1_item"]
+[ext_resource type="Texture2D" uid="uid://tlcsc7o6ssay" path="res://assets/Sprites/Basic_Plants.png" id="2_8h4xb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8h4xb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5p3m"]
+atlas = ExtResource("2_8h4xb")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n5qg5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8h4xb"]
+
+[node name="Item" type="RigidBody2D"]
+collision_layer = 2
+input_pickable = true
+physics_material_override = SubResource("PhysicsMaterial_8h4xb")
+script = ExtResource("1_item")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(13.39, 13.39)
+texture = SubResource("AtlasTexture_q5p3m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_n5qg5")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_8h4xb")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibleOnScreenNotifier2D_screen_exited"]
