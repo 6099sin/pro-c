@@ -25,5 +25,8 @@ position = Vector2(158, 975.00006)
 scale = Vector2(13.14, 13.14)
 
 [node name="Spawner" parent="." instance=ExtResource("2_5pwbx")]
+fruit_ratio = 0.346
+min_scale = 1.4
+max_scale = 2.0
 
 [node name="HUD" parent="." instance=ExtResource("3_kitw3")]

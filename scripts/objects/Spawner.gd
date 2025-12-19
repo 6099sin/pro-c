@@ -1,8 +1,16 @@
 extends Node2D
 
 @export var item_scene: PackedScene
+@export var pool_size: int = 30
+
+@export_group("Spawn Settings")
+@export_range(0.0, 1.0) var fruit_ratio: float = 0.8
+@export_range(0.0, 1.0) var spawn_y_min_ratio: float = 0.6
+@export_range(0.0, 1.0) var spawn_y_max_ratio: float = 0.85
+@export var min_scale: float = 1.0
+@export var max_scale: float = 1.0
+
 var pool: Array[Item] = []
-var pool_size: int = 30
 
 @onready var spawn_timer: Timer = $SpawnTimer
 
@@ -49,14 +57,14 @@ func spawn_item(item: Item):
 	
 	# Randomize Side
 	var start_x = -50 if randf() < 0.5 else screen_w + 50
-	var start_y = randf_range(screen_h * 0.6, screen_h * 0.85)
+	var start_y = randf_range(screen_h * spawn_y_min_ratio, screen_h * spawn_y_max_ratio)
 	
 	var all_items = Utils.ITEM_DATA.keys()
 	var picked_id = all_items.pick_random()
 	
 	# Weighted spawn logic if needed (e.g. less bombs), but for now random is fine
 	# Or implement simple weight: Try to get a fruit 80% of time
-	if randf() < 0.8:
+	if randf() < fruit_ratio:
 		# Force restart if we got a trap, to bias towards fruit (Primitive weighting)
 		while Utils.ITEM_DATA[picked_id].type == Utils.ItemType.TRAP:
 			picked_id = all_items.pick_random()
@@ -66,6 +74,10 @@ func spawn_item(item: Item):
 			picked_id = all_items.pick_random()
 	
 	item.activate(Vector2(start_x, start_y), picked_id)
+	
+	# Random Scale
+	var rnd_scale = randf_range(min_scale, max_scale)
+	item.scale = Vector2(rnd_scale, rnd_scale)
 	
 	# Calculate Velocity (Arc toward centerish)
 	var force_x = randf_range(200, 400)
