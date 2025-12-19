@@ -6,6 +6,11 @@ extends Node2D
 
 func _ready():
 	snap_zone.body_entered.connect(_on_body_entered)
+	center_on_camera()
+
+func center_on_camera():
+	var screen_size = Utils.get_screen_size(self)
+	position.x = screen_size.x / 2.0
 
 func _on_body_entered(body):
 	if body is Item:
