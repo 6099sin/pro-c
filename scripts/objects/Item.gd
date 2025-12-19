@@ -8,6 +8,7 @@ var score: int = 0
 var is_dragging: bool = false
 var was_interacted: bool = false
 var velocity_cache: Vector2 = Vector2.ZERO
+var blink_tween: Tween
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collider: CollisionShape2D = $CollisionShape2D
@@ -79,8 +80,15 @@ func activate(start_pos: Vector2, new_item_id: String):
 	angular_velocity = 0.0
 	
 	# Set Texture based on type (Handled in activate)
+	if type == Utils.ItemType.TRAP:
+		blink_tween = create_tween().set_loops()
+		blink_tween.tween_property(sprite, "modulate", data.color, 0.5)
+		blink_tween.tween_property(sprite, "modulate", Color.WHITE, 0.5)
 
 func deactivate():
+	if blink_tween and blink_tween.is_valid():
+		blink_tween.kill()
+		
 	visible = false
 	freeze = true
 	global_position = Vector2(-1000, -1000)

@@ -5,8 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://hudscene" path="res://scenes/ui/HUD.tscn" id="3_kitw3"]
 [ext_resource type="Script" uid="uid://2278lqd6xfhs" path="res://scripts/core/Main.gd" id="4_main"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node"]
 script = ExtResource("4_main")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.94626087, 0.906797, 0.9484387, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
