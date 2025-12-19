@@ -8,6 +8,7 @@ atlas = ExtResource("2_begjd")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7cnpb"]
+radius = 12.0
 
 [node name="Basket" type="Node2D"]
 script = ExtResource("1_basket")
@@ -22,4 +23,4 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_7cnpb")
 
 [node name="CenterPoint" type="Marker2D" parent="."]
-position = Vector2(0, -10)
+position = Vector2(0, -6)
