@@ -4,14 +4,16 @@ extends Control
 @onready var timer_label = $TopBar/TimerLabel
 @onready var combo_bar = $TopBar/ComboContainer/ComboBar
 @onready var combo_label = $TopBar/ComboContainer/ComboMultiplierLabel
+@onready var game_over_panel = $TopBar/GradeLabel
 
 func _ready():
 	SignalBus.score_updated.connect(update_score_ui)
 	SignalBus.time_updated.connect(update_timer_ui)
-	
+	SignalBus.game_over.connect(update_game_over_ui)
 	# Initial UI state
 	update_score_ui(0)
 	update_timer_ui(60.0)
+	game_over_panel.visible = false
 
 func update_score_ui(new_score: int):
 	score_label.text = "Score: %d" % new_score
@@ -29,6 +31,9 @@ func update_timer_ui(time_left: float):
 	else:
 		timer_label.modulate = Color(1, 1, 1)
 
+func update_game_over_ui(final_score: int, grade: String):
+	game_over_panel.text = "Grade: %s" % grade
+	game_over_panel.visible = true
 func _process(_delta):
 	# Update combo UI continuously if needed or via signal
 	if GameManager.is_game_active:

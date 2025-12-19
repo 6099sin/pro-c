@@ -23,6 +23,9 @@ layout_mode = 2
 [node name="TimerLabel" type="Label" parent="TopBar"]
 layout_mode = 2
 
+[node name="GradeLabel" type="Label" parent="TopBar"]
+layout_mode = 2
+
 [node name="ComboContainer" type="VBoxContainer" parent="TopBar"]
 layout_mode = 2
 

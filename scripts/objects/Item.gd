@@ -45,13 +45,20 @@ func start_drag():
 func end_drag():
 	is_dragging = false
 	freeze = false
-	# Apply throw impulse if needed, based on mouse velocity
+	# Apply throw impulse
+	linear_velocity = velocity_cache
+	
+	if type == Utils.ItemType.TRAP:
+		linear_velocity *= 1.5 # Force Push Bonus!
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if is_dragging:
 		var target_pos = get_global_mouse_position()
+		
+		# Calculate velocity for throw
+		velocity_cache = (target_pos - global_position) / delta
+		
 		global_position = target_pos
-		# Calculate velocity for throw...
 
 func activate(start_pos: Vector2, new_item_id: String):
 	global_position = start_pos
