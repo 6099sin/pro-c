@@ -11,8 +11,11 @@ func _on_body_entered(body):
 	if body is Item:
 		# Don't snap if user is still holding it (optional design choice)
 		if not body.is_dragging:
-			# Only snap if the user has interacted with it (touched it)
-			if body.was_interacted:
+			# TRAP: Always triggers (Obstacle)
+			if body.type == Utils.ItemType.TRAP:
+				receive_item(body)
+			# FRUIT: Only triggers if interacted (Collectible)
+			elif body.type == Utils.ItemType.FRUIT and body.was_interacted:
 				receive_item(body)
 
 func receive_item(item: Item):
