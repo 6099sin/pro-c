@@ -43,8 +43,9 @@ func _on_spawn_timer_timeout():
 		spawn_item(item)
 
 func spawn_item(item: Item):
-	var screen_w = Utils.SCREEN_WIDTH
-	var screen_h = Utils.SCREEN_HEIGHT
+	var screen_size = Utils.get_screen_size(self)
+	var screen_w = screen_size.x
+	var screen_h = screen_size.y
 	
 	# Randomize Side
 	var start_x = -50 if randf() < 0.5 else screen_w + 50

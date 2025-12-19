@@ -4,6 +4,7 @@ class_name Item
 
 var type: Utils.ItemType = Utils.ItemType.FRUIT
 var is_dragging: bool = false
+var was_interacted: bool = false
 var velocity_cache: Vector2 = Vector2.ZERO
 
 @onready var sprite: Sprite2D = $Sprite2D
@@ -34,6 +35,7 @@ func _input_event(_viewport, event, _shape_idx):
 
 func start_drag():
 	is_dragging = true
+	was_interacted = true
 	freeze = true
 	# Alternatively use freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC for smoother collisions while dragging
 	
@@ -52,6 +54,7 @@ func activate(start_pos: Vector2, new_type: Utils.ItemType):
 	global_position = start_pos
 	type = new_type
 	is_dragging = false
+	was_interacted = false
 	freeze = false
 	visible = true
 	

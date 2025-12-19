@@ -5,3 +5,6 @@ res://scenes/objects/main.gd
 res://scripts/objects/Spawner.gd
 res://scenes/ui/HUD.tscn
 res://scenes/objects/Basket.tscn
+res://scripts/autoloads/GameManager.gd
+res://scripts/objects/Basket.gd
+res://scripts/objects/Item.gd

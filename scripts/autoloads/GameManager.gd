@@ -32,12 +32,16 @@ func _process(delta):
 	SignalBus.time_updated.emit(time_left)
 
 func add_score(amount: int):
-	# Apply combo multiplier
-	var final_points = int(amount * combo_multiplier)
-	score += final_points
-	
-	# Increase combo
-	combo_multiplier = min(combo_multiplier + COMBO_STEP, MAX_COMBO)
+	if amount < 0:
+		reset_combo()
+		score += amount
+	else:
+		# Apply combo multiplier
+		var final_points = int(amount * combo_multiplier)
+		score += final_points
+		
+		# Increase combo
+		combo_multiplier = min(combo_multiplier + COMBO_STEP, MAX_COMBO)
 	
 	SignalBus.score_updated.emit(score)
 

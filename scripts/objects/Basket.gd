@@ -10,7 +10,9 @@ func _on_body_entered(body):
 	if body is Item:
 		# Don't snap if user is still holding it (optional design choice)
 		if not body.is_dragging:
-			receive_item(body)
+			# Only snap if the user has interacted with it (touched it)
+			if body.was_interacted:
+				receive_item(body)
 
 func receive_item(item: Item):
 	# Snap visuals
@@ -23,7 +25,7 @@ func process_item(item: Item):
 		GameManager.add_score(10)
 		SignalBus.request_sfx.emit("pop")
 	else:
-		GameManager.reset_combo()
+		GameManager.add_score(-10)
 		SignalBus.request_sfx.emit("explosion")
 		# Maybe trigger game over or penalty?
 		# GameManager.end_game() # if bombs are fatal
