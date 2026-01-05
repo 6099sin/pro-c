@@ -1,4 +1,14 @@
-Label
-Node
-ColorRect
+PanelContainer
+ProgressBar
+TextureProgressBar
+MarginContainer
+CenterContainer
 Control
+Button
+Label
+CheckBox
+HBoxContainer
+LineEdit
+VBoxContainer
+ColorRect
+Panel
