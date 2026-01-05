@@ -2,8 +2,8 @@ extends Node2D
 
 @onready var snap_zone: Area2D = $SnapZone
 @onready var center_point: Marker2D = $CenterPoint
-@onready var sprite: Sprite2D = $Sprite2D
-
+@onready var sprite: Sprite2D = $Node2D/Sprite2D
+@export var setTexture: Array[Texture]
 func _ready():
 	snap_zone.body_entered.connect(_on_body_entered)
 	center_on_camera()
@@ -47,7 +47,8 @@ func play_hit_effect(type: Utils.ItemType):
 	var tween = create_tween().set_parallel(true)
 	
 	# Stretch / Squash
-	sprite.scale = Vector2(1.2, 0.8)
+	sprite.scale = Vector2(0.9, 0.7)
+	sprite.texture=setTexture[3] if type == Utils.ItemType.FRUIT else setTexture[0]
 	tween.tween_property(sprite, "scale", Vector2.ONE, 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	
 	# Color Flash
