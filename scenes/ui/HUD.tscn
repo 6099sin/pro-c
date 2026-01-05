@@ -31,6 +31,7 @@ layout_mode = 2
 
 [node name="ComboBar" type="ProgressBar" parent="TopBar/ComboContainer"]
 layout_mode = 2
+value = 6.58
 
 [node name="ComboMultiplierLabel" type="Label" parent="TopBar/ComboContainer"]
 layout_mode = 2
