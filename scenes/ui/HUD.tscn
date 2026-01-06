@@ -35,3 +35,37 @@ value = 6.58
 
 [node name="ComboMultiplierLabel" type="Label" parent="TopBar/ComboContainer"]
 layout_mode = 2
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -196.0
+offset_right = 196.0
+offset_bottom = 67.0
+grow_horizontal = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+step = 1.0
+value = 58.0
+show_percentage = false
+
+[node name="PanelContainer3" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 118.0
+offset_right = 67.0
+offset_bottom = -552.0
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="PanelContainer3"]
+layout_mode = 2
+size_flags_vertical = 1
+step = 1.0
+value = 54.0
+fill_mode = 3
+show_percentage = false
