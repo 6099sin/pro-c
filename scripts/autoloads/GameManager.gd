@@ -11,7 +11,7 @@ var is_game_active: bool = false
 var is_bonus_active: bool = false
 var user_name: String = ""
 var user_tel: String = ""
-const MAX_SCORE_ALPHA_BETA = 500
+const MAX_SCORE_ALPHA_BETA = 1000
 const MAX_COMBO = 3.0
 const COMBO_STEP = 0.1
 
@@ -41,7 +41,7 @@ func _process(delta):
 	# Pause timer if bonus mode is active
 	if not is_bonus_active:
 		time_left -= delta
-	
+
 	if time_left <= 0:
 		end_game()
 
@@ -49,14 +49,14 @@ func _process(delta):
 
 func activate_bonus_mode(duration: float):
 	if is_bonus_active: return # Already active (limit stacking or extend? user didn't specify, preventing stack is safer)
-	
+
 	is_bonus_active = true
 	print("BONUS MODE ACTIVATED!")
 	SignalBus.bonus_event.emit(true)
-	
+
 	# Wait for duration then deactivate
 	await get_tree().create_timer(duration).timeout
-	
+
 	is_bonus_active = false
 	print("BONUS MODE ENDED")
 	SignalBus.bonus_event.emit(false)
