@@ -131,7 +131,7 @@ expand_mode = 3
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
+theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
@@ -153,6 +153,7 @@ theme_override_constants/margin_right = 14
 [node name="LineEditName" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.25202727, 0.2520278, 0.25202736, 1)
 theme_override_styles/normal = ExtResource("1_00e66")
 theme_override_styles/focus = ExtResource("2_p1tq6")
 
@@ -170,6 +171,7 @@ theme_override_constants/margin_right = 14
 [node name="LineEditTel" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.25202727, 0.2520278, 0.25202736, 1)
 theme_override_styles/normal = ExtResource("1_00e66")
 theme_override_styles/focus = ExtResource("2_p1tq6")
 
