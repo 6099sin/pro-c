@@ -3,11 +3,14 @@ extends Node
 # Autoload: GameManager
 
 var score: int = 0
+var score_alpha: int=4
+var score_beta: int=1
 var combo_multiplier: float = 1.0
 var time_left: float = 60.0
 var is_game_active: bool = false
 var user_name: String = ""
 var user_tel: String = ""
+const MAX_SCORE_ALPHA_BETA = 500
 const MAX_COMBO = 3.0
 const COMBO_STEP = 0.1
 
@@ -20,7 +23,8 @@ func start_game():
 	combo_multiplier = 1.0
 	time_left = 60.0
 	is_game_active = true
-	SignalBus.score_updated.emit(score)
+	SignalBus.score_updated_alpha.emit(score)
+	SignalBus.score_updated_beta.emit(score)
 	SignalBus.time_updated.emit(time_left)
 
 func _process(delta):
@@ -44,7 +48,8 @@ func add_score(amount: int):
 		# Increase combo
 		combo_multiplier = min(combo_multiplier + COMBO_STEP, MAX_COMBO)
 
-	SignalBus.score_updated.emit(score)
+	SignalBus.score_updated_alpha.emit(score)
+	SignalBus.score_updated_beta.emit(score)
 
 func reset_combo():
 	combo_multiplier = 1.0

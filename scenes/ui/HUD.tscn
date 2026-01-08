@@ -138,6 +138,9 @@ offset_bottom = 100.0
 [node name="ScoreLabel" type="Label" parent="TopBar"]
 layout_mode = 2
 
+[node name="ScoreLabel2" type="Label" parent="TopBar"]
+layout_mode = 2
+
 [node name="TimerLabel" type="Label" parent="TopBar"]
 layout_mode = 2
 

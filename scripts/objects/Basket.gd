@@ -31,16 +31,30 @@ func receive_item(item: Item):
 
 func process_item(item: Item):
 	play_hit_effect(item.type)
-	
-	if item.type == Utils.ItemType.FRUIT:
-		GameManager.add_score(item.score)
+
+	var id = item.item_id
+
+	# Specific items for Alpha/Beta bars
+	if id == "fruit_1": # This is "alphaFood"
+		GameManager.add_score_alpha(item.score)
 		SignalBus.request_sfx.emit("pop")
+	elif id == "fruit_2": # This is "betaFood"
+		GameManager.add_score_beta(item.score)
+		SignalBus.request_sfx.emit("pop")
+	elif id in ["trap_1", "trap_2", "trap_3"]:
+		GameManager.add_score_alpha(item.score) # These are candies 1-3
+		SignalBus.request_sfx.emit("explosion")
+	elif id in ["trap_4", "trap_5"]:
+		GameManager.add_score_beta(item.score) # These are candies 4-5
+		SignalBus.request_sfx.emit("explosion")
+	# Fallback to general score for any other items
 	else:
 		GameManager.add_score(item.score)
-		SignalBus.request_sfx.emit("explosion")
-		# Maybe trigger game over or penalty?
-		# GameManager.end_game() # if bombs are fatal
-	
+		if item.type == Utils.ItemType.FRUIT:
+			SignalBus.request_sfx.emit("pop")
+		else:
+			SignalBus.request_sfx.emit("explosion")
+
 	item.deactivate()
 
 func play_hit_effect(type: Utils.ItemType):
