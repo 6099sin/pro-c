@@ -115,10 +115,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -151.00002
-offset_top = -141.0
-offset_right = 151.0
-offset_bottom = 141.0
+offset_left = -181.59293
+offset_top = -182.0
+offset_right = 181.5929
+offset_bottom = 182.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ybqoc")
@@ -141,20 +141,34 @@ theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "NickName"
 horizontal_alignment = 1
 
-[node name="LineEditName" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_right = 14
+
+[node name="LineEditName" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_styles/normal = ExtResource("1_00e66")
 theme_override_styles/focus = ExtResource("2_p1tq6")
 
 [node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "Tel."
 horizontal_alignment = 1
 
-[node name="LineEditTel" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_right = 14
+
+[node name="LineEditTel" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer3"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_styles/normal = ExtResource("1_00e66")
 theme_override_styles/focus = ExtResource("2_p1tq6")
@@ -175,10 +189,11 @@ horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 65
-theme_override_constants/margin_right = 65
+theme_override_constants/margin_left = 77
+theme_override_constants/margin_right = 77
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_p1tq6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yw532")

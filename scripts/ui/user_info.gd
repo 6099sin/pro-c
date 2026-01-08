@@ -1,7 +1,7 @@
 extends Control
 
-@onready var input_tel: LineEdit = $PanelContainer/MarginContainer/VBoxContainer/LineEditTel
-@onready var input_name: LineEdit = $PanelContainer/MarginContainer/VBoxContainer/LineEditName
+@onready var input_tel: LineEdit = $PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/LineEditTel
+@onready var input_name: LineEdit = $PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/LineEditName
 @onready var check_box: CheckBox = $PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/CheckBox
 
 # Variable to store the last valid phone number
