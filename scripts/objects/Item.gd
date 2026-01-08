@@ -9,6 +9,7 @@ var is_dragging: bool = false
 var was_interacted: bool = false
 var velocity_cache: Vector2 = Vector2.ZERO
 var blink_tween: Tween
+var spawner: Node
 # Add these to your variables in Item.gd
 @export var max_angle_deg: float = 45.0
 @export var min_angle_deg: float = -45.0
@@ -23,6 +24,7 @@ var blink_tween: Tween
 
 func _ready():
 	input_pickable = true
+	detection_area.area_entered.connect(_on_detection_area_entered)
 
 	# detection_area.input_event.connect(_on_input_event) # If using Area2D for input
 	# RigidBody2D input_event is also possible if pickable is true
@@ -73,10 +75,24 @@ func _physics_process(delta):
 			rotation = clamped_rotation
 			angular_velocity = 0 # Prevents the "vibrating" look at the edge
 
-func activate(start_pos: Vector2, new_item_id: String):
+func _on_detection_area_entered(area: Area2D):
+	var other_item = area.get_parent()
+	if not other_item is Item:
+		return
+
+	# Conditions for merging
+	if (other_item.item_id == item_id and
+		spawner and
+		not is_dragging and not other_item.is_dragging and
+		sleeping and other_item.sleeping and
+		get_instance_id() < other_item.get_instance_id()): # Prevents double merge calls
+			spawner.handle_merge(self, other_item)
+
+func activate(start_pos: Vector2, new_item_id: String, spawner_node: Node):
 	lock_rotation = true # The item will no longer rotate via physics
 	rotation = 0 # Reset to upright
 	global_position = start_pos
+	spawner = spawner_node # Store spawner reference
 
 	item_id = new_item_id
 	var data = Utils.ITEM_DATA[item_id]

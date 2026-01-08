@@ -10,6 +10,13 @@ extends Node2D
 @export var min_scale: float = 1.0
 @export var max_scale: float = 1.0
 
+const MERGE_MAP: Dictionary = {
+	"t1": "t2",
+	"t2": "f1",
+	"f1": "f2",
+	"f2": "f3",
+}
+
 var pool: Array[Item] = []
 
 @onready var spawn_timer: Timer = $SpawnTimer
@@ -74,7 +81,7 @@ func spawn_item(item: Item):
 		while Utils.ITEM_DATA[picked_id].type == Utils.ItemType.FRUIT:
 			picked_id = all_items.pick_random()
 
-	item.activate(Vector2(start_x, start_y), picked_id)
+	item.activate(Vector2(start_x, start_y), picked_id, self)
 
 	# Random Scale
 	var rnd_scale = randf_range(min_scale, max_scale)
@@ -88,3 +95,26 @@ func spawn_item(item: Item):
 
 	item.linear_velocity = Vector2(force_x, force_y)
 	item.angular_velocity = randf_range(-10, 10)
+
+
+func handle_merge(item1: Item, item2: Item):
+	if not MERGE_MAP.has(item1.item_id):
+		return
+
+	var next_item_id = MERGE_MAP[item1.item_id]
+	var merge_pos = (item1.global_position + item2.global_position) / 2
+	var combined_score = item1.score + item2.score
+
+	item1.deactivate()
+	item2.deactivate()
+
+	var new_item = get_inactive_item()
+	if new_item:
+		new_item.activate(merge_pos, next_item_id, self)
+		# Add a small scale-in effect for polish
+		new_item.scale = Vector2.ZERO
+		var tween = create_tween()
+		var final_scale = randf_range(min_scale, max_scale)
+		tween.tween_property(new_item, "scale", Vector2(final_scale, final_scale), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+	GameManager.add_score(combined_score + Utils.ITEM_DATA[next_item_id].score)
