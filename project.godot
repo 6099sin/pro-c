@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="Pro-C"
-run/main_scene="uid://mainscene"
+config/tags=PackedStringArray("fantasyunit")
+run/main_scene="uid://wdpx1dg4ece6"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 
 [autoload]
