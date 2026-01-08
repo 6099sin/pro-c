@@ -2,6 +2,7 @@ extends Control
 
 @onready var input_tel: LineEdit = $PanelContainer/MarginContainer/VBoxContainer/LineEditTel
 @onready var input_name: LineEdit = $PanelContainer/MarginContainer/VBoxContainer/LineEditName
+@onready var check_box: CheckBox = $PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/CheckBox
 
 # Variable to store the last valid phone number
 var old_tel_text = ""
@@ -33,6 +34,6 @@ func _on_input_tel_changed(new_text: String):
 # --- Button Logic ---
 func _on_press_comfirm()->void :
 	
-	if input_name.text.is_empty() or input_tel.text.is_empty():
+	if input_name.text.is_empty() or input_tel.text.is_empty() or check_box.button_pressed==false:
 		return
 	get_tree().change_scene_to_file("res://scenes/core/Main.tscn")
