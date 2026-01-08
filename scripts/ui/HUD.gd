@@ -27,8 +27,8 @@ func _ready():
 	game_over_panel.visible = false
 
 	# Initialize progress bars for alpha and beta scores
-	progressAlpha_bar.max_value = GameManager.MAX_SCORE_ALPHA_BETA
-	progressBeta_bar.max_value = GameManager.MAX_SCORE_ALPHA_BETA
+	progressAlpha_bar.max_value = GameManager.MAX_SCORE_ALPHA_BETA/2
+	progressBeta_bar.max_value = GameManager.MAX_SCORE_ALPHA_BETA/2
 	update_alpha_bar_ui(GameManager.score_alpha) # Initialize with current GameManager score_alpha
 	update_beta_bar_ui(GameManager.score_beta) # Initialize with current GameManager score_beta
 
