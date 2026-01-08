@@ -6,7 +6,8 @@ var score: int = 0
 var combo_multiplier: float = 1.0
 var time_left: float = 60.0
 var is_game_active: bool = false
-
+var user_name: String = ""
+var user_tel: String = ""
 const MAX_COMBO = 3.0
 const COMBO_STEP = 0.1
 
@@ -24,11 +25,11 @@ func start_game():
 
 func _process(delta):
 	if not is_game_active: return
-	
+
 	time_left -= delta
 	if time_left <= 0:
 		end_game()
-	
+
 	SignalBus.time_updated.emit(time_left)
 
 func add_score(amount: int):
@@ -39,10 +40,10 @@ func add_score(amount: int):
 		# Apply combo multiplier
 		var final_points = int(amount * combo_multiplier)
 		score += final_points
-		
+
 		# Increase combo
 		combo_multiplier = min(combo_multiplier + COMBO_STEP, MAX_COMBO)
-	
+
 	SignalBus.score_updated.emit(score)
 
 func reset_combo():
@@ -53,7 +54,7 @@ func end_game():
 	is_game_active = false
 	time_left = 0
 	SignalBus.time_updated.emit(0)
-	
+
 	var grade = calculate_grade(score)
 	SignalBus.game_over.emit(score, grade)
 
