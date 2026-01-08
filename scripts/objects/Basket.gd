@@ -19,6 +19,9 @@ func _on_body_entered(body):
 			# TRAP: Always triggers (Obstacle)
 			if body.type == Utils.ItemType.TRAP:
 				receive_item(body)
+			# BONUS: Always triggers (Collectible)
+			elif body.type == Utils.ItemType.BONUS:
+				receive_item(body)
 			# FRUIT: Only triggers if interacted (Collectible)
 			elif body.type == Utils.ItemType.FRUIT and body.was_interacted:
 				receive_item(body)
@@ -47,6 +50,11 @@ func process_item(item: Item):
 	elif id in ["trap_4", "trap_5"]:
 		GameManager.add_score_beta(item.score) # These are candies 4-5
 		SignalBus.request_sfx.emit("explosion")
+	# Bonus Item
+	elif item.type == Utils.ItemType.BONUS:
+		GameManager.activate_bonus_mode(10.0)
+		GameManager.add_score(item.score)
+		SignalBus.request_sfx.emit("pop") # Or use a special sound
 	# Fallback to general score for any other items
 	else:
 		GameManager.add_score(item.score)
@@ -62,7 +70,7 @@ func play_hit_effect(type: Utils.ItemType):
 	
 	# Stretch / Squash
 	sprite.scale = Vector2(0.9, 0.7)
-	sprite.texture=setTexture[3] if type == Utils.ItemType.FRUIT else setTexture[0]
+	sprite.texture = setTexture[3] if type == Utils.ItemType.FRUIT else setTexture[0]
 	tween.tween_property(sprite, "scale", Vector2.ONE, 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	
 	# Color Flash

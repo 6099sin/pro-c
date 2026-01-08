@@ -8,6 +8,7 @@ var score_beta: int = 0
 var combo_multiplier: float = 1.0
 var time_left: float = 60.0
 var is_game_active: bool = false
+var is_bonus_active: bool = false
 var user_name: String = ""
 var user_tel: String = ""
 const MAX_SCORE_ALPHA_BETA = 500
@@ -15,7 +16,7 @@ const MAX_COMBO = 3.0
 const COMBO_STEP = 0.1
 
 func _ready():
-	print("Score "+ str(score_alpha)+"  Score "+str(score_beta))
+	print("Score " + str(score_alpha) + "  Score " + str(score_beta))
 
 func start_game():
 	score = 0
@@ -28,6 +29,7 @@ func start_game():
 	combo_multiplier = 1.0
 	time_left = 60.0
 	is_game_active = true
+	is_bonus_active = false
 	SignalBus.score_updated_total.emit(score)
 	SignalBus.score_updated_alpha.emit(score_alpha)
 	SignalBus.score_updated_beta.emit(score_beta)
@@ -36,11 +38,26 @@ func start_game():
 func _process(delta):
 	if not is_game_active: return
 
-	time_left -= delta
+	# Pause timer if bonus mode is active
+	if not is_bonus_active:
+		time_left -= delta
+	
 	if time_left <= 0:
 		end_game()
 
 	SignalBus.time_updated.emit(time_left)
+
+func activate_bonus_mode(duration: float):
+	if is_bonus_active: return # Already active (limit stacking or extend? user didn't specify, preventing stack is safer)
+	
+	is_bonus_active = true
+	print("BONUS MODE ACTIVATED!")
+	
+	# Wait for duration then deactivate
+	await get_tree().create_timer(duration).timeout
+	
+	is_bonus_active = false
+	print("BONUS MODE ENDED")
 
 # Helper to calculate points and handle combo logic centrally
 func _calculate_points_and_combo(amount: int) -> int:

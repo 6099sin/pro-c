@@ -67,19 +67,32 @@ func spawn_item(item: Item):
 	var start_y = randf_range(screen_h * spawn_y_min_ratio, screen_h * spawn_y_max_ratio)
 
 	var all_items = Utils.ITEM_DATA.keys()
+	# Don't natively pick bonus from the main list unless we explicitly want to add it there
 	all_items.erase("bonus")
-	var picked_id = all_items.pick_random()
+	
+	var picked_id = ""
 
-	# Weighted spawn logic if needed (e.g. less bombs), but for now random is fine
-	# Or implement simple weight: Try to get a fruit 80% of time
-	if randf() < fruit_ratio:
-		# Force restart if we got a trap, to bias towards fruit (Primitive weighting)
-		while Utils.ITEM_DATA[picked_id].type == Utils.ItemType.TRAP:
+	# Check Bonus Mode
+	if GameManager.is_bonus_active:
+		# 100% Fruit Ratio
+		picked_id = all_items.pick_random()
+		while Utils.ITEM_DATA[picked_id].type != Utils.ItemType.FRUIT:
 			picked_id = all_items.pick_random()
 	else:
-		# Force restart if we got a fruit, to bias towards trap
-		while Utils.ITEM_DATA[picked_id].type == Utils.ItemType.FRUIT:
+		# Normal Spawn Logic
+		if randf() < 0.02: # 2% chance for bonus (Low frequency)
+			picked_id = "bonus"
+		else:
 			picked_id = all_items.pick_random()
+			
+			if randf() < fruit_ratio:
+				# Bias towards Fruit
+				while Utils.ITEM_DATA[picked_id].type == Utils.ItemType.TRAP:
+					picked_id = all_items.pick_random()
+			else:
+				# Bias towards Trap
+				while Utils.ITEM_DATA[picked_id].type == Utils.ItemType.FRUIT:
+					picked_id = all_items.pick_random()
 
 	item.activate(Vector2(start_x, start_y), picked_id, self)
 
