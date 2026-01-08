@@ -12,7 +12,7 @@ enum Grade {S, A, B, C, F}
 const ITEM_DATA = {
 	# Fruits
 	"fruit_1": {"type": ItemType.FRUIT, "score": 20, "color": Color(1, 0.8, 0.2), "texture_path": "res://assets/UI/Item/Alpha.png"}, # Gold/Orange
-	"fruit_2": {"type": ItemType.FRUIT, "score": 10, "color": Color(0.0, 0.843, 0.906, 1.0), "texture_path": "res://assets/UI/Item/Beta.png"}, # Red
+	"fruit_2": {"type": ItemType.FRUIT, "score": 20, "color": Color(0.0, 0.843, 0.906, 1.0), "texture_path": "res://assets/UI/Item/Beta.png"}, # Red
 	"bonus": {"type": ItemType.BONUS, "score": 5, "color": Color(0.2, 0.8, 0.2), "texture_path": "res://assets/UI/Item/Bonus.png"}, # Green
 
 	# Traps (All -5)

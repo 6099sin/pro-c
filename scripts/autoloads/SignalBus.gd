@@ -2,6 +2,7 @@ extends Node
 
 # Autoload: SignalBus
 
+signal score_updated_total(new_score: int)
 signal score_updated_alpha(new_score: int)
 signal score_updated_beta(new_score: int)
 signal time_updated(time_left: float)
