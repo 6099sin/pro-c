@@ -22,6 +22,7 @@ var pool: Array[Item] = []
 @onready var spawn_timer: Timer = $SpawnTimer
 
 func _ready():
+	randomize()
 	# Preload item scene if not set in inspector (stub)
 	if not item_scene:
 		# item_scene = load("res://scenes/objects/Item.tscn")
@@ -33,16 +34,33 @@ func _ready():
 
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.start()
+	
+	SignalBus.bonus_event.connect(_on_bonus_event)
 
 func init_pool():
-	if not item_scene: return
+	ensure_pool_size(pool_size)
 
-	for i in range(pool_size):
-		var item = item_scene.instantiate()
-		item.visible = false
-		item.freeze = true
-		add_child(item)
-		pool.append(item)
+func ensure_pool_size(target_size: int):
+	if not item_scene: return
+	
+	var current_size = pool.size()
+	if current_size >= target_size: return
+	
+	var amount_to_add = target_size - current_size
+	for i in range(amount_to_add):
+		_create_and_add_item()
+
+func _create_and_add_item():
+	var item = item_scene.instantiate()
+	item.visible = false
+	item.freeze = true
+	add_child(item)
+	pool.append(item)
+
+func _on_bonus_event(is_active: bool):
+	if is_active:
+		# Expand pool to 50 for bonus event
+		ensure_pool_size(50)
 
 func get_inactive_item() -> Item:
 	for item in pool:
@@ -53,9 +71,15 @@ func get_inactive_item() -> Item:
 func _on_spawn_timer_timeout():
 	if not GameManager.is_game_active: return
 
-	var item = get_inactive_item()
-	if item:
-		spawn_item(item)
+	var spawn_count = 1
+	if GameManager.is_bonus_active:
+		# Spawn 4 items at once during bonus
+		spawn_count = 4
+
+	for i in range(spawn_count):
+		var item = get_inactive_item()
+		if item:
+			spawn_item(item)
 
 func spawn_item(item: Item):
 	var screen_size = Utils.get_screen_size(self)
@@ -80,8 +104,9 @@ func spawn_item(item: Item):
 			picked_id = all_items.pick_random()
 	else:
 		# Normal Spawn Logic
-		if randf() < 0.02: # 2% chance for bonus (Low frequency)
+		if randf() < 0.05: # Increased to 5% for better visibility
 			picked_id = "bonus"
+			print("SPAWN: Bonus Item Created!")
 		else:
 			picked_id = all_items.pick_random()
 			

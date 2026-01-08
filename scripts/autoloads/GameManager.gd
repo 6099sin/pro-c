@@ -52,12 +52,14 @@ func activate_bonus_mode(duration: float):
 	
 	is_bonus_active = true
 	print("BONUS MODE ACTIVATED!")
+	SignalBus.bonus_event.emit(true)
 	
 	# Wait for duration then deactivate
 	await get_tree().create_timer(duration).timeout
 	
 	is_bonus_active = false
 	print("BONUS MODE ENDED")
+	SignalBus.bonus_event.emit(false)
 
 # Helper to calculate points and handle combo logic centrally
 func _calculate_points_and_combo(amount: int) -> int:
