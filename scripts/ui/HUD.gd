@@ -69,15 +69,20 @@ func update_timer_ui(time_left: float):
 	timer_label.text = Utils.format_time(time_left)
 
 	# Only use tween if the difference is significant (e.g. bonus/penalty), otherwise direct set is smoother for frame-by-frame
+	# Only use tween if the difference is significant (e.g. bonus/penalty), otherwise direct set is smoother for frame-by-frame
 	if abs(timer_bar.value - time_left) > 1.0:
-		if time_tween and time_tween.is_valid():
-			time_tween.kill()
-		time_tween = create_tween()
-		time_tween.tween_property(timer_bar, "value", time_left, 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+		# If we are already animating a large jump, let it finish to avoid stuttering
+		if time_tween and time_tween.is_valid() and time_tween.is_running():
+			pass
+		else:
+			time_tween = create_tween()
+			time_tween.tween_property(timer_bar, "value", time_left, 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	else:
-		# For normal ticking, we can just set it, OR short tween.
-		# Direct set is better for linear time decrease.
-		timer_bar.value = time_left
+		# If the difference is small, only snap if we are NOT currently in the middle of a big tween
+		if time_tween and time_tween.is_valid() and time_tween.is_running():
+			pass
+		else:
+			timer_bar.value = time_left
 
 	if time_left < 10:
 		timer_bar.scale = Vector2(1.2, 1)
