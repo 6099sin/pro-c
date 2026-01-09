@@ -11,12 +11,17 @@ var regex = RegEx.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# --- 1. Setup Regex to accept ONLY numbers ---
-	regex.compile("^[0-9]*$") 
+	regex.compile("^[0-9]*$")
 
 # --- 2. Connect the Text Changed signal for the phone number ---
 	input_tel.text_changed.connect(_on_input_tel_changed)
 
 	$PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Button.pressed.connect(_on_press_comfirm)
+
+	# Hide the animation layer initially
+	if has_node("PlayAnimationScene"):
+		$PlayAnimationScene.visible = false
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -32,12 +37,12 @@ func _on_input_tel_changed(new_text: String):
 		input_tel.set_caret_column(input_tel.text.length())
 
 # --- Button Logic ---
-func _on_press_comfirm()->void :
+func _on_press_comfirm() -> void:
 	var is_valid = true
 	if input_name.text.is_empty():
 		flash_error(input_name)
 		is_valid = false
-	
+
 	if input_tel.text.length() != 10:
 		flash_error(input_tel)
 		is_valid = false
@@ -53,7 +58,17 @@ func _on_press_comfirm()->void :
 	if GameManager:
 		GameManager.user_name = input_name.text
 		GameManager.user_tel = input_tel.text
-	
+
+	# Play animation before changing scene
+	if has_node("PlayAnimationScene/AnimationPlayer"):
+		$PanelContainer.visible=false
+		var anim_scene = $PlayAnimationScene
+		var anim_player = $PlayAnimationScene/AnimationPlayer
+
+		anim_scene.visible = true
+		anim_player.play("intro_animation")
+		await anim_player.animation_finished
+
 	get_tree().change_scene_to_file("res://scenes/core/Main.tscn")
 
 func flash_error(control: Control):
