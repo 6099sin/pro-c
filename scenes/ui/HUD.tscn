@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://hudscene"]
+[gd_scene load_steps=18 format=3 uid="uid://hudscene"]
 
 [ext_resource type="Script" uid="uid://cpgkposixu2d6" path="res://scripts/ui/HUD.gd" id="1_hud"]
 [ext_resource type="Texture2D" uid="uid://dbgi1yh3bas4b" path="res://assets/UI/Item/Alpha.png" id="2_6ll6g"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ftf3l8xi3phu" path="res://assets/UI/UI2/Clock_Fill.png" id="5_rnyu1"]
 [ext_resource type="Texture2D" uid="uid://4rw6mk6p4xkw" path="res://assets/UI/UI2/Clock.png" id="6_jlufg"]
 [ext_resource type="Texture2D" uid="uid://dj5r6e7msl5xv" path="res://assets/UI/UI1/Panel1.png" id="7_jlufg"]
+[ext_resource type="Texture2D" uid="uid://b0wnhjrwcwvj2" path="res://assets/UI/UI3/confitte.png" id="8_l20r4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ll6g"]
 content_margin_left = 0.0
@@ -118,6 +119,18 @@ texture = ExtResource("5_rnyu1")
 texture_margin_bottom = 15.0
 region_rect = Rect2(0, 45, 36, 235)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_euikm"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [node name="HUD" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -171,7 +184,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = -10
+theme_override_constants/separation = -4
 
 [node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
@@ -378,3 +391,17 @@ theme_override_font_sizes/font_size = 86
 text = "10 sec"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_euikm")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
+texture = ExtResource("8_l20r4")
