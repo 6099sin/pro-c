@@ -1,15 +1,19 @@
-[gd_scene load_steps=19 format=3 uid="uid://wdpx1dg4ece6"]
+[gd_scene load_steps=32 format=3 uid="uid://wdpx1dg4ece6"]
 
 [ext_resource type="StyleBox" uid="uid://bbt4dpb0ysphk" path="res://theme/style_box_flat_Round.tres" id="1_00e66"]
 [ext_resource type="Script" uid="uid://c1anqrg83g0gl" path="res://scripts/ui/user_info.gd" id="1_bh2g3"]
 [ext_resource type="StyleBox" uid="uid://dtetcvy8wlspa" path="res://theme/style_box_focus_Round.tres" id="2_p1tq6"]
 [ext_resource type="Texture2D" uid="uid://cfx0bs11uelnt" path="res://assets/UI/UI1/Background.png" id="2_ybqoc"]
-[ext_resource type="Texture2D" uid="uid://brggq176enkad" path="res://assets/UI/UI2/BarBackground.png" id="3_bna67"]
+[ext_resource type="Texture2D" uid="uid://lj6d3jhf036m" path="res://assets/UI/UI2/frameBottom.png" id="3_najyl"]
 [ext_resource type="Texture2D" uid="uid://ql7sre145r2k" path="res://assets/UI/UI3/BG_UI1.png" id="3_ybqoc"]
-[ext_resource type="Texture2D" uid="uid://ckpjfqnugvhsi" path="res://assets/UI/UI2/BarAlpha_Frame.png" id="4_pvibf"]
-[ext_resource type="Texture2D" uid="uid://c7yq2emkqgto7" path="res://assets/UI/UI2/BarAlpha_Fill.png" id="5_bh2g3"]
 [ext_resource type="Texture2D" uid="uid://umhq2bgcj0fw" path="res://assets/UI/UI1/LOGO_S26.png" id="6_vtyqw"]
 [ext_resource type="Texture2D" uid="uid://dg8wrf21lbngy" path="res://assets/UI/UI1/Boxถัดไป.png" id="7_n1eku"]
+[ext_resource type="Texture2D" uid="uid://bms48fhv0dhbp" path="res://assets/UI/Baby/B0.png" id="8_ybqoc"]
+[ext_resource type="Texture2D" uid="uid://6adgg38380ie" path="res://assets/UI/Baby/B2.png" id="9_g5avq"]
+[ext_resource type="Texture2D" uid="uid://bw0c1j126de8n" path="res://assets/UI/Baby/B1.png" id="11_w5r3j"]
+[ext_resource type="Texture2D" uid="uid://4ktwa4svs4nl" path="res://assets/UI/Baby/B3.png" id="12_wcnxs"]
+[ext_resource type="Texture2D" uid="uid://dbgi1yh3bas4b" path="res://assets/UI/Item/Alpha.png" id="13_eotbs"]
+[ext_resource type="Texture2D" uid="uid://bp41wh7ort5ab" path="res://assets/UI/Item/Beta.png" id="14_4jegu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybqoc"]
 content_margin_left = 0.0
@@ -56,6 +60,160 @@ corner_detail = 5
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_heac4"]
 texture = ExtResource("7_n1eku")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtyqw"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 0.6)
+corner_radius_top_left = 33
+corner_radius_top_right = 33
+corner_radius_bottom_right = 33
+corner_radius_bottom_left = 33
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1eku"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.9372549, 0.46666667, 0.12941177, 0.6901961)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.8940197, 0.89383984, 7.70092e-07, 1)
+corner_radius_top_left = 33
+corner_radius_top_right = 33
+corner_radius_bottom_right = 33
+corner_radius_bottom_left = 33
+corner_detail = 5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6usep"]
+atlas = ExtResource("9_g5avq")
+region = Rect2(52, 27, 232, 207)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qa4ve"]
+atlas = ExtResource("8_ybqoc")
+region = Rect2(52, 27, 232, 207)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmhf6"]
+atlas = ExtResource("11_w5r3j")
+region = Rect2(52, 27, 232, 207)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnl7s"]
+atlas = ExtResource("12_wcnxs")
+region = Rect2(52, 27, 232, 207)
+
+[sub_resource type="Animation" id="Animation_najyl"]
+resource_name = "intro_animation"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 3.5, 4.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.6, 4.4333334, 6.633333, 7.366667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(6.6666665, 7.5666666, 9.966666, 10.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(9.966666, 10.766666, 14.158333, 14.966666),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g5avq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MarginContainer4:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w5r3j"]
+_data = {
+&"RESET": SubResource("Animation_g5avq"),
+&"intro_animation": SubResource("Animation_najyl")
+}
+
 [node name="UserInfo" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -73,6 +231,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_ybqoc")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -94.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_najyl")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -202,12 +371,289 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_bna67")
 theme_override_styles/focus = SubResource("StyleBoxTexture_heac4")
 text = "ถัดไป"
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-visible = false
+[node name="PlayAnimationScene" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer1" type="MarginContainer" parent="PlayAnimationScene"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 91.5
+offset_top = 304.0
+offset_right = 516.5
+offset_bottom = 808.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 150
+
+[node name="PanelContainer2" type="PanelContainer" parent="PlayAnimationScene/MarginContainer1"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vtyqw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayAnimationScene/MarginContainer1/PanelContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect2" type="PanelContainer" parent="PlayAnimationScene/MarginContainer1/PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n1eku")
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer1/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="PlayAnimationScene/MarginContainer1/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlayAnimationScene/MarginContainer1/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 32
+text = "รู้หรือไหม?
+สมองและภูมิคุ้มกันของเด็กผ่าคลอด"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PlayAnimationScene/MarginContainer1/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_6usep")
+stretch_mode = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="PlayAnimationScene"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 91.5
+offset_top = 304.0
+offset_right = 516.5
+offset_bottom = 808.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 150
+
+[node name="PanelContainer2" type="PanelContainer" parent="PlayAnimationScene/MarginContainer2"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vtyqw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayAnimationScene/MarginContainer2/PanelContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer2/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect2" type="PanelContainer" parent="PlayAnimationScene/MarginContainer2/PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n1eku")
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer2/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="PlayAnimationScene/MarginContainer2/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlayAnimationScene/MarginContainer2/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 32
+text = "มีความแตกต่าง
+จากเด็กที่คลอดธรรมชาติ"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PlayAnimationScene/MarginContainer2/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_qa4ve")
+stretch_mode = 4
+
+[node name="MarginContainer3" type="MarginContainer" parent="PlayAnimationScene"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 91.5
+offset_top = 304.0
+offset_right = 516.5
+offset_bottom = 808.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 150
+
+[node name="PanelContainer2" type="PanelContainer" parent="PlayAnimationScene/MarginContainer3"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vtyqw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayAnimationScene/MarginContainer3/PanelContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer3/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect2" type="PanelContainer" parent="PlayAnimationScene/MarginContainer3/PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n1eku")
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer3/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="PlayAnimationScene/MarginContainer3/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlayAnimationScene/MarginContainer3/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 32
+text = "มาช่วยกันเสริมสมองไว
+และภูมิคุ้มกันให้กับเด็กผ่าคลอด"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PlayAnimationScene/MarginContainer3/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_fmhf6")
+stretch_mode = 4
+
+[node name="MarginContainer4" type="MarginContainer" parent="PlayAnimationScene"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 91.5
+offset_top = 283.0
+offset_right = 516.5
+offset_bottom = 829.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 150
+
+[node name="PanelContainer2" type="PanelContainer" parent="PlayAnimationScene/MarginContainer4"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vtyqw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PlayAnimationScene/MarginContainer4/PanelContainer2"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect2" type="PanelContainer" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_n1eku")
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 32
+text = "ด้วยสารอาหารสำคัญ
+แอลฟา สฟิงโกไมโอดีน
+และ โพรไบโอติก บี แล็กทิส"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_lnl7s")
+stretch_mode = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer/TextureRect"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-value = 52.0
-texture_under = ExtResource("3_bna67")
-texture_over = ExtResource("4_pvibf")
-texture_progress = ExtResource("5_bh2g3")
+rotation = 0.14137167
+theme_override_constants/margin_left = -85
+theme_override_constants/margin_right = 75
+
+[node name="TextureRect" type="TextureRect" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer/TextureRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("13_eotbs")
+
+[node name="MarginContainer2" type="MarginContainer" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_bottom = 120.0
+grow_horizontal = 0
+rotation = -0.0715585
+theme_override_constants/margin_left = 75
+theme_override_constants/margin_right = -80
+
+[node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer/TextureRect/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer/TextureRect/MarginContainer2/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("14_4jegu")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayAnimationScene"]
+libraries = {
+&"": SubResource("AnimationLibrary_w5r3j")
+}
