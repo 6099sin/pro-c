@@ -8,8 +8,13 @@ extends Control
 @onready var game_over_panel = $TopBar/GradeLabel
 @onready var progressAlpha_bar: ProgressBar = $MarginContainer/VBoxContainer/PanelContainer3/ProgressBar
 @onready var progressBeta_bar: ProgressBar = $MarginContainer/VBoxContainer/PanelContainer2/ProgressBar
+@onready var timer_bar: ProgressBar = $MarginContainer2/HBoxContainer/PanelContainer3/ProgressBar
 @onready var bonus_time_indicator = $BonusTime
 var HUD_FILL_BAR = preload("uid://b4ll0t0y4e38t")
+
+var alpha_tween: Tween
+var beta_tween: Tween
+var time_tween: Tween
 
 
 func _ready():
@@ -47,25 +52,42 @@ func update_main_score_ui_Alpha(new_score: int): # Renamed from update_score_ui_
 		tween.tween_property(score_label_alpha, "scale", Vector2.ONE, 0.2).set_trans(Tween.TRANS_BOUNCE)
 
 func update_alpha_bar_ui(new_alpha_score: int):
-	progressAlpha_bar.value = new_alpha_score
+	if alpha_tween and alpha_tween.is_valid():
+		alpha_tween.kill()
+	alpha_tween = create_tween()
+	alpha_tween.tween_property(progressAlpha_bar, "value", new_alpha_score, 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	# Optional: add juice here for alpha bar update
 
 func update_beta_bar_ui(new_beta_score: int): # New function
-	progressBeta_bar.value = new_beta_score
+	if beta_tween and beta_tween.is_valid():
+		beta_tween.kill()
+	beta_tween = create_tween()
+	beta_tween.tween_property(progressBeta_bar, "value", new_beta_score, 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	# Optional: add juice here for beta bar update
 
 func update_timer_ui(time_left: float):
 	timer_label.text = Utils.format_time(time_left)
-	$MarginContainer2/HBoxContainer/PanelContainer3/ProgressBar.value = time_left
+
+	# Only use tween if the difference is significant (e.g. bonus/penalty), otherwise direct set is smoother for frame-by-frame
+	if abs(timer_bar.value - time_left) > 1.0:
+		if time_tween and time_tween.is_valid():
+			time_tween.kill()
+		time_tween = create_tween()
+		time_tween.tween_property(timer_bar, "value", time_left, 0.2).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
+	else:
+		# For normal ticking, we can just set it, OR short tween.
+		# Direct set is better for linear time decrease.
+		timer_bar.value = time_left
+
 	if time_left < 10:
-		$MarginContainer2/HBoxContainer/PanelContainer3/ProgressBar.scale = Vector2(1.2, 1)
+		timer_bar.scale = Vector2(1.2, 1)
 		var tween = create_tween()
-		tween.tween_property($MarginContainer2/HBoxContainer/PanelContainer3/ProgressBar, "scale", Vector2.ONE, 0.2).set_trans(Tween.TRANS_BOUNCE)
+		tween.tween_property(timer_bar, "scale", Vector2.ONE, 0.2).set_trans(Tween.TRANS_BOUNCE)
 		var stylebox = HUD_FILL_BAR.duplicate()
 		stylebox.bg_color = Color(1, 0, 0, 0.4)
 		if stylebox is StyleBoxFlat:
-			$MarginContainer2/HBoxContainer/PanelContainer3/ProgressBar.add_theme_stylebox_override("fill", stylebox)
-			var get_UI_StyleBox = $MarginContainer2/HBoxContainer/PanelContainer3/ProgressBar.get_theme_stylebox("fill").duplicate()
+			timer_bar.add_theme_stylebox_override("fill", stylebox)
+			var get_UI_StyleBox = timer_bar.get_theme_stylebox("fill").duplicate()
 			# 2. Create the Tween
 			var tween2 = create_tween()
 			# 3. Target the 'stylebox' reference directly to animate its 'bg_color'
@@ -92,12 +114,12 @@ func _on_bonus_event(is_active: bool):
 	if is_active:
 		if bonus_time_indicator:
 			bonus_time_indicator.visible = true
-		
+
 		# Pause for intro
 		get_tree().paused = true
 		await get_tree().create_timer(3.0).timeout
 		get_tree().paused = false
-		
+
 		# Hide indicator after intro
 		if bonus_time_indicator:
 			bonus_time_indicator.visible = false
