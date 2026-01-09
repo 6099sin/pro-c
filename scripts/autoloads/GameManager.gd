@@ -74,8 +74,8 @@ func _calculate_points_and_combo(amount: int) -> int:
 func add_score_alpha(amount: int):
 	var points = _calculate_points_and_combo(amount)
 
-	score_alpha = min(score_alpha + points, MAX_SCORE_ALPHA_BETA)
-	score += points
+	score_alpha = max(min(score_alpha + points, MAX_SCORE_ALPHA_BETA), 0)
+	score = max(score + points, 0)
 	print("Score Alpha: %d" % score_alpha)
 	SignalBus.score_updated_alpha.emit(score_alpha)
 	SignalBus.score_updated_total.emit(score)
@@ -83,8 +83,8 @@ func add_score_alpha(amount: int):
 func add_score_beta(amount: int):
 	var points = _calculate_points_and_combo(amount)
 
-	score_beta = min(score_beta + points, MAX_SCORE_ALPHA_BETA)
-	score += points
+	score_beta = max(min(score_beta + points, MAX_SCORE_ALPHA_BETA), 0)
+	score = max(score + points, 0)
 	print("Score Beta: %d" % score_beta)
 	SignalBus.score_updated_beta.emit(score_beta)
 	SignalBus.score_updated_total.emit(score)
@@ -92,7 +92,7 @@ func add_score_beta(amount: int):
 func add_score(amount: int):
 	var points = _calculate_points_and_combo(amount)
 
-	score += points
+	score = max(score + points, 0)
 	SignalBus.score_updated_total.emit(score)
 
 func reset_combo():
