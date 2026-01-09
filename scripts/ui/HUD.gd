@@ -8,6 +8,7 @@ extends Control
 @onready var game_over_panel = $TopBar/GradeLabel
 @onready var progressAlpha_bar: ProgressBar = $MarginContainer/VBoxContainer/PanelContainer3/ProgressBar
 @onready var progressBeta_bar: ProgressBar = $MarginContainer/VBoxContainer/PanelContainer2/ProgressBar
+@onready var bonus_time_indicator = $BonusTime
 var HUD_FILL_BAR = preload("uid://b4ll0t0y4e38t")
 
 
@@ -20,6 +21,7 @@ func _ready():
 	# Connect to alpha and beta score updates
 	SignalBus.score_updated_alpha.connect(update_alpha_bar_ui)
 	SignalBus.score_updated_beta.connect(update_beta_bar_ui)
+	SignalBus.bonus_event.connect(_on_bonus_event)
 
 	# Initial UI state (assuming GameManager is already initialized)
 	update_main_score_ui_Alpha(GameManager.score) # Initialize with current GameManager score
@@ -27,10 +29,13 @@ func _ready():
 	game_over_panel.visible = false
 
 	# Initialize progress bars for alpha and beta scores
-	progressAlpha_bar.max_value = GameManager.MAX_SCORE_ALPHA_BETA/2
-	progressBeta_bar.max_value = GameManager.MAX_SCORE_ALPHA_BETA/2
+	progressAlpha_bar.max_value = GameManager.MAX_SCORE_ALPHA_BETA / 2
+	progressBeta_bar.max_value = GameManager.MAX_SCORE_ALPHA_BETA / 2
+	update_alpha_bar_ui(GameManager.score_alpha) # Initialize with current GameManager score_alpha
 	update_alpha_bar_ui(GameManager.score_alpha) # Initialize with current GameManager score_alpha
 	update_beta_bar_ui(GameManager.score_beta) # Initialize with current GameManager score_beta
+	if bonus_time_indicator:
+		bonus_time_indicator.visible = false
 
 
 func update_main_score_ui_Alpha(new_score: int): # Renamed from update_score_ui_alpha
@@ -80,3 +85,19 @@ func _process(_delta):
 	if GameManager.is_game_active:
 		combo_bar.value = (GameManager.combo_multiplier - 1.0) / (GameManager.MAX_COMBO - 1.0) * 100
 		combo_label.text = "x%.1f" % GameManager.combo_multiplier
+
+		combo_label.text = "x%.1f" % GameManager.combo_multiplier
+
+func _on_bonus_event(is_active: bool):
+	if is_active:
+		if bonus_time_indicator:
+			bonus_time_indicator.visible = true
+		
+		# Pause for intro
+		get_tree().paused = true
+		await get_tree().create_timer(3.0).timeout
+		get_tree().paused = false
+		
+		# Hide indicator after intro
+		if bonus_time_indicator:
+			bonus_time_indicator.visible = false

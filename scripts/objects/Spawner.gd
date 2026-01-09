@@ -17,6 +17,11 @@ const MERGE_MAP: Dictionary = {
 	"f2": "f3",
 }
 
+const BONUS_INTERVAL_MIN: int = 15000 # 15 seconds
+const BONUS_INTERVAL_MAX: int = 30000 # 30 seconds
+
+var next_bonus_time: int = 0
+
 var pool: Array[Item] = []
 
 @onready var spawn_timer: Timer = $SpawnTimer
@@ -36,6 +41,16 @@ func _ready():
 	spawn_timer.start()
 	
 	SignalBus.bonus_event.connect(_on_bonus_event)
+	
+	schedule_next_bonus()
+
+func schedule_next_bonus():
+	next_bonus_time = Time.get_ticks_msec() + randi_range(BONUS_INTERVAL_MIN, BONUS_INTERVAL_MAX)
+
+func _process(_delta):
+	# Removed bonus warning logic as per new design
+	pass
+
 
 func init_pool():
 	ensure_pool_size(pool_size)
@@ -104,9 +119,11 @@ func spawn_item(item: Item):
 			picked_id = all_items.pick_random()
 	else:
 		# Normal Spawn Logic
-		if randf() < 0.05: # Increased to 5% for better visibility
+		var current_time = Time.get_ticks_msec()
+		if current_time >= next_bonus_time:
 			picked_id = "bonus"
 			print("SPAWN: Bonus Item Created!")
+			schedule_next_bonus()
 		else:
 			picked_id = all_items.pick_random()
 			
