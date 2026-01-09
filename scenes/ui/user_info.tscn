@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://wdpx1dg4ece6"]
+[gd_scene load_steps=19 format=3 uid="uid://wdpx1dg4ece6"]
 
 [ext_resource type="StyleBox" uid="uid://bbt4dpb0ysphk" path="res://theme/style_box_flat_Round.tres" id="1_00e66"]
 [ext_resource type="Script" uid="uid://c1anqrg83g0gl" path="res://scripts/ui/user_info.gd" id="1_bh2g3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ckpjfqnugvhsi" path="res://assets/UI/UI2/BarAlpha_Frame.png" id="4_pvibf"]
 [ext_resource type="Texture2D" uid="uid://c7yq2emkqgto7" path="res://assets/UI/UI2/BarAlpha_Fill.png" id="5_bh2g3"]
 [ext_resource type="Texture2D" uid="uid://umhq2bgcj0fw" path="res://assets/UI/UI1/LOGO_S26.png" id="6_vtyqw"]
+[ext_resource type="Texture2D" uid="uid://dg8wrf21lbngy" path="res://assets/UI/UI1/Boxถัดไป.png" id="7_n1eku"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybqoc"]
 content_margin_left = 0.0
@@ -30,41 +31,15 @@ _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\">
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><rect width=\"14\" height=\"14\" x=\"1\" y=\"1\" fill=\"#1a1a1a\" fill-opacity=\".25\" rx=\"2.333\"/></svg>
 "
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p1tq6"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.6, 0.6, 0.6, 0.6392157)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-corner_detail = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qa4ve"]
+texture = ExtResource("7_n1eku")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yw532"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 0.6)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-corner_detail = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1ewrd"]
+texture = ExtResource("7_n1eku")
+modulate_color = Color(0.7750634, 0.7750634, 0.7750634, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkxlf"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.225, 0.225, 0.225, 0.6)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-corner_detail = 5
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n1eku"]
+texture = ExtResource("7_n1eku")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bna67"]
 content_margin_left = 4.0
@@ -78,26 +53,8 @@ corner_radius_bottom_right = 15
 corner_radius_bottom_left = 15
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pvibf"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.75)
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-corner_detail = 5
-expand_margin_left = 2.0
-expand_margin_top = 2.0
-expand_margin_right = 2.0
-expand_margin_bottom = 2.0
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_heac4"]
+texture = ExtResource("7_n1eku")
 
 [node name="UserInfo" type="Control"]
 layout_mode = 3
@@ -153,9 +110,9 @@ expand_mode = 1
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 50
+theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
@@ -227,18 +184,23 @@ horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 77
-theme_override_constants/margin_right = 77
+theme_override_constants/margin_left = 115
+theme_override_constants/margin_right = 115
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_p1tq6")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yw532")
-theme_override_styles/hover = SubResource("StyleBoxFlat_bkxlf")
+theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_hover_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 34
+theme_override_styles/normal = SubResource("StyleBoxTexture_qa4ve")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1ewrd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_n1eku")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_bna67")
-theme_override_styles/focus = SubResource("StyleBoxFlat_pvibf")
-text = "Next"
+theme_override_styles/focus = SubResource("StyleBoxTexture_heac4")
+text = "ถัดไป"
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 visible = false
