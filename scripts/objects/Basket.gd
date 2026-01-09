@@ -20,7 +20,7 @@ func _on_body_entered(body):
 			if body.type == Utils.ItemType.TRAP:
 				receive_item(body)
 			# BONUS: Always triggers (Collectible)
-			elif body.type == Utils.ItemType.BONUS:
+			elif body.type == Utils.ItemType.BONUS and body.was_interacted:
 				receive_item(body)
 			# FRUIT: Only triggers if interacted (Collectible)
 			elif body.type == Utils.ItemType.FRUIT and body.was_interacted:
@@ -67,12 +67,12 @@ func process_item(item: Item):
 
 func play_hit_effect(type: Utils.ItemType):
 	var tween = create_tween().set_parallel(true)
-	
+
 	# Stretch / Squash
 	sprite.scale = Vector2(0.9, 0.7)
 	sprite.texture = setTexture[3] if type == Utils.ItemType.FRUIT else setTexture[0]
 	tween.tween_property(sprite, "scale", Vector2.ONE, 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	
+
 	# Color Flash
 	var flash_color = Color(0.5, 1.5, 0.5) if type == Utils.ItemType.FRUIT else Color(1.5, 0.5, 0.5)
 	sprite.modulate = flash_color
