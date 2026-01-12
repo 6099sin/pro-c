@@ -114,6 +114,7 @@ grow_vertical = 2
 script = ExtResource("1_script")
 
 [node name="ColorRect" type="TextureRect" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -121,6 +122,33 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_nyp2j")
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0.48235294)
+layout_mode = 1
+offset_left = -31.986786
+offset_top = -317.98254
+offset_right = 604.01807
+offset_bottom = 318.02234
+rotation = 0.424115
+texture = ExtResource("5_jn2uc")
+
+[node name="TextureRect2" type="TextureRect" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0.48235294)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -440.0
+offset_top = -228.0
+offset_right = -2.0
+offset_bottom = 210.0
+grow_horizontal = 0
+grow_vertical = 0
+rotation = -0.56548667
+texture = ExtResource("6_7c47n")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -167,9 +195,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -150.0
-offset_top = -241.0
+offset_top = -174.5
 offset_right = 150.0
-offset_bottom = 241.0
+offset_bottom = 174.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -184,8 +212,8 @@ expand_mode = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = -290
-theme_override_constants/margin_bottom = 270
+theme_override_constants/margin_top = -240
+theme_override_constants/margin_bottom = 200
 
 [node name="TextureRect" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer2"]
 custom_minimum_size = Vector2(300, 300)
@@ -359,7 +387,7 @@ texture = ExtResource("7_1525q")
 custom_minimum_size = Vector2(1.69, 1.885)
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_constants/margin_right = 25
+theme_override_constants/margin_right = 40
 
 [node name="allPoint" type="Label" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer2/MarginContainer2"]
 layout_mode = 2
@@ -368,3 +396,4 @@ theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 50
 text = "1000"
+horizontal_alignment = 1
