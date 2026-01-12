@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://uqna81xmj53d"]
+
+[ext_resource type="Script" uid="uid://bmivw0xjycd0c" path="res://scripts/ui/end_game.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://iwc7xll1twdi" path="res://assets/UI/UI2/promote.png" id="2_jgq0i"]
+
+[node name="EndGame" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="LabelAlpha" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Alpha Score: 0"
+horizontal_alignment = 1
+
+[node name="LabelBeta" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Beta Score: 0"
+horizontal_alignment = 1
+
+[node name="LabelSum" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Total Score: 0"
+horizontal_alignment = 1
+
+[node name="Promote" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jgq0i")
