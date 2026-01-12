@@ -13,4 +13,4 @@ func _ready() -> void:
 
 	label_alpha.text = "%d" % GameManager.score_alpha
 	label_beta.text = "%d" % GameManager.score_beta
-	label_sum.text = "%d" % GameManager.score
+	label_sum.text = "%d" % (GameManager.score_alpha+GameManager.score_beta)
