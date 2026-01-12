@@ -69,7 +69,6 @@ func update_timer_ui(time_left: float):
 	timer_label.text = Utils.format_time(time_left)
 
 	# Only use tween if the difference is significant (e.g. bonus/penalty), otherwise direct set is smoother for frame-by-frame
-	# Only use tween if the difference is significant (e.g. bonus/penalty), otherwise direct set is smoother for frame-by-frame
 	if abs(timer_bar.value - time_left) > 1.0:
 		# If we are already animating a large jump, let it finish to avoid stuttering
 		if time_tween and time_tween.is_valid() and time_tween.is_running():
@@ -96,7 +95,7 @@ func update_timer_ui(time_left: float):
 			# 2. Create the Tween
 			var tween2 = create_tween()
 			# 3. Target the 'stylebox' reference directly to animate its 'bg_color'
-			var target_color = Color(0.969, 0.247, 0.432, 1.0)
+			var target_color = Color(1.0, 0.0, 0.0, 1.0)
 			tween2.tween_property(get_UI_StyleBox, "bg_color", target_color, 0.5).set_trans(Tween.TRANS_SINE)
 
 		timer_label.modulate = Color(1, 0, 0)
