@@ -234,6 +234,20 @@ texture = ExtResource("2_6ll6g")
 expand_mode = 1
 stretch_mode = 4
 
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer3"]
+custom_minimum_size = Vector2(1.69, 1.885)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_right = 25
+
+[node name="addPointAlpha" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 50
+text = "+10"
+
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
@@ -263,6 +277,20 @@ layout_mode = 2
 texture = ExtResource("3_ig75s")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer2"]
+custom_minimum_size = Vector2(1.69, 1.885)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/margin_right = 25
+
+[node name="addPointBeta" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 50
+text = "+10"
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
