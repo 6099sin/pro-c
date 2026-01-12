@@ -46,8 +46,18 @@ func _ready():
 	# Show before_start warning
 	if before_start:
 		before_start.visible = true
+		before_start.modulate.a = 1.0
 		get_tree().paused = true
-		await get_tree().create_timer(2.0).timeout
+		
+		# Wait 1.5 seconds
+		await get_tree().create_timer(1.5, true, false, true).timeout
+		
+		# Fade out for 0.5 seconds
+		var tween = create_tween()
+		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+		tween.tween_property(before_start, "modulate:a", 0.0, 0.5)
+		await tween.finished
+		
 		before_start.visible = false
 		get_tree().paused = false
 
