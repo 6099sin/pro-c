@@ -10,6 +10,7 @@ extends Control
 @onready var progressBeta_bar: ProgressBar = $MarginContainer/VBoxContainer/PanelContainer2/ProgressBar
 @onready var timer_bar: ProgressBar = $MarginContainer2/HBoxContainer/PanelContainer3/ProgressBar
 @onready var bonus_time_indicator = $BonusTime
+@onready var before_start = $before_start
 var HUD_FILL_BAR = preload("uid://b4ll0t0y4e38t")
 
 var alpha_tween: Tween
@@ -41,6 +42,14 @@ func _ready():
 	update_beta_bar_ui(GameManager.score_beta) # Initialize with current GameManager score_beta
 	if bonus_time_indicator:
 		bonus_time_indicator.visible = false
+
+	# Show before_start warning
+	if before_start:
+		before_start.visible = true
+		get_tree().paused = true
+		await get_tree().create_timer(2.0).timeout
+		before_start.visible = false
+		get_tree().paused = false
 
 
 func update_main_score_ui_Alpha(new_score: int): # Renamed from update_score_ui_alpha
