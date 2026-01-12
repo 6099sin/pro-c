@@ -3,7 +3,7 @@ extends Node2D
 @onready var snap_zone: Area2D = $SnapZone
 @onready var center_point: Marker2D = $CenterPoint
 @onready var sprite: Sprite2D = $Node2D/Sprite2D
-@export var setTexture: Array[Texture]
+@export var setTexture: Array[Texture2D]
 func _ready():
 	snap_zone.body_entered.connect(_on_body_entered)
 	center_on_camera()
