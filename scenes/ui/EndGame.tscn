@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dbgi1yh3bas4b" path="res://assets/UI/Item/Alpha.png" id="5_jn2uc"]
 [ext_resource type="Texture2D" uid="uid://bp41wh7ort5ab" path="res://assets/UI/Item/Beta.png" id="6_7c47n"]
 [ext_resource type="Texture2D" uid="uid://dg8wrf21lbngy" path="res://assets/UI/UI1/Boxถัดไป.png" id="7_1525q"]
+[ext_resource type="Texture2D" uid="uid://b0wnhjrwcwvj2" path="res://assets/UI/UI3/confitte.png" id="7_bbu7g"]
 
 [sub_resource type="Gradient" id="Gradient_855qe"]
 offsets = PackedFloat32Array(0, 0.48923078, 1)
@@ -48,9 +49,9 @@ content_margin_top = 2.0
 content_margin_right = 2.0
 content_margin_bottom = 2.0
 bg_color = Color(0, 0.2509804, 0.42745098, 0.49411765)
-border_width_left = 4
+border_width_left = 5
 border_width_top = 5
-border_width_right = 4
+border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 30
@@ -63,9 +64,9 @@ expand_margin_bottom = 5.0
 shadow_color = Color(0.9411765, 0.7607843, 0.36078432, 0.75686276)
 shadow_size = 4
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y6p45"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_odq5o"]
 texture = ExtResource("4_bbu7g")
-region_rect = Rect2(12, 0, 328, 36)
+region_rect = Rect2(12, 0, 336, 36)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhgty"]
 content_margin_left = 0.0
@@ -99,10 +100,6 @@ expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 shadow_color = Color(0.9411765, 0.7607843, 0.36078432, 0.75686276)
 shadow_size = 4
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_odq5o"]
-texture = ExtResource("4_bbu7g")
-region_rect = Rect2(12, 0, 328, 36)
 
 [node name="EndGame" type="Control"]
 layout_mode = 3
@@ -177,16 +174,6 @@ layout_mode = 2
 text = "Total Score: 0"
 horizontal_alignment = 1
 
-[node name="Promote" type="TextureRect" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_jgq0i")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -229,9 +216,9 @@ vertical_alignment = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 25
+theme_override_constants/margin_left = 65
 theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 25
+theme_override_constants/margin_right = 65
 theme_override_constants/margin_bottom = 32
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
@@ -268,7 +255,7 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_rcyyl")
-theme_override_styles/fill = SubResource("StyleBoxTexture_y6p45")
+theme_override_styles/fill = SubResource("StyleBoxTexture_odq5o")
 max_value = 500.0
 step = 1.0
 value = 500.0
@@ -298,7 +285,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 45
 text = "500"
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
@@ -347,7 +334,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 45
 text = "700"
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
@@ -397,3 +384,22 @@ theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 50
 text = "1000"
 horizontal_alignment = 1
+
+[node name="confitte" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_bbu7g")
+
+[node name="Promote" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jgq0i")
