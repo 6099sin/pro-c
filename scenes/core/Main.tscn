@@ -30,7 +30,7 @@ texture = ExtResource("2_kitw3")
 anchor_mode = 0
 
 [node name="Basket" parent="Camera2D" instance=ExtResource("1_fun78")]
-position = Vector2(144, 888)
+position = Vector2(144, 854)
 scale = Vector2(12, 12)
 
 [node name="Spawner" parent="." instance=ExtResource("2_5pwbx")]
