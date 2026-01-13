@@ -12,7 +12,7 @@ radius = 12.0
 
 [node name="Basket" type="Node2D"]
 script = ExtResource("1_basket")
-setTexture = Array[Texture]([ExtResource("2_jvwoh"), ExtResource("2_begjd"), ExtResource("4_la12k"), ExtResource("5_wdsdn"), ExtResource("6_bvtbb")])
+setTexture = Array[Texture2D]([ExtResource("2_jvwoh"), ExtResource("2_begjd"), ExtResource("4_la12k"), ExtResource("5_wdsdn"), ExtResource("6_bvtbb")])
 
 [node name="SnapZone" type="Area2D" parent="."]
 collision_mask = 2
@@ -28,3 +28,5 @@ scale = Vector2(0.085, 0.085)
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 texture = ExtResource("2_begjd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
