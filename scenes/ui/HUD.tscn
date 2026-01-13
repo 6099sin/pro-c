@@ -357,7 +357,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_jlufg")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BonusTime"]
+[node name="MarginContainer" type="MarginContainer" parent="BonusTime"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -365,17 +365,21 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -20.0
+offset_top = -119.0
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = 119.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_bottom = 370
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BonusTime/MarginContainer"]
+layout_mode = 2
 theme_override_constants/separation = 119
 
-[node name="Panel" type="Panel" parent="BonusTime/VBoxContainer"]
+[node name="Panel" type="Panel" parent="BonusTime/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BonusTime/VBoxContainer/Panel"]
+[node name="Label" type="Label" parent="BonusTime/MarginContainer/VBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -394,10 +398,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Panel3" type="Panel" parent="BonusTime/VBoxContainer"]
+[node name="Panel3" type="Panel" parent="BonusTime/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="BonusTime/VBoxContainer/Panel3"]
+[node name="Label2" type="Label" parent="BonusTime/MarginContainer/VBoxContainer/Panel3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -416,10 +420,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Panel2" type="Panel" parent="BonusTime/VBoxContainer"]
+[node name="Panel2" type="Panel" parent="BonusTime/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="BonusTime/VBoxContainer/Panel2"]
+[node name="Label3" type="Label" parent="BonusTime/MarginContainer/VBoxContainer/Panel2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -455,7 +459,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_jlufg")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BonusTimeEnd"]
+[node name="MarginContainer" type="MarginContainer" parent="BonusTimeEnd"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -463,17 +467,21 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -20.0
+offset_top = -59.5
 offset_right = 20.0
-offset_bottom = 20.0
+offset_bottom = 59.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_bottom = 590
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BonusTimeEnd/MarginContainer"]
+layout_mode = 2
 theme_override_constants/separation = 119
 
-[node name="Panel" type="Panel" parent="BonusTimeEnd/VBoxContainer"]
+[node name="Panel" type="Panel" parent="BonusTimeEnd/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BonusTimeEnd/VBoxContainer/Panel"]
+[node name="Label" type="Label" parent="BonusTimeEnd/MarginContainer/VBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -492,10 +500,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="Panel3" type="Panel" parent="BonusTimeEnd/VBoxContainer"]
+[node name="Panel3" type="Panel" parent="BonusTimeEnd/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="BonusTimeEnd/VBoxContainer/Panel3"]
+[node name="Label2" type="Label" parent="BonusTimeEnd/MarginContainer/VBoxContainer/Panel3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -617,8 +625,8 @@ theme_override_colors/font_color = Color(0.9372549, 0.46666667, 0.12941177, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
 theme_override_constants/outline_size = 4
-theme_override_constants/shadow_outline_size = 4
-theme_override_font_sizes/font_size = 36
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 65
 text = "10 Sec"
 
 [node name="TimerCountdown" type="Timer" parent="MarginContainer3/BonusTimer"]
