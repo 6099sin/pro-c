@@ -52,7 +52,7 @@ func process_item(item: Item):
 		SignalBus.request_sfx.emit("explosion")
 	# Bonus Item
 	elif item.type == Utils.ItemType.BONUS:
-		GameManager.activate_bonus_mode(10.0)
+		GameManager.activate_bonus_mode(11.0)
 		GameManager.add_score(item.score)
 		SignalBus.request_sfx.emit("pop") # Or use a special sound
 	# Fallback to general score for any other items
