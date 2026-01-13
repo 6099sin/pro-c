@@ -51,19 +51,19 @@ func _ready():
 		before_start.visible = true
 		before_start.modulate.a = 1.0
 		get_tree().paused = true
-		
+
 		# Wait 1.5 seconds
 		await get_tree().create_timer(1.5, true, false, true).timeout
-		
+
 		# Fade out for 0.5 seconds
 		var tween = create_tween()
 		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		tween.tween_property(before_start, "modulate:a", 0.0, 0.5)
 		await tween.finished
-		
+
 		before_start.visible = false
 		get_tree().paused = false
-	
+
 	# 1. เชื่อมต่อ Signal เมื่อเวลาหมด (หากต้องการทำเหตุการณ์บางอย่าง)
 	timer.timeout.connect(_on_timer_timeout)
 	timer.stop()
@@ -138,9 +138,9 @@ func _process(_delta):
 		combo_label.text = "x%.1f" % GameManager.combo_multiplier
 
 		combo_label.text = "x%.1f" % GameManager.combo_multiplier
-	if !timer.is_stopped():	
+	if !timer.is_stopped():
 		var time_remaining = snapped(timer.time_left, 0)
-		bonus_timer_text.text = "Time Remaining: " + str(time_remaining) + "s"
+		bonus_timer_text.text = str(time_remaining) + "s"
 func _on_bonus_event(is_active: bool):
 	if is_active:
 		if bonus_time_indicator:
