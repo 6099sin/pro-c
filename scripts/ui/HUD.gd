@@ -9,9 +9,12 @@ extends Control
 @onready var progressAlpha_bar: ProgressBar = $MarginContainer/VBoxContainer/PanelContainer3/ProgressBar
 @onready var progressBeta_bar: ProgressBar = $MarginContainer/VBoxContainer/PanelContainer2/ProgressBar
 @onready var timer_bar: ProgressBar = $MarginContainer2/HBoxContainer/PanelContainer3/ProgressBar
-@onready var bonus_time_indicator = $BonusTime
+@onready var bonus_time_indicator: Panel = $BonusTime
+@onready var bonus_time_indicatorEnd: Panel = $BonusTimeEnd
 @onready var before_start = $before_start
 var HUD_FILL_BAR = preload("uid://b4ll0t0y4e38t")
+@onready var bonus_timer_text: Label = $MarginContainer3/BonusTimer
+@onready var timer:Timer = bonus_timer_text.get_child(0)
 
 var alpha_tween: Tween
 var beta_tween: Tween
@@ -60,7 +63,10 @@ func _ready():
 		
 		before_start.visible = false
 		get_tree().paused = false
-
+	
+	# 1. เชื่อมต่อ Signal เมื่อเวลาหมด (หากต้องการทำเหตุการณ์บางอย่าง)
+	timer.timeout.connect(_on_timer_timeout)
+	timer.stop()
 
 func update_main_score_ui_Alpha(new_score: int): # Renamed from update_score_ui_alpha
 	score_label_alpha.text = "Score: %d" % new_score
@@ -132,7 +138,9 @@ func _process(_delta):
 		combo_label.text = "x%.1f" % GameManager.combo_multiplier
 
 		combo_label.text = "x%.1f" % GameManager.combo_multiplier
-
+	if !timer.is_stopped():	
+		var time_remaining = snapped(timer.time_left, 0)
+		bonus_timer_text.text = "Time Remaining: " + str(time_remaining) + "s"
 func _on_bonus_event(is_active: bool):
 	if is_active:
 		if bonus_time_indicator:
@@ -142,7 +150,19 @@ func _on_bonus_event(is_active: bool):
 		get_tree().paused = true
 		await get_tree().create_timer(3.0).timeout
 		get_tree().paused = false
-
+		bonus_timer_text.visible=true
+		timer.start()
 		# Hide indicator after intro
 		if bonus_time_indicator:
 			bonus_time_indicator.visible = false
+
+func _on_timer_timeout()-> void:
+	print("หมดเวลาแล้ว!")
+	bonus_timer_text.visible=false
+	if bonus_time_indicatorEnd:
+		bonus_time_indicatorEnd.visible=true
+	get_tree().paused = true
+	await get_tree().create_timer(3.0).timeout
+	get_tree().paused = false
+	if bonus_time_indicatorEnd:
+		bonus_time_indicatorEnd.visible=false
