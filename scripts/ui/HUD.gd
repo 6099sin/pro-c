@@ -14,11 +14,17 @@ extends Control
 @onready var before_start = $before_start
 var HUD_FILL_BAR = preload("uid://b4ll0t0y4e38t")
 @onready var bonus_timer_text: Label = $MarginContainer3/BonusTimer
-@onready var timer:Timer = bonus_timer_text.get_child(0)
+@onready var timer: Timer = bonus_timer_text.get_child(0)
+
+@onready var add_point_alpha: Label = $MarginContainer/VBoxContainer/PanelContainer3/MarginContainer2/addPointAlpha
+@onready var add_point_beta: Label = $MarginContainer/VBoxContainer/PanelContainer2/MarginContainer2/addPointBeta
 
 var alpha_tween: Tween
 var beta_tween: Tween
 var time_tween: Tween
+
+var current_alpha_score: int = 0
+var current_beta_score: int = 0
 
 
 func _ready():
@@ -36,13 +42,24 @@ func _ready():
 	update_main_score_ui_Alpha(GameManager.score) # Initialize with current GameManager score
 	update_timer_ui(GameManager.time_left) # Initialize with current GameManager time
 	game_over_panel.visible = false
+	
+	# Initialize popup labels to invisible
+	if add_point_alpha:
+		add_point_alpha.modulate.a = 0.0
+	if add_point_beta:
+		add_point_beta.modulate.a = 0.0
 
 	# Initialize progress bars for alpha and beta scores
 	progressAlpha_bar.max_value = GameManager.MAX_SCORE_ALPHA_BETA / 2
 	progressBeta_bar.max_value = GameManager.MAX_SCORE_ALPHA_BETA / 2
-	update_alpha_bar_ui(GameManager.score_alpha) # Initialize with current GameManager score_alpha
-	update_alpha_bar_ui(GameManager.score_alpha) # Initialize with current GameManager score_alpha
-	update_beta_bar_ui(GameManager.score_beta) # Initialize with current GameManager score_beta
+	
+	# Initialize local score tracking without triggering animation
+	current_alpha_score = GameManager.score_alpha
+	current_beta_score = GameManager.score_beta
+	
+	update_alpha_bar_ui(GameManager.score_alpha, false)
+	update_beta_bar_ui(GameManager.score_beta, false)
+
 	if bonus_time_indicator:
 		bonus_time_indicator.visible = false
 
@@ -76,19 +93,55 @@ func update_main_score_ui_Alpha(new_score: int): # Renamed from update_score_ui_
 		score_label_alpha.scale = Vector2(1.5, 1.5)
 		tween.tween_property(score_label_alpha, "scale", Vector2.ONE, 0.2).set_trans(Tween.TRANS_BOUNCE)
 
-func update_alpha_bar_ui(new_alpha_score: int):
+func update_alpha_bar_ui(new_alpha_score: int, animate_popup: bool = true):
+	if animate_popup:
+		var delta = new_alpha_score - current_alpha_score
+		if delta != 0:
+			show_score_popup(add_point_alpha, delta)
+	
+	current_alpha_score = new_alpha_score
+	
 	if alpha_tween and alpha_tween.is_valid():
 		alpha_tween.kill()
 	alpha_tween = create_tween()
 	alpha_tween.tween_property(progressAlpha_bar, "value", new_alpha_score, 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	# Optional: add juice here for alpha bar update
 
-func update_beta_bar_ui(new_beta_score: int): # New function
+func update_beta_bar_ui(new_beta_score: int, animate_popup: bool = true): # New function
+	if animate_popup:
+		var delta = new_beta_score - current_beta_score
+		if delta != 0:
+			show_score_popup(add_point_beta, delta)
+			
+	current_beta_score = new_beta_score
+	
 	if beta_tween and beta_tween.is_valid():
 		beta_tween.kill()
 	beta_tween = create_tween()
 	beta_tween.tween_property(progressBeta_bar, "value", new_beta_score, 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_OUT)
 	# Optional: add juice here for beta bar update
+
+func show_score_popup(label: Label, delta: int):
+	if label == null: return
+	
+	if delta > 0:
+		label.text = "+%d" % delta
+		# Optional: Set color for positive? Using existing color for now.
+	else:
+		label.text = "%d" % delta
+		# Optional: Set color for negative?
+		
+	# Reset alpha to 0 just in case
+	label.modulate.a = 0.0
+	label.visible = true
+	
+	var tween = create_tween()
+	# Fade In
+	tween.tween_property(label, "modulate:a", 1.0, 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	# Wait
+	tween.tween_interval(0.5)
+	# Fade Out
+	tween.tween_property(label, "modulate:a", 0.0, 0.3).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 
 func update_timer_ui(time_left: float):
 	timer_label.text = Utils.format_time(time_left)
@@ -150,19 +203,19 @@ func _on_bonus_event(is_active: bool):
 		get_tree().paused = true
 		await get_tree().create_timer(3.0).timeout
 		get_tree().paused = false
-		bonus_timer_text.visible=true
+		bonus_timer_text.visible = true
 		timer.start()
 		# Hide indicator after intro
 		if bonus_time_indicator:
 			bonus_time_indicator.visible = false
 
-func _on_timer_timeout()-> void:
+func _on_timer_timeout() -> void:
 	print("หมดเวลาแล้ว!")
-	bonus_timer_text.visible=false
+	bonus_timer_text.visible = false
 	if bonus_time_indicatorEnd:
-		bonus_time_indicatorEnd.visible=true
+		bonus_time_indicatorEnd.visible = true
 	get_tree().paused = true
 	await get_tree().create_timer(3.0).timeout
 	get_tree().paused = false
 	if bonus_time_indicatorEnd:
-		bonus_time_indicatorEnd.visible=false
+		bonus_time_indicatorEnd.visible = false
