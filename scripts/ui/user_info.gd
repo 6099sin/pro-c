@@ -3,16 +3,20 @@ extends Control
 @onready var input_tel: LineEdit = $PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/LineEditTel
 @onready var input_name: LineEdit = $PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/LineEditName
 @onready var check_box: CheckBox = $PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/CheckBox
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 # Variable to store the last valid phone number
 var old_tel_text = ""
 # Create a Regular Expression tool
 var regex = RegEx.new()
+
+var flipflop:bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# --- 1. Setup Regex to accept ONLY numbers ---
 	regex.compile("^[0-9]*$")
-
+	# flip sound
+	
 # --- 2. Connect the Text Changed signal for the phone number ---
 	input_tel.text_changed.connect(_on_input_tel_changed)
 
@@ -77,3 +81,14 @@ func flash_error(control: Control):
 	tween.set_loops(2)
 	tween.tween_property(control, "modulate", Color.RED, 0.15)
 	tween.tween_property(control, "modulate", Color.WHITE, 0.15)
+
+
+func _on_button_pressed() -> void:
+	if flipflop:
+		audio_stream_player.stop()
+		flipflop=false
+	else:
+		audio_stream_player.play()
+		flipflop=true
+		
+	

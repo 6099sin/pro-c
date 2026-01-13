@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://wdpx1dg4ece6"]
+[gd_scene load_steps=34 format=3 uid="uid://wdpx1dg4ece6"]
 
 [ext_resource type="StyleBox" uid="uid://bbt4dpb0ysphk" path="res://theme/style_box_flat_Round.tres" id="1_00e66"]
 [ext_resource type="Script" uid="uid://c1anqrg83g0gl" path="res://scripts/ui/user_info.gd" id="1_bh2g3"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://4ktwa4svs4nl" path="res://assets/UI/Baby/B3.png" id="12_wcnxs"]
 [ext_resource type="Texture2D" uid="uid://dbgi1yh3bas4b" path="res://assets/UI/Item/Alpha.png" id="13_eotbs"]
 [ext_resource type="Texture2D" uid="uid://bp41wh7ort5ab" path="res://assets/UI/Item/Beta.png" id="14_4jegu"]
+[ext_resource type="Texture2D" uid="uid://37c150l1a6xo" path="res://assets/UI/UI1/SoundOption.png" id="15_g5avq"]
+[ext_resource type="AudioStream" uid="uid://bsah4xi2vfsqw" path="res://assets/Sound/adventureSonati/sonatina_letsadventure_6Flying.ogg" id="16_w5r3j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybqoc"]
 content_margin_left = 0.0
@@ -657,3 +659,32 @@ expand_mode = 1
 libraries = {
 &"": SubResource("AnimationLibrary_w5r3j")
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -81.0
+offset_bottom = 64.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("15_g5avq")
+
+[node name="Button" type="Button" parent="MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_w5r3j")
+autoplay = true
+
+[connection signal="pressed" from="MarginContainer/TextureRect/Button" to="." method="_on_button_pressed"]
