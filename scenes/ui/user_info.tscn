@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://wdpx1dg4ece6"]
+[gd_scene load_steps=35 format=3 uid="uid://wdpx1dg4ece6"]
 
 [ext_resource type="StyleBox" uid="uid://bbt4dpb0ysphk" path="res://theme/style_box_flat_Round.tres" id="1_00e66"]
 [ext_resource type="Script" uid="uid://c1anqrg83g0gl" path="res://scripts/ui/user_info.gd" id="1_bh2g3"]
@@ -6,10 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://cfx0bs11uelnt" path="res://assets/UI/UI1/Background.png" id="2_ybqoc"]
 [ext_resource type="Texture2D" uid="uid://lj6d3jhf036m" path="res://assets/UI/UI2/frameBottom.png" id="3_najyl"]
 [ext_resource type="Texture2D" uid="uid://ql7sre145r2k" path="res://assets/UI/UI3/BG_UI1.png" id="3_ybqoc"]
-[ext_resource type="Texture2D" uid="uid://umhq2bgcj0fw" path="res://assets/UI/UI1/LOGO_S26.png" id="6_vtyqw"]
+[ext_resource type="Texture2D" uid="uid://cjjd1sjpumjfg" path="res://assets/UI/UI1/LOGO_S26_1.png" id="5_wcnxs"]
 [ext_resource type="Texture2D" uid="uid://dg8wrf21lbngy" path="res://assets/UI/UI1/Boxถัดไป.png" id="7_n1eku"]
 [ext_resource type="Texture2D" uid="uid://bms48fhv0dhbp" path="res://assets/UI/Baby/B0.png" id="8_ybqoc"]
 [ext_resource type="Texture2D" uid="uid://6adgg38380ie" path="res://assets/UI/Baby/B2.png" id="9_g5avq"]
+[ext_resource type="Texture2D" uid="uid://c4j4kmdsnv14e" path="res://assets/UI/UI3/panel1.png" id="9_wcnxs"]
 [ext_resource type="Texture2D" uid="uid://bw0c1j126de8n" path="res://assets/UI/Baby/B1.png" id="11_w5r3j"]
 [ext_resource type="Texture2D" uid="uid://4ktwa4svs4nl" path="res://assets/UI/Baby/B3.png" id="12_wcnxs"]
 [ext_resource type="Texture2D" uid="uid://dbgi1yh3bas4b" path="res://assets/UI/Item/Alpha.png" id="13_eotbs"]
@@ -29,13 +30,20 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
+[sub_resource type="DPITexture" id="DPITexture_wcnxs"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><rect width=\"14\" height=\"14\" x=\"1\" y=\"1\" fill=\"#fff\" fill-opacity=\".75\" rx=\"2.333\"/><path fill=\"#1a1a1a\" d=\"m11.5 3.75-5.6 5.6-1.7-1.7-1.5 1.5 3.2 3.2 7.1-7.1z\"/></svg>
+"
+base_scale = 1.5
+
 [sub_resource type="DPITexture" id="DPITexture_n1eku"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><rect width=\"14\" height=\"14\" x=\"1\" y=\"1\" fill=\"#1a1a1a\" fill-opacity=\".5\" rx=\"2.333\"/></svg>
 "
+base_scale = 1.5
 
 [sub_resource type="DPITexture" id="DPITexture_qa4ve"]
 _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><rect width=\"14\" height=\"14\" x=\"1\" y=\"1\" fill=\"#1a1a1a\" fill-opacity=\".25\" rx=\"2.333\"/></svg>
 "
+base_scale = 1.5
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qa4ve"]
 texture = ExtResource("7_n1eku")
@@ -74,38 +82,21 @@ corner_radius_bottom_right = 33
 corner_radius_bottom_left = 33
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1eku"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.9372549, 0.46666667, 0.12941177, 0.6901961)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.8940197, 0.89383984, 7.70092e-07, 1)
-corner_radius_top_left = 33
-corner_radius_top_right = 33
-corner_radius_bottom_right = 33
-corner_radius_bottom_left = 33
-corner_detail = 5
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_6usep"]
 atlas = ExtResource("9_g5avq")
-region = Rect2(52, 27, 232, 207)
+region = Rect2(52, 27, 232, 306)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qa4ve"]
 atlas = ExtResource("8_ybqoc")
-region = Rect2(52, 27, 232, 207)
+region = Rect2(52, 27, 232, 315)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fmhf6"]
 atlas = ExtResource("11_w5r3j")
-region = Rect2(52, 27, 232, 207)
+region = Rect2(52, 27, 232, 306)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnl7s"]
 atlas = ExtResource("12_wcnxs")
-region = Rect2(52, 27, 232, 207)
+region = Rect2(36, 9, 252, 315)
 
 [sub_resource type="Animation" id="Animation_g5avq"]
 length = 0.001
@@ -252,10 +243,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -181.59293
-offset_top = -182.0
-offset_right = 181.5929
-offset_bottom = 182.0
+offset_left = -242.00005
+offset_top = -197.5
+offset_right = 242.0
+offset_bottom = 197.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ybqoc")
@@ -267,7 +258,7 @@ expand_mode = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = -290
+theme_override_constants/margin_top = -375
 theme_override_constants/margin_bottom = 380
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer2"]
@@ -275,7 +266,7 @@ custom_minimum_size = Vector2(300, 300)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("6_vtyqw")
+texture = ExtResource("5_wcnxs")
 expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
@@ -291,10 +282,10 @@ theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 15
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 65
 text = "ชื่อ"
 horizontal_alignment = 1
 
@@ -307,16 +298,16 @@ theme_override_constants/margin_right = 14
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.25202727, 0.2520278, 0.25202736, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = ExtResource("1_00e66")
 theme_override_styles/focus = ExtResource("2_p1tq6")
 
 [node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 15
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 65
 text = "เบอร์โทร"
 horizontal_alignment = 1
 
@@ -329,43 +320,50 @@ theme_override_constants/margin_right = 14
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.25202727, 0.2520278, 0.25202736, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = ExtResource("1_00e66")
 theme_override_styles/focus = ExtResource("2_p1tq6")
 
-[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="CenterContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_constants/margin_top = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 8
 
 [node name="CheckBox" type="CheckBox" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_icons/checked = SubResource("DPITexture_wcnxs")
 theme_override_icons/unchecked = SubResource("DPITexture_n1eku")
 theme_override_icons/unchecked_disabled = SubResource("DPITexture_qa4ve")
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 36
 text = "ยินยอม"
 horizontal_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 115
-theme_override_constants/margin_right = 115
+theme_override_constants/margin_left = 150
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 150
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
-theme_override_colors/font_hover_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
+theme_override_colors/font_hover_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 34
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxTexture_qa4ve")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_1ewrd")
 theme_override_styles/hover = SubResource("StyleBoxTexture_n1eku")
@@ -374,6 +372,7 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_heac4")
 text = "ถัดไป"
 
 [node name="PlayAnimationScene" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -408,8 +407,12 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="TextureRect2" type="PanelContainer" parent="PlayAnimationScene/MarginContainer1/PanelContainer2/VBoxContainer/MarginContainer"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n1eku")
+
+[node name="TextureRect" type="TextureRect" parent="PlayAnimationScene/MarginContainer1/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2"]
+layout_mode = 2
+texture = ExtResource("9_wcnxs")
 
 [node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer1/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2"]
 layout_mode = 2
@@ -468,8 +471,12 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="TextureRect2" type="PanelContainer" parent="PlayAnimationScene/MarginContainer2/PanelContainer2/VBoxContainer/MarginContainer"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n1eku")
+
+[node name="TextureRect" type="TextureRect" parent="PlayAnimationScene/MarginContainer2/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2"]
+layout_mode = 2
+texture = ExtResource("9_wcnxs")
 
 [node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer2/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2"]
 layout_mode = 2
@@ -528,8 +535,12 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="TextureRect2" type="PanelContainer" parent="PlayAnimationScene/MarginContainer3/PanelContainer2/VBoxContainer/MarginContainer"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n1eku")
+
+[node name="TextureRect2" type="TextureRect" parent="PlayAnimationScene/MarginContainer3/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2"]
+layout_mode = 2
+texture = ExtResource("9_wcnxs")
 
 [node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer3/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2"]
 layout_mode = 2
@@ -588,8 +599,12 @@ theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="TextureRect2" type="PanelContainer" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer/MarginContainer"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n1eku")
+
+[node name="TextureRect" type="TextureRect" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2"]
+layout_mode = 2
+texture = ExtResource("9_wcnxs")
 
 [node name="MarginContainer" type="MarginContainer" parent="PlayAnimationScene/MarginContainer4/PanelContainer2/VBoxContainer/MarginContainer/TextureRect2"]
 layout_mode = 2
