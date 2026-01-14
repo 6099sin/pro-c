@@ -1,0 +1,275 @@
+[gd_scene load_steps=22 format=3 uid="uid://cuhlyreh2rij2"]
+
+[ext_resource type="Shader" uid="uid://cvr7hn7m4qfxh" path="res://shader/UI_gradient6.gdshader" id="1_0dtu4"]
+[ext_resource type="Shader" uid="uid://ddscdeht1jsu5" path="res://shader/UI_gradient1.gdshader" id="1_6pubv"]
+[ext_resource type="Shader" uid="uid://bsv6n4l4lh7m1" path="res://shader/UI_gradient9.gdshader" id="1_bawgu"]
+[ext_resource type="Script" uid="uid://bp5sq6b5mmpjf" path="res://stylebox/styleboxflat_plus.gd" id="1_c2xfm"]
+[ext_resource type="Shader" uid="uid://uak0fsnwicy4" path="res://shader/UI_gradient8.gdshader" id="1_dcs61"]
+[ext_resource type="Shader" uid="uid://b4d2vbmagetgs" path="res://shader/UI_gradient2.gdshader" id="1_nwa34"]
+[ext_resource type="Shader" uid="uid://22koknkv838c" path="res://shader/UI_gradient4.gdshader" id="1_qlxcj"]
+[ext_resource type="Shader" uid="uid://e30d7shx45va" path="res://shader/UI_gradient3.gdshader" id="2_2r3g0"]
+[ext_resource type="Shader" uid="uid://cnqp2efjaqi67" path="res://shader/UI_gradient7.gdshader" id="2_j45r8"]
+[ext_resource type="Shader" uid="uid://bjhlajx1fwmnv" path="res://shader/UI_gradient5.gdshader" id="3_s103q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b85ex"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.94316125, 0.47100115, 0.13450274, 0.6901961)
+border_width_bottom = 6
+border_color = Color(0.47971916, 0.47971892, 0, 1)
+expand_margin_bottom = 19.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3tb82"]
+shader = ExtResource("1_bawgu")
+shader_parameter/color_top = Color(1, 0.85, 0.7, 1)
+shader_parameter/color_bottom = Color(1, 0.45, 0.2, 1)
+shader_parameter/highlight_center = Color(1, 1, 0.9019608, 1)
+shader_parameter/border_color = Color(0.9, 0.8, 0.4, 1)
+shader_parameter/border_width = 0.07200000342
+shader_parameter/corner_radius = 0.10000000475
+shader_parameter/horizontal_spread = 0.76800003322012
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bawgu"]
+shader = ExtResource("1_dcs61")
+shader_parameter/color_top = Color(1, 0.85, 0.7, 1)
+shader_parameter/color_bottom = Color(1, 0.45, 0.2, 1)
+shader_parameter/border_color = Color(0.9, 0.8, 0.4, 1)
+shader_parameter/border_width = 0.0810000038475
+shader_parameter/corner_radius = 0.1910000090725
+shader_parameter/shine_speed = 1.5
+shader_parameter/shine_width = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j45r8"]
+shader = ExtResource("1_0dtu4")
+shader_parameter/bg_inner_color = Color(0.2, 0.4, 0.8, 1)
+shader_parameter/bg_outer_color = Color(0.42391753, 0.45908558, 0.89204973, 1)
+shader_parameter/border_top_color = Color(1, 1, 1, 1)
+shader_parameter/border_bottom_color = Color(0.9898638, 0.63843364, 0.65989816, 1)
+shader_parameter/corner_radius = Vector4(20, 20, 20, 20)
+shader_parameter/border_width = 0.05
+shader_parameter/gradient_softness = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dcs61"]
+shader = ExtResource("2_j45r8")
+shader_parameter/bg_inner = Color(0.2, 0.4, 0.8, 1)
+shader_parameter/bg_outer = Color(0.40400794, 0.43575957, 0.878631, 1)
+shader_parameter/border_top = Color(0.79955393, 0.26610148, 0.45039427, 1)
+shader_parameter/border_bottom = Color(0.4, 0.4, 0.4, 1)
+shader_parameter/corner_radius = Vector4(20, 20, 20, 20)
+shader_parameter/border_width = 0.0
+shader_parameter/size = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s103q"]
+shader = ExtResource("1_qlxcj")
+shader_parameter/color_center = Color(0.2, 0.4, 0.8, 1)
+shader_parameter/color_inner_edge = Color(0.1, 0.2, 0.4, 1)
+shader_parameter/border_color = Color(1, 1, 1, 1)
+shader_parameter/border_width = 0.05
+shader_parameter/gradient_power = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2r3g0"]
+shader = ExtResource("1_nwa34")
+shader_parameter/bg_tl = Color(1, 0.5, 0.5, 1)
+shader_parameter/bg_tr = Color(0.5, 1, 0.5, 1)
+shader_parameter/bg_bl = Color(0.5, 0.5, 1, 1)
+shader_parameter/bg_br = Color(1, 1, 0.5, 1)
+shader_parameter/border_color_top = Color(1, 1, 1, 1)
+shader_parameter/border_color_bottom = Color(0.85490197, 0.22745098, 0.27058825, 1)
+shader_parameter/border_width = 0.0850000040375
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0dtu4"]
+shader = ExtResource("3_s103q")
+shader_parameter/color_center = Color(0.82596695, 0.4504177, 0.00044800102, 1)
+shader_parameter/color_edge = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/border_color = Color(1, 1, 1, 1)
+shader_parameter/border_width = 0.06800000323
+shader_parameter/axis = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qlxcj"]
+shader = ExtResource("2_2r3g0")
+shader_parameter/color_center = Color(0, 0.6, 0.8, 1)
+shader_parameter/color_edge = Color(0, 0.1, 0.2, 1)
+shader_parameter/border_color = Color(1, 1, 1, 1)
+shader_parameter/border_width = 0.05
+shader_parameter/gradient_type = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nwa34"]
+shader = ExtResource("1_6pubv")
+shader_parameter/bg_color_top = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/bg_color_bottom = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/border_color_top = Color(1, 1, 1, 1)
+shader_parameter/border_color_bottom = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/border_width = 0.05
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6pubv"]
+bg_color = Color(1, 0.2891886, 0.54602253, 1)
+corner_radius_top_left = 44
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 55
+expand_margin_left = 25.0
+expand_margin_top = 5.0
+expand_margin_right = 10.0
+expand_margin_bottom = 13.0
+script = ExtResource("1_c2xfm")
+margin_bottom = 13
+margin_left = 25
+margin_top = 5
+margin_right = 10
+metadata/_custom_type_script = "uid://bp5sq6b5mmpjf"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -30.0
+offset_right = 50.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 13
+theme_override_constants/v_separation = 25
+columns = 2
+
+[node name="TextureRect2" type="PanelContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect2"]
+layout_mode = 2
+
+[node name="TextureRect11" type="PanelContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect11"]
+layout_mode = 2
+
+[node name="TextureRect14" type="PanelContainer" parent="GridContainer"]
+material = SubResource("ShaderMaterial_3tb82")
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect14"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect13" type="PanelContainer" parent="GridContainer"]
+material = SubResource("ShaderMaterial_bawgu")
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect13"]
+layout_mode = 2
+
+[node name="TextureRect12" type="PanelContainer" parent="GridContainer"]
+material = SubResource("ShaderMaterial_j45r8")
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect12"]
+layout_mode = 2
+
+[node name="TextureRect6" type="PanelContainer" parent="GridContainer"]
+material = SubResource("ShaderMaterial_dcs61")
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect6"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect7" type="PanelContainer" parent="GridContainer"]
+material = SubResource("ShaderMaterial_s103q")
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect7"]
+layout_mode = 2
+
+[node name="TextureRect8" type="PanelContainer" parent="GridContainer"]
+material = SubResource("ShaderMaterial_2r3g0")
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect8"]
+layout_mode = 2
+
+[node name="TextureRect3" type="PanelContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect3"]
+layout_mode = 2
+
+[node name="TextureRect9" type="PanelContainer" parent="GridContainer"]
+material = SubResource("ShaderMaterial_0dtu4")
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect9"]
+visible = false
+layout_mode = 2
+
+[node name="TextureRect10" type="PanelContainer" parent="GridContainer"]
+material = SubResource("ShaderMaterial_qlxcj")
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect10"]
+layout_mode = 2
+
+[node name="TextureRect4" type="PanelContainer" parent="GridContainer"]
+material = SubResource("ShaderMaterial_nwa34")
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect4"]
+layout_mode = 2
+
+[node name="TextureRect5" type="PanelContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6pubv")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect5"]
+layout_mode = 2
