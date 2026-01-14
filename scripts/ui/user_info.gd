@@ -66,6 +66,7 @@ func _on_press_comfirm() -> void:
 	# Play animation before changing scene
 	if has_node("PlayAnimationScene/AnimationPlayer"):
 		$PanelContainer.visible=false
+		$MarginContainer/TextureRect.visible=true
 		var anim_scene = $PlayAnimationScene
 		var anim_player = $PlayAnimationScene/AnimationPlayer
 
