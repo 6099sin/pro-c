@@ -226,7 +226,7 @@ theme_override_constants/margin_right = 25
 
 [node name="addPointAlpha" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 50
@@ -270,7 +270,7 @@ theme_override_constants/margin_right = 25
 
 [node name="addPointBeta" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer2"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 50
