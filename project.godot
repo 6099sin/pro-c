@@ -25,7 +25,12 @@ GameManager="*res://scripts/autoloads/GameManager.gd"
 window/size/viewport_width=648
 window/size/viewport_height=1152
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
+
+[gui]
+
+theme/custom_font="uid://sinl4hn7n5t5"
 
 [input_devices]
 
