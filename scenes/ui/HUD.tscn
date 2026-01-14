@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://4rw6mk6p4xkw" path="res://assets/UI/UI2/Clock.png" id="6_jlufg"]
 [ext_resource type="Texture2D" uid="uid://dj5r6e7msl5xv" path="res://assets/UI/UI1/Panel1.png" id="7_jlufg"]
 [ext_resource type="Texture2D" uid="uid://b0wnhjrwcwvj2" path="res://assets/UI/UI3/confitte.png" id="8_l20r4"]
+[ext_resource type="Texture2D" uid="uid://c4j4kmdsnv14e" path="res://assets/UI/UI3/panel1.png" id="9_jvmx1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ll6g"]
 content_margin_left = 0.0
@@ -129,23 +130,6 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
-corner_detail = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l20r4"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.9372549, 0.46666667, 0.12941177, 0.6901961)
-border_width_left = 6
-border_width_top = 6
-border_width_right = 6
-border_width_bottom = 6
-border_color = Color(0.8940197, 0.89383984, 7.70092e-07, 1)
-corner_radius_top_left = 33
-corner_radius_top_right = 33
-corner_radius_bottom_right = 33
-corner_radius_bottom_left = 33
 corner_detail = 5
 
 [node name="HUD" type="Control"]
@@ -537,7 +521,6 @@ layout_mode = 2
 texture = ExtResource("8_l20r4")
 
 [node name="before_start" type="MarginContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -551,14 +534,23 @@ theme_override_constants/margin_bottom = 160
 
 [node name="MarginContainer" type="MarginContainer" parent="before_start"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 10
 
 [node name="TextureRect2" type="PanelContainer" parent="before_start/MarginContainer"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_l20r4")
+
+[node name="MarginContainer4" type="MarginContainer" parent="before_start/MarginContainer/TextureRect2"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="TextureRect" type="TextureRect" parent="before_start/MarginContainer/TextureRect2/MarginContainer4"]
+layout_mode = 2
+texture = ExtResource("9_jvmx1")
 
 [node name="MarginContainer" type="MarginContainer" parent="before_start/MarginContainer/TextureRect2"]
 layout_mode = 2
@@ -572,7 +564,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="before_start/MarginContainer/TextureRect2/MarginContainer/CenterContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.30588236, 0.11372549, 0.43137255, 1)
+theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 7
 theme_override_font_sizes/font_size = 32
