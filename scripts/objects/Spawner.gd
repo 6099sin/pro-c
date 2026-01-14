@@ -17,8 +17,8 @@ const MERGE_MAP: Dictionary = {
 	"f2": "f3",
 }
 
-const BONUS_INTERVAL_MIN: int = 15000 # 15 seconds
-const BONUS_INTERVAL_MAX: int = 30000 # 30 seconds
+const BONUS_INTERVAL_MIN: int = 25000 # 25 seconds
+const BONUS_INTERVAL_MAX: int = 50000 # 50 seconds
 
 var next_bonus_time: int = 0
 

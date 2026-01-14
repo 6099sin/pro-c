@@ -11,6 +11,8 @@ var velocity_cache: Vector2 = Vector2.ZERO
 var blink_tween: Tween
 var spawner: Node
 # Add these to your variables in Item.gd
+var drag_touch_index: int = -1
+var target_drag_pos: Vector2 = Vector2.ZERO
 @export var max_angle_deg: float = 45.0
 @export var min_angle_deg: float = -45.0
 
@@ -30,27 +32,48 @@ func _ready():
 	# RigidBody2D input_event is also possible if pickable is true
 
 func _input_event(_viewport, event, _shape_idx):
+	if is_dragging:
+		return
+
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
-				start_drag()
-			else:
-				end_drag()
+				drag_touch_index = -1 # Mouse ID
+				start_drag(get_global_mouse_position())
 	elif event is InputEventScreenTouch:
 		if event.pressed:
-			start_drag()
-		else:
-			end_drag()
+			drag_touch_index = event.index
+			var pos = get_canvas_transform().affine_inverse() * event.position
+			start_drag(pos)
 
-func start_drag():
+func _input(event):
+	if not is_dragging:
+		return
+	
+	if event is InputEventScreenTouch:
+		if event.index == drag_touch_index and not event.pressed:
+			end_drag()
+	elif event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and not event.pressed and drag_touch_index == -1:
+			end_drag()
+	elif event is InputEventScreenDrag:
+		if event.index == drag_touch_index:
+			target_drag_pos = get_canvas_transform().affine_inverse() * event.position
+	elif event is InputEventMouseMotion:
+		if drag_touch_index == -1:
+			target_drag_pos = get_global_mouse_position()
+
+func start_drag(start_pos: Vector2):
 	is_dragging = true
 	was_interacted = true
 	freeze = true
+	target_drag_pos = start_pos
 	# Alternatively use freeze_mode = RigidBody2D.FREEZE_MODE_KINEMATIC for smoother collisions while dragging
 
 func end_drag():
 	is_dragging = false
 	freeze = false
+	drag_touch_index = -1
 	# Apply throw impulse
 	linear_velocity = velocity_cache
 
@@ -59,9 +82,8 @@ func end_drag():
 
 func _physics_process(delta):
 	if is_dragging:
-		var target_pos = get_global_mouse_position()
-		velocity_cache = (target_pos - global_position) / delta
-		global_position = target_pos
+		velocity_cache = (target_drag_pos - global_position) / delta
+		global_position = target_drag_pos
 	else:
 		# 1. Convert degrees to radians for Godot's rotation property
 		var min_rad = deg_to_rad(min_angle_deg)
