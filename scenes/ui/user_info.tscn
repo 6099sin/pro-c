@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://wdpx1dg4ece6"]
+[gd_scene load_steps=36 format=3 uid="uid://wdpx1dg4ece6"]
 
 [ext_resource type="StyleBox" uid="uid://bbt4dpb0ysphk" path="res://theme/style_box_flat_Round.tres" id="1_00e66"]
 [ext_resource type="Script" uid="uid://c1anqrg83g0gl" path="res://scripts/ui/user_info.gd" id="1_bh2g3"]
@@ -148,6 +148,42 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MarginContainer4:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MarginContainer3:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MarginContainer2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_najyl"]
 resource_name = "intro_animation"
@@ -200,12 +236,70 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MarginContainer4:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 9.966764),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("MarginContainer3:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 6.674402),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("MarginContainer2:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 3.5900998),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w5r3j"]
 _data = {
 &"RESET": SubResource("Animation_g5avq"),
 &"intro_animation": SubResource("Animation_najyl")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wcnxs"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
 
 [node name="UserInfo" type="Control"]
 layout_mode = 3
@@ -372,7 +466,6 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_heac4")
 text = "ถัดไป"
 
 [node name="PlayAnimationScene" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -441,7 +534,32 @@ size_flags_vertical = 4
 texture = SubResource("AtlasTexture_6usep")
 stretch_mode = 4
 
+[node name="Next1" type="MarginContainer" parent="PlayAnimationScene/MarginContainer1"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_left = -150
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = -70
+
+[node name="Button" type="Button" parent="PlayAnimationScene/MarginContainer1/Next1"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
+theme_override_colors/font_hover_color = Color(0, 0.08627451, 0.5372549, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_qa4ve")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1ewrd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_n1eku")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_bna67")
+theme_override_styles/focus = SubResource("StyleBoxTexture_heac4")
+text = "ถัดไป"
+
 [node name="MarginContainer2" type="MarginContainer" parent="PlayAnimationScene"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -505,7 +623,32 @@ size_flags_vertical = 4
 texture = SubResource("AtlasTexture_qa4ve")
 stretch_mode = 4
 
+[node name="Next1" type="MarginContainer" parent="PlayAnimationScene/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_left = -150
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = -70
+
+[node name="Button" type="Button" parent="PlayAnimationScene/MarginContainer2/Next1"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
+theme_override_colors/font_hover_color = Color(0, 0.08627451, 0.5372549, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_qa4ve")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1ewrd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_n1eku")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_bna67")
+theme_override_styles/focus = SubResource("StyleBoxTexture_heac4")
+text = "ถัดไป"
+
 [node name="MarginContainer3" type="MarginContainer" parent="PlayAnimationScene"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -568,6 +711,30 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = SubResource("AtlasTexture_fmhf6")
 stretch_mode = 4
+
+[node name="Next1" type="MarginContainer" parent="PlayAnimationScene/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_left = -150
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = -70
+
+[node name="Button" type="Button" parent="PlayAnimationScene/MarginContainer3/Next1"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
+theme_override_colors/font_hover_color = Color(0, 0.08627451, 0.5372549, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_qa4ve")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1ewrd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_n1eku")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_bna67")
+theme_override_styles/focus = SubResource("StyleBoxTexture_heac4")
+text = "ถัดไป"
 
 [node name="MarginContainer4" type="MarginContainer" parent="PlayAnimationScene"]
 layout_mode = 1
@@ -670,6 +837,30 @@ layout_mode = 2
 texture = ExtResource("14_4jegu")
 expand_mode = 1
 
+[node name="Next1" type="MarginContainer" parent="PlayAnimationScene/MarginContainer4"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_left = -150
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = -70
+
+[node name="Button" type="Button" parent="PlayAnimationScene/MarginContainer4/Next1"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
+theme_override_colors/font_hover_color = Color(0, 0.08627451, 0.5372549, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxTexture_qa4ve")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1ewrd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_n1eku")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_bna67")
+theme_override_styles/focus = SubResource("StyleBoxTexture_heac4")
+text = "ถัดไป"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayAnimationScene"]
 libraries = {
 &"": SubResource("AnimationLibrary_w5r3j")
@@ -687,16 +878,19 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+visible = false
 layout_mode = 2
 texture = ExtResource("15_g5avq")
 
 [node name="Button" type="Button" parent="MarginContainer/TextureRect"]
+self_modulate = Color(1, 1, 1, 0.19607843)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxFlat_wcnxs")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("16_w5r3j")
