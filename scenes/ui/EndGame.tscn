@@ -1,22 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://uqna81xmj53d"]
+[gd_scene load_steps=16 format=3 uid="uid://uqna81xmj53d"]
 
 [ext_resource type="Script" uid="uid://bmivw0xjycd0c" path="res://scripts/ui/end_game.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://iwc7xll1twdi" path="res://assets/UI/UI2/promote.png" id="2_jgq0i"]
+[ext_resource type="Texture2D" uid="uid://nmtacuxbjisl" path="res://assets/UI/UI2/end.png" id="2_jn2uc"]
 [ext_resource type="Texture2D" uid="uid://ql7sre145r2k" path="res://assets/UI/UI3/BG_UI1.png" id="3_wtnl6"]
 [ext_resource type="Texture2D" uid="uid://c7yq2emkqgto7" path="res://assets/UI/UI2/BarAlpha_Fill.png" id="4_bbu7g"]
 [ext_resource type="Texture2D" uid="uid://dbgi1yh3bas4b" path="res://assets/UI/Item/Alpha.png" id="5_jn2uc"]
 [ext_resource type="Texture2D" uid="uid://bp41wh7ort5ab" path="res://assets/UI/Item/Beta.png" id="6_7c47n"]
-[ext_resource type="Texture2D" uid="uid://dg8wrf21lbngy" path="res://assets/UI/UI1/Boxถัดไป.png" id="7_1525q"]
 [ext_resource type="Texture2D" uid="uid://b0wnhjrwcwvj2" path="res://assets/UI/UI3/confitte.png" id="7_bbu7g"]
-
-[sub_resource type="Gradient" id="Gradient_855qe"]
-offsets = PackedFloat32Array(0, 0.48923078, 1)
-colors = PackedColorArray(0.95686275, 0.85490197, 0.5647059, 1, 0.9764706, 0.9411765, 0.78039217, 1, 0.94509804, 0.8666667, 0.5921569, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nyp2j"]
-gradient = SubResource("Gradient_855qe")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
+[ext_resource type="Texture2D" uid="uid://dfi1sk31wl2kx" path="res://assets/UI/UI1/Button1.png" id="7_jn2uc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k6gj8"]
 content_margin_left = 0.0
@@ -49,10 +41,10 @@ content_margin_top = 2.0
 content_margin_right = 2.0
 content_margin_bottom = 2.0
 bg_color = Color(0, 0.2509804, 0.42745098, 0.49411765)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
 border_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 30
 corner_radius_top_right = 30
@@ -62,11 +54,15 @@ corner_detail = 6
 expand_margin_top = 5.0
 expand_margin_bottom = 5.0
 shadow_color = Color(0.9411765, 0.7607843, 0.36078432, 0.75686276)
-shadow_size = 4
+shadow_size = 10
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_odq5o"]
 texture = ExtResource("4_bbu7g")
 region_rect = Rect2(12, 0, 336, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c47n"]
+atlas = ExtResource("5_jn2uc")
+region = Rect2(8, 16, 104, 88)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhgty"]
 content_margin_left = 0.0
@@ -80,27 +76,6 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pl62j"]
-content_margin_left = 2.0
-content_margin_top = 2.0
-content_margin_right = 2.0
-content_margin_bottom = 2.0
-bg_color = Color(0, 0.2509804, 0.42745098, 0.49411765)
-border_width_left = 4
-border_width_top = 5
-border_width_right = 4
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-corner_detail = 6
-expand_margin_top = 5.0
-expand_margin_bottom = 5.0
-shadow_color = Color(0.9411765, 0.7607843, 0.36078432, 0.75686276)
-shadow_size = 4
-
 [node name="EndGame" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -110,7 +85,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_script")
 
-[node name="ColorRect" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="."]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -118,61 +93,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_nyp2j")
-
-[node name="TextureRect" type="TextureRect" parent="ColorRect"]
-modulate = Color(1, 1, 1, 0.48235294)
-layout_mode = 1
-offset_left = -31.986786
-offset_top = -317.98254
-offset_right = 604.01807
-offset_bottom = 318.02234
-rotation = 0.424115
-texture = ExtResource("5_jn2uc")
-
-[node name="TextureRect2" type="TextureRect" parent="ColorRect"]
-modulate = Color(1, 1, 1, 0.48235294)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -440.0
-offset_top = -228.0
-offset_right = -2.0
-offset_bottom = 210.0
-grow_horizontal = 0
-grow_vertical = 0
-rotation = -0.56548667
-texture = ExtResource("6_7c47n")
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="LabelAlpha" type="Label" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Alpha Score: 0"
-horizontal_alignment = 1
-
-[node name="LabelBeta" type="Label" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Beta Score: 0"
-horizontal_alignment = 1
-
-[node name="LabelSum" type="Label" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "Total Score: 0"
-horizontal_alignment = 1
+texture = ExtResource("2_jn2uc")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -200,7 +121,7 @@ expand_mode = 1
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_top = -240
-theme_override_constants/margin_bottom = 235
+theme_override_constants/margin_bottom = 365
 
 [node name="TextureRect" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer2"]
 custom_minimum_size = Vector2(300, 300)
@@ -209,39 +130,39 @@ size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.95686275, 0.8039216, 0.18431373, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 16
-theme_override_font_sizes/font_size = 131
+theme_override_font_sizes/font_size = 220
 text = "WIN"
 horizontal_alignment = 1
 vertical_alignment = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 65
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 65
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_left = 115
+theme_override_constants/margin_top = -18
+theme_override_constants/margin_right = 115
+theme_override_constants/margin_bottom = 117
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 2
 
 [node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = -23
+theme_override_constants/margin_top = 42
 
 [node name="Label" type="Label" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer4"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 15
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 70
 text = "Your Score"
 horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 14
-theme_override_constants/margin_right = 14
+theme_override_constants/margin_left = -11
+theme_override_constants/margin_right = -41
 
 [node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2"]
 custom_minimum_size = Vector2(0, 40)
@@ -251,7 +172,7 @@ size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_2ppgi")
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer3"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/background = SubResource("StyleBoxFlat_rcyyl")
@@ -265,12 +186,13 @@ show_percentage = false
 custom_minimum_size = Vector2(1.69, 1.885)
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_constants/margin_left = -20
+theme_override_constants/margin_left = -45
+theme_override_constants/margin_top = 25
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer3/MarginContainer"]
-custom_minimum_size = Vector2(70, 70)
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
-texture = ExtResource("5_jn2uc")
+texture = SubResource("AtlasTexture_7c47n")
 expand_mode = 1
 stretch_mode = 4
 
@@ -285,13 +207,13 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 95
 text = "500"
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 14
-theme_override_constants/margin_right = 14
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_right = -41
 
 [node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3"]
 custom_minimum_size = Vector2(0, 40)
@@ -301,10 +223,10 @@ size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_lhgty")
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer2"]
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 size_flags_vertical = 4
-theme_override_styles/background = SubResource("StyleBoxFlat_pl62j")
+theme_override_styles/background = SubResource("StyleBoxFlat_rcyyl")
 theme_override_styles/fill = SubResource("StyleBoxTexture_odq5o")
 max_value = 500.0
 step = 1.0
@@ -314,10 +236,10 @@ show_percentage = false
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_constants/margin_left = -20
+theme_override_constants/margin_left = -45
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer2/MarginContainer"]
-custom_minimum_size = Vector2(60, 60)
+custom_minimum_size = Vector2(120, 120)
 layout_mode = 2
 texture = ExtResource("6_7c47n")
 expand_mode = 1
@@ -334,12 +256,12 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 45
+theme_override_font_sizes/font_size = 95
 text = "700"
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = -35
+theme_override_constants/margin_top = -50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer3"]
 layout_mode = 2
@@ -347,6 +269,7 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/margin_right = 65
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer3/HBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -354,8 +277,8 @@ size_flags_horizontal = 10
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_constants/outline_size = 5
-theme_override_font_sizes/font_size = 23
+theme_override_constants/outline_size = 13
+theme_override_font_sizes/font_size = 50
 text = "Total"
 horizontal_alignment = 2
 
@@ -366,26 +289,39 @@ size_flags_horizontal = 10
 size_flags_vertical = 6
 theme_override_constants/margin_right = 30
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer2"]
-layout_mode = 2
-texture = ExtResource("7_1525q")
-
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer2"]
 custom_minimum_size = Vector2(1.69, 1.885)
 layout_mode = 2
 size_flags_horizontal = 8
-theme_override_constants/margin_right = 40
+theme_override_constants/margin_right = 70
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer2/MarginContainer2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer2/MarginContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = -35
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = -35
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer2/MarginContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("7_jn2uc")
+expand_mode = 1
 
 [node name="allPoint" type="Label" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer2/MarginContainer2"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 50
+theme_override_font_sizes/font_size = 95
 text = "1000"
 horizontal_alignment = 1
 
 [node name="confitte" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -395,7 +331,6 @@ grow_vertical = 2
 texture = ExtResource("7_bbu7g")
 
 [node name="Promote" type="TextureRect" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
