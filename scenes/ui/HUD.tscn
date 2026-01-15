@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://hudscene"]
+[gd_scene load_steps=20 format=3 uid="uid://hudscene"]
 
 [ext_resource type="Script" uid="uid://cpgkposixu2d6" path="res://scripts/ui/HUD.gd" id="1_hud"]
 [ext_resource type="Texture2D" uid="uid://dbgi1yh3bas4b" path="res://assets/UI/Item/Alpha.png" id="2_6ll6g"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dj5r6e7msl5xv" path="res://assets/UI/UI1/Panel1.png" id="7_jlufg"]
 [ext_resource type="Texture2D" uid="uid://b0wnhjrwcwvj2" path="res://assets/UI/UI3/confitte.png" id="8_l20r4"]
 [ext_resource type="Texture2D" uid="uid://c4j4kmdsnv14e" path="res://assets/UI/UI3/panel1.png" id="9_jvmx1"]
+[ext_resource type="AudioStream" uid="uid://c2i5usqfh7hdq" path="res://assets/Sound/crowd-cheers-314921.ogg" id="10_cheer"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ll6g"]
 content_margin_left = 0.0
@@ -506,7 +507,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Confitte" type="PanelContainer" parent="."]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -516,7 +517,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_euikm")
 
-[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+[node name="TextureRect" type="TextureRect" parent="Confitte"]
 layout_mode = 2
 texture = ExtResource("8_l20r4")
 
@@ -624,3 +625,6 @@ text = "10 Sec"
 [node name="TimerCountdown" type="Timer" parent="MarginContainer3/BonusTimer"]
 wait_time = 10.0
 one_shot = true
+
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_cheer")

@@ -180,9 +180,23 @@ func update_timer_ui(time_left: float):
 	else:
 		timer_label.modulate = Color(1, 1, 1)
 
+@onready var confetti = $Confitte
+@onready var win_sound = $WinSound
+
 func update_game_over_ui(final_score: int, grade: String):
 	game_over_panel.text = "Grade: %s" % grade
 	game_over_panel.visible = true
+	
+	if confetti:
+		confetti.visible = true
+		confetti.modulate.a = 1.0
+		var tween = create_tween()
+		tween.tween_interval(7.0)
+		tween.tween_property(confetti, "modulate:a", 0.0, 1.0)
+		tween.tween_callback(func(): confetti.visible = false)
+		
+	if win_sound:
+		win_sound.play()
 
 func _process(_delta):
 	# Update combo UI continuously if needed or via signal
