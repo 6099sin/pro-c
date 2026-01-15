@@ -144,11 +144,10 @@ func flash_error(control: Control):
 	tween.tween_property(control, "modulate", Color.WHITE, 0.15)
 
 
-
 func _mute_button_pressed() -> void:
 	if flipflop:
-		audio_stream_player.stop()
+		audio_stream_player.volume_db = -100
 		flipflop = false
 	else:
-		audio_stream_player.play()
+		audio_stream_player.volume_db = 0
 		flipflop = true
