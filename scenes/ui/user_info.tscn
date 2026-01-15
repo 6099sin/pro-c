@@ -231,7 +231,7 @@ tracks/3/path = NodePath("MarginContainer4:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(9.966666, 10.766666, 14.158333, 14.966666),
+"times": PackedFloat32Array(10, 10.766666, 14.158333, 14.966666),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -243,7 +243,7 @@ tracks/4/path = NodePath("MarginContainer4:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 9.966764),
+"times": PackedFloat32Array(0, 10),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -271,6 +271,26 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AnimationPlayer")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(3.5, 6.633333, 9.966666),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"pause"
+}, {
+"args": [],
+"method": &"pause"
+}, {
+"args": [],
+"method": &"pause"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_w5r3j"]
@@ -417,6 +437,8 @@ theme_override_colors/font_color = Color(0.25202727, 0.2520278, 0.25202736, 1)
 theme_override_font_sizes/font_size = 36
 theme_override_styles/normal = ExtResource("1_00e66")
 theme_override_styles/focus = ExtResource("2_p1tq6")
+max_length = 10
+virtual_keyboard_type = 4
 
 [node name="CenterContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

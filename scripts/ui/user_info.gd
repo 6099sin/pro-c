@@ -4,13 +4,17 @@ extends Control
 @onready var input_name: LineEdit = $PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/LineEditName
 @onready var check_box: CheckBox = $PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/CheckBox
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var button1: Button = $PlayAnimationScene/MarginContainer1/Next1/Button
+@onready var button2: Button = $PlayAnimationScene/MarginContainer2/Next1/Button
+@onready var button3: Button = $PlayAnimationScene/MarginContainer3/Next1/Button
+@onready var button4: Button = $PlayAnimationScene/MarginContainer4/Next1/Button
 
 # Variable to store the last valid phone number
 var old_tel_text = ""
 # Create a Regular Expression tool
 var regex = RegEx.new()
 
-var flipflop:bool = true
+var flipflop: bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# --- 1. Setup Regex to accept ONLY numbers ---
@@ -26,6 +30,11 @@ func _ready() -> void:
 	if has_node("PlayAnimationScene"):
 		$PlayAnimationScene.visible = false
 
+
+	button1.pressed.connect(b1)
+	button2.pressed.connect(b2)
+	button3.pressed.connect(b3)
+	button4.pressed.connect(b4)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -65,8 +74,8 @@ func _on_press_comfirm() -> void:
 
 	# Play animation before changing scene
 	if has_node("PlayAnimationScene/AnimationPlayer"):
-		$PanelContainer.visible=false
-		$MarginContainer/TextureRect.visible=true
+		$PanelContainer.visible = false
+		$MarginContainer/TextureRect.visible = true
 		var anim_scene = $PlayAnimationScene
 		var anim_player = $PlayAnimationScene/AnimationPlayer
 
@@ -74,8 +83,7 @@ func _on_press_comfirm() -> void:
 		anim_player.play("intro_animation")
 		await anim_player.animation_finished
 
-	get_tree().change_scene_to_file("res://scenes/core/Main.tscn")
-
+	
 func flash_error(control: Control):
 	var tween = get_tree().create_tween()
 	# Flash the control red twice to indicate an error
@@ -87,9 +95,20 @@ func flash_error(control: Control):
 func _on_button_pressed() -> void:
 	if flipflop:
 		audio_stream_player.stop()
-		flipflop=false
+		flipflop = false
 	else:
 		audio_stream_player.play()
-		flipflop=true
+		flipflop = true
 		
-	
+func _on_next_button_pressed() -> void:
+	# ตรวจสอบว่าถ้าแอนิเมชันหยุดอยู่ ให้กดเพื่อเล่นต่อ
+	if not $PlayAnimationScene/AnimationPlayer.is_playing():
+		$PlayAnimationScene/AnimationPlayer.play()
+func b1() -> void:
+	_on_next_button_pressed()
+func b2() -> void:
+	_on_next_button_pressed()
+func b3() -> void:
+	_on_next_button_pressed()
+func b4() -> void:
+	get_tree().change_scene_to_file("res://scenes/core/Main.tscn")
