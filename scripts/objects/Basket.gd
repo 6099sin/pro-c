@@ -36,8 +36,23 @@ func receive_item(item: Item):
 	tween.tween_property(item, "global_position", center_point.global_position, 0.1)
 	tween.tween_callback(func(): process_item(item))
 
+@onready var pop_star_container = $PopStarPariticle
+@onready var pop_star_emitter = $PopStarPariticle/GPUParticles2D
+
 func process_item(item: Item):
 	play_hit_effect(item.type)
+	
+	# VFX Trigger for Fruits
+	if item.type == Utils.ItemType.FRUIT:
+		var id = item.item_id
+		if id == "fruit_1":
+			pop_star_container.position.y = -7
+		elif id == "fruit_2":
+			pop_star_container.position.y = 6
+		
+		# Trigger particle
+		pop_star_emitter.restart()
+		pop_star_emitter.emitting = true
 
 	var id = item.item_id
 

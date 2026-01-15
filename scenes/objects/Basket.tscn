@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://basketscene"]
+[gd_scene load_steps=9 format=3 uid="uid://basketscene"]
 
 [ext_resource type="Script" uid="uid://wybb8hedthjj" path="res://scripts/objects/Basket.gd" id="1_basket"]
 [ext_resource type="Texture2D" uid="uid://bw0c1j126de8n" path="res://assets/UI/Baby/B1.png" id="2_begjd"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://6adgg38380ie" path="res://assets/UI/Baby/B2.png" id="4_la12k"]
 [ext_resource type="Texture2D" uid="uid://4ktwa4svs4nl" path="res://assets/UI/Baby/B3.png" id="5_wdsdn"]
 [ext_resource type="Texture2D" uid="uid://ci2sslfpd0mb4" path="res://assets/UI/Baby/B4.png" id="6_bvtbb"]
+[ext_resource type="PackedScene" uid="uid://hwcy88d6nxar" path="res://scenes/VFX/popStar.tscn" id="7_la12k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7cnpb"]
 radius = 12.0
@@ -30,3 +31,6 @@ scale = Vector2(0.085, 0.085)
 texture = ExtResource("2_begjd")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="PopStarPariticle" parent="." instance=ExtResource("7_la12k")]
+scale = Vector2(0.025, 0.025)
