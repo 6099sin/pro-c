@@ -34,7 +34,7 @@ func _ready() -> void:
 	# Hide the animation layer initially
 	if has_node("PlayAnimationScene"):
 		$PlayAnimationScene.visible = false
-
+	audio_stream_player.stop()
 
 	button1.pressed.connect(b1)
 	button2.pressed.connect(b2)
@@ -57,6 +57,9 @@ func _on_input_tel_changed(new_text: String):
 # --- Button Logic ---
 func _on_press_comfirm() -> void:
 	var is_valid = true
+	
+	audio_stream_player.play()
+	
 	if input_name.text.is_empty():
 		flash_error(input_name)
 		is_valid = false
@@ -116,4 +119,5 @@ func b2() -> void:
 func b3() -> void:
 	_on_next_button_pressed()
 func b4() -> void:
+	_on_next_button_pressed()
 	get_tree().change_scene_to_file("res://scenes/core/Main.tscn")
