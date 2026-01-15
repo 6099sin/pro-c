@@ -29,17 +29,19 @@ func _ready() -> void:
 # --- 2. Connect the Text Changed signal for the phone number ---
 	input_tel.text_changed.connect(_on_input_tel_changed)
 
-	$PanelContainer/MarginContainer/VBoxContainer/MarginContainer/Button.pressed.connect(_on_press_comfirm)
-
+	$PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ComfirmButton.pressed.connect(_on_press_comfirm)
+	
 	# Hide the animation layer initially
 	if has_node("PlayAnimationScene"):
 		$PlayAnimationScene.visible = false
+		# Ensure all sub-containers are hidden initially
+		if has_node("PlayAnimationScene/MarginContainer1"): $PlayAnimationScene/MarginContainer1.visible = false
+		if has_node("PlayAnimationScene/MarginContainer2"): $PlayAnimationScene/MarginContainer2.visible = false
+		if has_node("PlayAnimationScene/MarginContainer3"): $PlayAnimationScene/MarginContainer3.visible = false
+		if has_node("PlayAnimationScene/MarginContainer4"): $PlayAnimationScene/MarginContainer4.visible = false
+		
 	audio_stream_player.stop()
 
-	button1.pressed.connect(b1)
-	button2.pressed.connect(b2)
-	button3.pressed.connect(b3)
-	button4.pressed.connect(b4)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
@@ -57,8 +59,6 @@ func _on_input_tel_changed(new_text: String):
 # --- Button Logic ---
 func _on_press_comfirm() -> void:
 	var is_valid = true
-	
-	audio_stream_player.play()
 	
 	if input_name.text.is_empty():
 		flash_error(input_name)
@@ -80,18 +80,61 @@ func _on_press_comfirm() -> void:
 		GameManager.user_name = input_name.text
 		GameManager.user_tel = input_tel.text
 
-	# Play animation before changing scene
-	if has_node("PlayAnimationScene/AnimationPlayer"):
-		$PanelContainer.visible = false
-		$MarginContainer/TextureRect.visible = true
-		var anim_scene = $PlayAnimationScene
-		var anim_player = $PlayAnimationScene/AnimationPlayer
+	# Start Dialog Sequence
+	start_dialog_sequence()
+	$MarginContainer/TextureRect.visible=true
+func start_dialog_sequence() -> void:
+	$PanelContainer.visible = false
+	if has_node("PlayAnimationScene"):
+		$PlayAnimationScene.visible = true
+		
+		# Step 1
+		await play_dialog_step($PlayAnimationScene/MarginContainer1, "res://assets/Sound/info/1_info.ogg", button1)
+		# Step 2
+		await play_dialog_step($PlayAnimationScene/MarginContainer2, "res://assets/Sound/info/2_info.ogg", button2)
+		# Step 3
+		await play_dialog_step($PlayAnimationScene/MarginContainer3, "res://assets/Sound/info/3_info.ogg", button3)
+		# Step 4
+		await play_dialog_step($PlayAnimationScene/MarginContainer4, "res://assets/Sound/info/4_info.ogg", button4)
+		
+		# Finish
+		get_tree().change_scene_to_file("res://scenes/core/Main.tscn")
 
-		anim_scene.visible = true
-		anim_player.play("intro_animation")
-		await anim_player.animation_finished
-
+func play_dialog_step(container: Control, sound_path: String, next_btn: Button) -> void:
+	# Initialize state
+	container.modulate.a = 0.0
+	container.visible = true
+	if next_btn:
+		next_btn.visible = false
+		
+	# Fade In Container
+	var tween_in = create_tween()
+	tween_in.tween_property(container, "modulate:a", 1.0, 0.5)
+	await tween_in.finished
 	
+	# Play Sound
+	var stream = load(sound_path)
+	if stream:
+		audio_stream_player.stream = stream
+		audio_stream_player.play()
+		await audio_stream_player.finished
+	else:
+		# Fallback if sound missing
+		await get_tree().create_timer(1.0).timeout
+		
+	# Show Next Button
+	if next_btn:
+		next_btn.visible = true
+		
+		# Wait for button press
+		await next_btn.pressed
+		
+	# Fade Out Container
+	var tween_out = create_tween()
+	tween_out.tween_property(container, "modulate:a", 0.0, 0.5)
+	await tween_out.finished
+	container.visible = false
+
 func flash_error(control: Control):
 	var tween = get_tree().create_tween()
 	# Flash the control red twice to indicate an error
@@ -107,17 +150,3 @@ func _on_button_pressed() -> void:
 	else:
 		audio_stream_player.play()
 		flipflop = true
-		
-func _on_next_button_pressed() -> void:
-	# ตรวจสอบว่าถ้าแอนิเมชันหยุดอยู่ ให้กดเพื่อเล่นต่อ
-	if not $PlayAnimationScene/AnimationPlayer.is_playing():
-		$PlayAnimationScene/AnimationPlayer.play()
-func b1() -> void:
-	_on_next_button_pressed()
-func b2() -> void:
-	_on_next_button_pressed()
-func b3() -> void:
-	_on_next_button_pressed()
-func b4() -> void:
-	_on_next_button_pressed()
-	get_tree().change_scene_to_file("res://scenes/core/Main.tscn")
