@@ -15,8 +15,19 @@ const MAX_SCORE_ALPHA_BETA = 1000
 const MAX_COMBO = 3.0
 const COMBO_STEP = 0.1
 
+var bg_music_player: AudioStreamPlayer
+
 func _ready():
 	print("Score " + str(score_alpha) + "  Score " + str(score_beta))
+	
+	bg_music_player = AudioStreamPlayer.new()
+	bg_music_player.stream = load("res://assets/Sound/PRO_HA_SONGBG.ogg")
+	add_child(bg_music_player)
+
+func play_music():
+	if not bg_music_player.playing:
+		bg_music_player.play()
+
 
 func start_game():
 	score = 0
