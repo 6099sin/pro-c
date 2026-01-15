@@ -20,7 +20,12 @@ func _ready() -> void:
 	# --- 1. Setup Regex to accept ONLY numbers ---
 	regex.compile("^[0-9]*$")
 	# flip sound
-	
+
+	# Hide caret if using virtual keyboard
+	if DisplayServer.has_feature(DisplayServer.FEATURE_VIRTUAL_KEYBOARD):
+		input_tel.add_theme_color_override("caret_color", Color(0, 0, 0, 0))
+		input_name.add_theme_color_override("caret_color", Color(0, 0, 0, 0))
+
 # --- 2. Connect the Text Changed signal for the phone number ---
 	input_tel.text_changed.connect(_on_input_tel_changed)
 
