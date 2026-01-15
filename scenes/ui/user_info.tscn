@@ -714,7 +714,7 @@ visible = false
 layout_mode = 2
 texture = ExtResource("15_g5avq")
 
-[node name="Button" type="Button" parent="MarginContainer/TextureRect"]
+[node name="MuteSoundButton" type="Button" parent="MarginContainer/TextureRect"]
 self_modulate = Color(1, 1, 1, 0.19607843)
 layout_mode = 1
 anchors_preset = 15
@@ -728,4 +728,4 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_wcnxs")
 stream = ExtResource("16_w5r3j")
 autoplay = true
 
-[connection signal="pressed" from="MarginContainer/TextureRect/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MarginContainer/TextureRect/MuteSoundButton" to="." method="_mute_button_pressed"]

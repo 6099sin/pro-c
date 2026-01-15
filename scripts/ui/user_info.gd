@@ -82,7 +82,7 @@ func _on_press_comfirm() -> void:
 
 	# Start Dialog Sequence
 	start_dialog_sequence()
-	$MarginContainer/TextureRect.visible=true
+	$MarginContainer/TextureRect.visible = true
 func start_dialog_sequence() -> void:
 	$PanelContainer.visible = false
 	if has_node("PlayAnimationScene"):
@@ -125,6 +125,7 @@ func play_dialog_step(container: Control, sound_path: String, next_btn: Button) 
 	# Show Next Button
 	if next_btn:
 		next_btn.visible = true
+		next_btn.disabled = false
 		
 		# Wait for button press
 		await next_btn.pressed
@@ -143,7 +144,8 @@ func flash_error(control: Control):
 	tween.tween_property(control, "modulate", Color.WHITE, 0.15)
 
 
-func _on_button_pressed() -> void:
+
+func _mute_button_pressed() -> void:
 	if flipflop:
 		audio_stream_player.stop()
 		flipflop = false
