@@ -98,7 +98,7 @@ func start_dialog_sequence() -> void:
 		await play_dialog_step($PlayAnimationScene/MarginContainer4, "res://assets/Sound/info/4_info.ogg", button4)
 		
 		# Finish
-		get_tree().change_scene_to_file("res://scenes/core/Main.tscn")
+		get_tree().change_scene_to_file("res://scenes/ui/SplashScreen.tscn")
 
 func play_dialog_step(container: Control, sound_path: String, next_btn: Button) -> void:
 	# Initialize state
