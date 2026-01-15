@@ -27,6 +27,9 @@ var current_alpha_score: int = 0
 var current_beta_score: int = 0
 
 
+@onready var hud_bottom = $MarginContainer
+@onready var hud_left = $MarginContainer2
+
 func _ready():
 	# Connect to main score and timer updates
 	SignalBus.score_updated_total.connect(update_main_score_ui_Alpha) # Main numeric score
@@ -63,6 +66,10 @@ func _ready():
 	if bonus_time_indicator:
 		bonus_time_indicator.visible = false
 
+	# Hide HUD initially
+	if hud_bottom: hud_bottom.modulate.a = 0.0
+	if hud_left: hud_left.modulate.a = 0.0
+
 	# Show before_start warning
 	if before_start:
 		before_start.visible = true
@@ -72,10 +79,13 @@ func _ready():
 		# Wait 1.5 seconds
 		await get_tree().create_timer(1.5, true, false, true).timeout
 
-		# Fade out for 0.5 seconds
-		var tween = create_tween()
+		# Sweep Fade Out (Warning) & Fade In (HUD)
+		var tween = create_tween().set_parallel(true)
 		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		tween.tween_property(before_start, "modulate:a", 0.0, 0.5)
+		if hud_bottom: tween.tween_property(hud_bottom, "modulate:a", 1.0, 0.5)
+		if hud_left: tween.tween_property(hud_left, "modulate:a", 1.0, 0.5)
+		
 		await tween.finished
 
 		before_start.visible = false
