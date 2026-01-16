@@ -59,7 +59,7 @@ func _process(delta):
 	SignalBus.time_updated.emit(time_left)
 
 func activate_bonus_mode(duration: float):
-	if is_bonus_active: return # Already active (limit stacking or extend? user didn't specify, preventing stack is safer)
+	if is_bonus_active or not is_game_active: return # Already active or game over
 
 	is_bonus_active = true
 	print("BONUS MODE ACTIVATED!")
