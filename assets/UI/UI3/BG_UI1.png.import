@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/BG_UI1.png-2ba0d860c9ada5790f0e346c05ff7e12.c
 
 [params]
 
-compress/mode=0
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

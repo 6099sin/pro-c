@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/promote.png-c778af913631a79e5c067f13f1c6e80a.
 
 [params]
 
-compress/mode=0
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
