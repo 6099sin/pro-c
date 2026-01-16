@@ -10,9 +10,13 @@ config_version=5
 
 [application]
 
-config/name="Fruit Basket Dash"
-run/main_scene="uid://mainscene"
+config/name="Pro-C"
+config/tags=PackedStringArray("fantasyunit")
+run/main_scene="uid://wdpx1dg4ece6"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0.9372549, 0.46666667, 0.12941177, 1)
+boot_splash/fullsize=false
+boot_splash/image="uid://cjjd1sjpumjfg"
 
 [autoload]
 
@@ -24,7 +28,12 @@ GameManager="*res://scripts/autoloads/GameManager.gd"
 window/size/viewport_width=648
 window/size/viewport_height=1152
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
+
+[gui]
+
+theme/custom_font="uid://sinl4hn7n5t5"
 
 [input_devices]
 
@@ -32,7 +41,6 @@ pointing/emulate_touch_from_mouse=true
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true

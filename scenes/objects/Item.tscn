@@ -1,13 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://itemscene"]
+[gd_scene load_steps=6 format=3 uid="uid://itemscene"]
 
 [ext_resource type="Script" uid="uid://dignuyh7tk07c" path="res://scripts/objects/Item.gd" id="1_item"]
-[ext_resource type="Texture2D" uid="uid://tlcsc7o6ssay" path="res://assets/Sprites/Basic_Plants.png" id="2_8h4xb"]
+[ext_resource type="Texture2D" uid="uid://bp41wh7ort5ab" path="res://assets/UI/Item/Beta.png" id="2_8h4xb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8h4xb"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q5p3m"]
-atlas = ExtResource("2_8h4xb")
-region = Rect2(80, 16, 16, 16)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n5qg5"]
 radius = 60.00833
@@ -19,11 +15,14 @@ radius = 96.04687
 collision_layer = 2
 input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_8h4xb")
+lock_rotation = true
 script = ExtResource("1_item")
+max_angle_deg = 10.0
+min_angle_deg = -10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(8, 8)
-texture = SubResource("AtlasTexture_q5p3m")
+scale = Vector2(1.1568627, 1.1568629)
+texture = ExtResource("2_8h4xb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_n5qg5")

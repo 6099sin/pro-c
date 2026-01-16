@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuhlyreh2rij2"]
+
+[ext_resource type="Shader" uid="uid://byblk7kf23lo8" path="res://shader/UI_gradient10.gdshader" id="1_c2xfm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b85ex"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.94316125, 0.47100115, 0.13450274, 0.6901961)
+border_width_bottom = 6
+border_color = Color(0.47971916, 0.47971892, 0, 1)
+expand_margin_bottom = 19.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6pubv"]
+shader = ExtResource("1_c2xfm")
+shader_parameter/body_top = Color(1, 0.85, 0.7, 1)
+shader_parameter/body_bottom = Color(1, 0.45, 0.2, 1)
+shader_parameter/body_center = Color(1, 1, 0.9, 1)
+shader_parameter/border_top = Color(0.95, 0.85, 0.5, 1)
+shader_parameter/border_bottom = Color(0.6, 0.4, 0.1, 1)
+shader_parameter/border_width = 0.025
+shader_parameter/corner_radius = 0.2
+shader_parameter/center_glow_intensity = 0.5
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -30.0
+offset_right = 50.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 13
+theme_override_constants/v_separation = 25
+columns = 2
+
+[node name="TextureRect2" type="PanelContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect2"]
+layout_mode = 2
+
+[node name="TextureRect11" type="PanelContainer" parent="GridContainer"]
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect11"]
+layout_mode = 2
+
+[node name="TextureRect14" type="PanelContainer" parent="GridContainer"]
+material = SubResource("ShaderMaterial_6pubv")
+custom_minimum_size = Vector2(100, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b85ex")
+
+[node name="Button" type="Button" parent="GridContainer/TextureRect14"]
+visible = false
+layout_mode = 2

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://mainscene"]
+[gd_scene load_steps=6 format=3 uid="uid://mainscene"]
 
 [ext_resource type="PackedScene" uid="uid://basketscene" path="res://scenes/objects/Basket.tscn" id="1_fun78"]
 [ext_resource type="PackedScene" uid="uid://spawnerscene" path="res://scenes/objects/Spawner.tscn" id="2_5pwbx"]
+[ext_resource type="Texture2D" uid="uid://cfx0bs11uelnt" path="res://assets/UI/UI1/Background.png" id="2_kitw3"]
 [ext_resource type="PackedScene" uid="uid://hudscene" path="res://scenes/ui/HUD.tscn" id="3_kitw3"]
 [ext_resource type="Script" uid="uid://2278lqd6xfhs" path="res://scripts/core/Main.gd" id="4_main"]
 
@@ -17,16 +18,24 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.94626087, 0.906797, 0.9484387, 1)
 
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kitw3")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
 [node name="Basket" parent="Camera2D" instance=ExtResource("1_fun78")]
-position = Vector2(158, 975.00006)
-scale = Vector2(13.14, 13.14)
+position = Vector2(144, 854)
+scale = Vector2(12, 12)
 
 [node name="Spawner" parent="." instance=ExtResource("2_5pwbx")]
 fruit_ratio = 0.346
-min_scale = 1.4
-max_scale = 2.0
+spawn_y_min_ratio = 0.4
+spawn_y_max_ratio = 0.75
 
 [node name="HUD" parent="." instance=ExtResource("3_kitw3")]

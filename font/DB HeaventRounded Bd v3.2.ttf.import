@@ -1,0 +1,36 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://sinl4hn7n5t5"
+path="res://.godot/imported/DB HeaventRounded Bd v3.2.ttf-d7e2e0ef6c96b058917cd4f55762f259.fontdata"
+
+[deps]
+
+source_file="res://font/DB HeaventRounded Bd v3.2.ttf"
+dest_files=["res://.godot/imported/DB HeaventRounded Bd v3.2.ttf-d7e2e0ef6c96b058917cd4f55762f259.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+modulate_color_glyphs=false
+hinting=1
+subpixel_positioning=4
+keep_rounding_remainders=true
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}
