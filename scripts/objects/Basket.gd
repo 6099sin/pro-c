@@ -17,7 +17,7 @@ func center_on_camera():
 	position.x = screen_size.x / 2.0
 	position.y = screen_size.y - screen_size.y / 4.0
 func _on_body_entered(body):
-	if body is Item:
+	if body is Item and GameManager.is_game_active:
 		# Don't snap if user is still holding it (optional design choice)
 		if not body.is_dragging:
 			# TRAP: Always triggers (Obstacle)
