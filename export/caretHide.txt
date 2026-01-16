@@ -1,0 +1,11 @@
+index.html
+
+
+
+body {
+	color: white;
+	background-color: black;
+	overflow: hidden;
+	touch-action: none;
+	caret-color: transparent !important;
+}
