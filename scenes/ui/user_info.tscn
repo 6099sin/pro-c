@@ -712,6 +712,7 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+visible = false
 layout_mode = 2
 texture = ExtResource("15_g5avq")
 
