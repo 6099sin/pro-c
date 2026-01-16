@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/Alpha.png-ae8fb89b0b02007b5f97b99cdb269cbc.ct
 
 [params]
 
-compress/mode=0
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
