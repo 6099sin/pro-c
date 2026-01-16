@@ -45,7 +45,7 @@ func _ready():
 	update_main_score_ui_Alpha(GameManager.score) # Initialize with current GameManager score
 	update_timer_ui(GameManager.time_left) # Initialize with current GameManager time
 	game_over_panel.visible = false
-	
+
 	# Initialize popup labels to invisible
 	if add_point_alpha:
 		add_point_alpha.modulate.a = 0.0
@@ -55,11 +55,11 @@ func _ready():
 	# Initialize progress bars for alpha and beta scores
 	progressAlpha_bar.max_value = GameManager.MAX_SCORE_ALPHA_BETA / 2
 	progressBeta_bar.max_value = GameManager.MAX_SCORE_ALPHA_BETA / 2
-	
+
 	# Initialize local score tracking without triggering animation
 	current_alpha_score = GameManager.score_alpha
 	current_beta_score = GameManager.score_beta
-	
+
 	update_alpha_bar_ui(GameManager.score_alpha, false)
 	update_beta_bar_ui(GameManager.score_beta, false)
 
@@ -77,7 +77,7 @@ func _ready():
 		get_tree().paused = true
 
 		# Wait 1.5 seconds
-		await get_tree().create_timer(1.5, true, false, true).timeout
+		await get_tree().create_timer(3.0, true, false, true).timeout
 
 		# Sweep Fade Out (Warning) & Fade In (HUD)
 		var tween = create_tween().set_parallel(true)
@@ -85,7 +85,7 @@ func _ready():
 		tween.tween_property(before_start, "modulate:a", 0.0, 0.5)
 		if hud_bottom: tween.tween_property(hud_bottom, "modulate:a", 1.0, 0.5)
 		if hud_left: tween.tween_property(hud_left, "modulate:a", 1.0, 0.5)
-		
+
 		await tween.finished
 
 		before_start.visible = false
@@ -108,9 +108,9 @@ func update_alpha_bar_ui(new_alpha_score: int, animate_popup: bool = true):
 		var delta = new_alpha_score - current_alpha_score
 		if delta != 0:
 			show_score_popup(add_point_alpha, delta)
-	
+
 	current_alpha_score = new_alpha_score
-	
+
 	if alpha_tween and alpha_tween.is_valid():
 		alpha_tween.kill()
 	alpha_tween = create_tween()
@@ -122,9 +122,9 @@ func update_beta_bar_ui(new_beta_score: int, animate_popup: bool = true): # New 
 		var delta = new_beta_score - current_beta_score
 		if delta != 0:
 			show_score_popup(add_point_beta, delta)
-			
+
 	current_beta_score = new_beta_score
-	
+
 	if beta_tween and beta_tween.is_valid():
 		beta_tween.kill()
 	beta_tween = create_tween()
@@ -133,18 +133,18 @@ func update_beta_bar_ui(new_beta_score: int, animate_popup: bool = true): # New 
 
 func show_score_popup(label: Label, delta: int):
 	if label == null: return
-	
+
 	if delta > 0:
 		label.text = "+%d" % delta
 		# Optional: Set color for positive? Using existing color for now.
 	else:
 		label.text = "%d" % delta
 		# Optional: Set color for negative?
-		
+
 	# Reset alpha to 0 just in case
 	label.modulate.a = 0.0
 	label.visible = true
-	
+
 	var tween = create_tween()
 	# Fade In
 	tween.tween_property(label, "modulate:a", 1.0, 0.2).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
@@ -196,7 +196,7 @@ func update_timer_ui(time_left: float):
 func update_game_over_ui(final_score: int, grade: String):
 	game_over_panel.text = "Grade: %s" % grade
 	game_over_panel.visible = true
-	
+
 	if confetti:
 		confetti.visible = true
 		confetti.modulate.a = 1.0
@@ -204,7 +204,7 @@ func update_game_over_ui(final_score: int, grade: String):
 		tween.tween_interval(7.0)
 		tween.tween_property(confetti, "modulate:a", 0.0, 1.0)
 		tween.tween_callback(func(): confetti.visible = false)
-		
+
 	if win_sound:
 		win_sound.play()
 
