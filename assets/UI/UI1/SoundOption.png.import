@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/SoundOption.png-458744bbfd21b24dc9ba2f6ca3eaa
 
 [params]
 
-compress/mode=0
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
