@@ -12,6 +12,7 @@ extends Control
 @onready var bonus_time_indicator: Panel = $BonusTime
 @onready var bonus_time_indicatorEnd: Panel = $BonusTimeEnd
 @onready var before_start = $before_start
+@onready var before_start_2 = $before_start2
 var HUD_FILL_BAR = preload("uid://b4ll0t0y4e38t")
 @onready var bonus_timer_text: Label = $MarginContainer3/BonusTimer
 @onready var timer: Timer = bonus_timer_text.get_child(0)
@@ -74,21 +75,47 @@ func _ready():
 	if before_start:
 		before_start.visible = true
 		before_start.modulate.a = 1.0
+		if before_start_2:
+			before_start_2.visible = true
+			before_start_2.modulate.a = 0.0 # Start invisible
+		
 		get_tree().paused = true
 
-		# Wait 1.5 seconds
+		# Wait 1.5 seconds for first warning
 		await get_tree().create_timer(3.0, true, false, true).timeout
 
-		# Sweep Fade Out (Warning) & Fade In (HUD)
-		var tween = create_tween().set_parallel(true)
-		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-		tween.tween_property(before_start, "modulate:a", 0.0, 0.5)
-		if hud_bottom: tween.tween_property(hud_bottom, "modulate:a", 1.0, 0.5)
-		if hud_left: tween.tween_property(hud_left, "modulate:a", 1.0, 0.5)
-
-		await tween.finished
-
+		# Fade Out (Warning 1) & Fade In (Warning 2)
+		var tween1 = create_tween().set_parallel(true)
+		tween1.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+		tween1.tween_property(before_start, "modulate:a", 0.0, 0.5)
+		if before_start_2:
+			tween1.tween_property(before_start_2, "modulate:a", 1.0, 0.5)
+		
+		await tween1.finished
+		
 		before_start.visible = false
+		
+		# Wait 1.5 seconds for second warning
+		if before_start_2:
+			await get_tree().create_timer(3.0, true, false, true).timeout
+			
+			# Fade Out (Warning 2) & Fade In (HUD)
+			var tween2 = create_tween().set_parallel(true)
+			tween2.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+			tween2.tween_property(before_start_2, "modulate:a", 0.0, 0.5)
+			if hud_bottom: tween2.tween_property(hud_bottom, "modulate:a", 1.0, 0.5)
+			if hud_left: tween2.tween_property(hud_left, "modulate:a", 1.0, 0.5)
+			
+			await tween2.finished
+			before_start_2.visible = false
+		else:
+			# If no second warning, just fade in HUD
+			var tween2 = create_tween().set_parallel(true)
+			tween2.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+			if hud_bottom: tween2.tween_property(hud_bottom, "modulate:a", 1.0, 0.5)
+			if hud_left: tween2.tween_property(hud_left, "modulate:a", 1.0, 0.5)
+			await tween2.finished
+
 		get_tree().paused = false
 
 	# 1. เชื่อมต่อ Signal เมื่อเวลาหมด (หากต้องการทำเหตุการณ์บางอย่าง)
