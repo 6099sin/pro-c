@@ -34,24 +34,25 @@ func _ready() -> void:
 		tween.tween_callback(func(): promote.visible = false)
 	
 	submit_sender.request_completed.connect(_on_submit_completed)
-	
-	# submit_score(GameManager.user_name, GameManager.user_tel, GameManager.score)
-	# submit_score("cd","12345678",12,"Level_1")
-	submit_score(str(GameManager.user_name),str(GameManager.user_tel),int(GameManager.score_alpha+GameManager.score_beta),"Level_1")
+	#print(GameManager.user_tel)
+	#submit_score(GameManager.user_name, GameManager.user_tel, GameManager.score)
+	#submit_score("cd","1234567890",12,"Level_1")
+	submit_score(GameManager.user_name,Utils.format_phone_number(GameManager.user_tel),int(GameManager.score_alpha+GameManager.score_beta),"Level_1")
 
 func submit_score(p_name: String, p_phone: String, p_score: int, sheet_name: String = "Sheet1"):
-	var final_name = p_name if not p_name.is_empty() else GameManager.user_name
-	var final_phone = p_phone if not p_phone.is_empty() else GameManager.user_tel
+	# var final_name = p_name if not p_name.is_empty() else GameManager.user_name
+	# var final_phone = final_name if not p_phone.is_empty() else GameManager.user_tel
 	# Default to p_score, trust the caller. If logic requires fallback to GameManager.score it should be handled by caller or here if -1 passed.
 	# Assuming p_score is always valid.
 	
 	var data = {
-		"name": final_name,
-		"phone": final_phone,
+		"name": p_name,
+		"phone": p_phone,
 		"score": p_score,
 		"sheet_name": sheet_name,
 		"timestamp": Time.get_unix_time_from_system()
 	}
+	print(data)
 	_send_post_request(data)
 	
 	
