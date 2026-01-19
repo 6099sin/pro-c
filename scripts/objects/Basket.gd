@@ -8,9 +8,64 @@ extends Node2D
 const SFX_COIN = preload("res://assets/Sound/Retro Coin 2.mp3")
 const SFX_ERROR = preload("res://assets/Sound/1_Error_C.wav")
 
+const STATE_TEXTURES = [
+	preload("res://assets/UI/Baby/B0.png"),
+	preload("res://assets/UI/Baby/B1.png"),
+	preload("res://assets/UI/Baby/B2.png"),
+	preload("res://assets/UI/Baby/B3.png"),
+	preload("res://assets/UI/Baby/B4.png")
+]
+
 func _ready():
 	snap_zone.body_entered.connect(_on_body_entered)
 	center_on_camera()
+	
+	# Connect to score updates to change appearance
+	SignalBus.score_updated_alpha.connect(_on_score_updated)
+	SignalBus.score_updated_beta.connect(_on_score_updated)
+	
+	# Initialize appearance
+	update_appearance()
+
+func _on_score_updated(_new_score: int):
+	update_appearance()
+
+func update_appearance():
+	var max_score = max(GameManager.score_alpha, GameManager.score_beta)
+	var state_index = 0
+	
+	if max_score < 100:
+		state_index = 0
+	elif max_score < 200:
+		state_index = 1
+	elif max_score < 300:
+		state_index = 2
+	elif max_score < 400:
+		state_index = 3
+	else:
+		state_index = 4
+		
+	# Only update if not currently playing a hit effect (or force update if needed)
+	# However, since hit effect overwrites texture, we rely on hit effect finishing to restore state.
+	# But if score updates WITHOUT hit (e.g. initial load or passive), we set it.
+	# To avoid conflict during hit animation, we can check if a tween is running on sprite or just set it.
+	# If we set it here, it might override the "Happy/Sad" face during the 0.3s hit.
+	# A simple check: if the hit tween is active, don't force set. 
+	# But actually, the hit effect ends with a callback to this function, so it's self-correcting.
+	# We just need to make sure we don't interrupt the hit effect.
+	# For now, let's just set it. If it interrupts a 0.3s effect, it's rare (score updates ON hit usually).
+	# Actually, score update logic calls this. 
+	# If this is called BY score update (which happens AT hit), we might override the hit face immediately.
+	# We should defer this if hit effect is playing.
+	# Let's rely on play_hit_effect to restore the look, and this function only for initialization or non-hit updates?
+	# Better: play_hit_effect handles the "Hit" look, then calls this to "Restore".
+	# If score update happens, it might be simultaneous.
+	# Let's add a simple flag or check.
+	
+	if not is_hit_animating:
+		sprite.texture = STATE_TEXTURES[state_index]
+
+var is_hit_animating: bool = false
 
 func center_on_camera():
 	var screen_size = Utils.get_screen_size(self)
@@ -100,10 +155,12 @@ func process_item(item: Item):
 	item.deactivate()
 
 func play_hit_effect(type: Utils.ItemType):
+	is_hit_animating = true
 	var tween = create_tween().set_parallel(true)
 
 	# Stretch / Squash
 	sprite.scale = Vector2(0.9, 0.7)
+	# Use setTexture for the temporary hit reaction
 	sprite.texture = setTexture[3] if type == Utils.ItemType.FRUIT else setTexture[0]
 	tween.tween_property(sprite, "scale", Vector2.ONE, 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
@@ -111,6 +168,12 @@ func play_hit_effect(type: Utils.ItemType):
 	var flash_color = Color(0.5, 1.5, 0.5) if type == Utils.ItemType.FRUIT else Color(1.5, 0.5, 0.5)
 	sprite.modulate = flash_color
 	tween.tween_property(sprite, "modulate", Color.WHITE, 0.3)
+	
+	# Revert to state texture after effect
+	tween.chain().tween_callback(func():
+		is_hit_animating = false
+		update_appearance()
+	)
 
 func sfx_pick(index: int) -> void:
 	match index:
