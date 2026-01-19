@@ -4,6 +4,16 @@ extends Control
 @onready var label_beta: Label = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer2/MarginContainer2/addPointBeta
 @onready var label_sum: Label = $VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer2/MarginContainer2/allPoint
 
+# URL ของ Google Apps Script (อันใหม่ล่าสุดที่ลงท้ายด้วย /exec)
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxMJEdN0VfFA5rKxS-kYqWYu-9EUP19JIPddGj3Q5w5nV8P5jwfUTcG7vhgDJwK_ZjN/exec"
+
+# รหัสผ่านสำหรับสั่งรีเซ็ต (ต้องตรงกับใน Google Script)
+const RESET_PASSWORD = "MY_SUPER_SECRET_PASSWORD"
+# ตัวที่ 1: สำหรับ "ส่ง" ข้อมูล (Submit / Reset)
+@onready var submit_sender: HTTPRequest = $HTTPRequest
+
+# ตัวที่ 2: สำหรับ "รับ" ข้อมูล (Leaderboard)
+@onready var leaderboard_receiver: HTTPRequest = $LeaderboardRequest
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,3 +32,55 @@ func _ready() -> void:
 		tween.tween_interval(5.0)
 		tween.tween_property(promote, "modulate:a", 0.0, 1.0)
 		tween.tween_callback(func(): promote.visible = false)
+	
+	submit_sender.request_completed.connect(_on_submit_completed)
+	
+	# submit_score(GameManager.user_name, GameManager.user_tel, GameManager.score)
+	# submit_score("cd","12345678",12,"Level_1")
+	submit_score(str(GameManager.user_name),str(GameManager.user_tel),int(GameManager.score_alpha+GameManager.score_beta),"Level_1")
+
+func submit_score(p_name: String, p_phone: String, p_score: int, sheet_name: String = "Sheet1"):
+	var final_name = p_name if not p_name.is_empty() else GameManager.user_name
+	var final_phone = p_phone if not p_phone.is_empty() else GameManager.user_tel
+	# Default to p_score, trust the caller. If logic requires fallback to GameManager.score it should be handled by caller or here if -1 passed.
+	# Assuming p_score is always valid.
+	
+	var data = {
+		"name": final_name,
+		"phone": final_phone,
+		"score": p_score,
+		"sheet_name": sheet_name,
+		"timestamp": Time.get_unix_time_from_system()
+	}
+	_send_post_request(data)
+	
+	
+func _send_post_request(data_dict: Dictionary):
+	var json_body = JSON.stringify(data_dict)
+	var headers = ["Content-Type: application/json"] # Changed to application/json for better standard compliance, unless text/plain is strictly required for CORS hack. Keeping text/plain if originally intended?
+	# Original comment said: text/plain because of CORS. Google Apps Script usually handles this via Simple Request.
+	# Let's stick to text/plain to be safe if that was the intention, or switch to standard.
+	# Standard practice for google apps script simple requests often uses text/plain to avoid preflight options.
+	headers = ["Content-Type: text/plain"]
+	
+	var error = submit_sender.request(GOOGLE_SCRIPT_URL, headers, HTTPClient.METHOD_POST, json_body)
+
+	if error != OK:
+		print("❌ Error: ไม่สามารถเริ่มส่งข้อมูลได้ (Code: %s)" % error)
+	else:
+		print("⏳ กำลังส่งข้อมูลไปยัง Server...")
+
+func _on_submit_completed(_result, response_code, _headers, body):
+	# ยอมรับ 200 (Success) และ 405 (Google Redirect Error ที่ถือว่าผ่าน)
+	if response_code == 200 or response_code == 405:
+		var response_text = body.get_string_from_utf8()
+
+		if response_code == 405:
+			print("✅ ส่งสำเร็จ! (Google Redirect 405)")
+		else:
+			print("✅ Server ตอบกลับ: ", response_text)
+
+	elif response_code == 302:
+		print("⚠️ เจอ Redirect (302) - ข้อมูลน่าจะเข้าแล้ว")
+	else:
+		print("❌ ส่งไม่สำเร็จ Error Code: ", response_code)

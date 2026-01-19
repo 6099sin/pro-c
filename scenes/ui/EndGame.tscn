@@ -339,3 +339,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_jgq0i")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="LeaderboardRequest" type="HTTPRequest" parent="."]
