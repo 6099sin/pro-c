@@ -2,23 +2,20 @@ extends Node2D
 
 @onready var snap_zone: Area2D = $SnapZone
 @onready var center_point: Marker2D = $CenterPoint
-@onready var sprite: Sprite2D = $Node2D/Sprite2D
-@export var setTexture: Array[Texture2D]
+
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 const SFX_COIN = preload("res://assets/Sound/Retro Coin 2.mp3")
 const SFX_ERROR = preload("res://assets/Sound/1_Error_C.wav")
 
-const STATE_TEXTURES = [
-	preload("res://assets/UI/Baby/B0.png"),
-	preload("res://assets/UI/Baby/B1.png"),
-	preload("res://assets/UI/Baby/B2.png"),
-	preload("res://assets/UI/Baby/B3.png"),
-	preload("res://assets/UI/Baby/B4.png")
-]
+@onready var animated_sprite: AnimatedSprite2D
+@onready var visual_container: Node2D = $Node2D
 
 func _ready():
 	snap_zone.body_entered.connect(_on_body_entered)
 	center_on_camera()
+	
+	# Setup AnimatedSprite
+	setup_animations()
 	
 	# Connect to score updates to change appearance
 	SignalBus.score_updated_alpha.connect(_on_score_updated)
@@ -27,8 +24,42 @@ func _ready():
 	# Initialize appearance
 	update_appearance()
 
+func setup_animations():
+	# Hide/Remove old sprite if it exists (it's in the scene file)
+	if visual_container.has_node("Sprite2D"):
+		visual_container.get_node("Sprite2D").visible = false
+		visual_container.get_node("Sprite2D").queue_free()
+	
+	# Create AnimatedSprite2D
+	animated_sprite = AnimatedSprite2D.new()
+	visual_container.add_child(animated_sprite)
+	
+	var sprite_frames = SpriteFrames.new()
+	
+	# Load frames for Levels 1 to 5 (mapped to indices 0 to 4)
+	# File pattern: res://assets/Sprites/PRO_C_animtionSprite/LV.{i}/PRO_C_LV.{i}0{j}.png
+	# Level i goes from 1 to 5.
+	for i in range(1, 6): # 1, 2, 3, 4, 5
+		var anim_name = "state_" + str(i - 1) # state_0 to state_4
+		sprite_frames.add_animation(anim_name)
+		sprite_frames.set_animation_loop(anim_name, true)
+		sprite_frames.set_animation_speed(anim_name, 10.0) # Adjust FPS as needed
+		
+		for j in range(10): # 0 to 9
+			var frame_index_str = "0" + str(j)
+			var path = "res://assets/Sprites/PRO_C_animtionSprite/LV.%d/PRO_C_LV.%d%s.png" % [i, i, frame_index_str]
+			var texture = load(path)
+			if texture:
+				sprite_frames.add_frame(anim_name, texture)
+			else:
+				push_warning("Failed to load frame: " + path)
+
+	animated_sprite.sprite_frames = sprite_frames
+	animated_sprite.play("state_0")
+
 func _on_score_updated(_new_score: int):
-	update_appearance()
+	if not is_hit_animating:
+		update_appearance()
 
 func update_appearance():
 	var max_score = max(GameManager.score_alpha, GameManager.score_beta)
@@ -45,25 +76,9 @@ func update_appearance():
 	else:
 		state_index = 4
 		
-	# Only update if not currently playing a hit effect (or force update if needed)
-	# However, since hit effect overwrites texture, we rely on hit effect finishing to restore state.
-	# But if score updates WITHOUT hit (e.g. initial load or passive), we set it.
-	# To avoid conflict during hit animation, we can check if a tween is running on sprite or just set it.
-	# If we set it here, it might override the "Happy/Sad" face during the 0.3s hit.
-	# A simple check: if the hit tween is active, don't force set. 
-	# But actually, the hit effect ends with a callback to this function, so it's self-correcting.
-	# We just need to make sure we don't interrupt the hit effect.
-	# For now, let's just set it. If it interrupts a 0.3s effect, it's rare (score updates ON hit usually).
-	# Actually, score update logic calls this. 
-	# If this is called BY score update (which happens AT hit), we might override the hit face immediately.
-	# We should defer this if hit effect is playing.
-	# Let's rely on play_hit_effect to restore the look, and this function only for initialization or non-hit updates?
-	# Better: play_hit_effect handles the "Hit" look, then calls this to "Restore".
-	# If score update happens, it might be simultaneous.
-	# Let's add a simple flag or check.
-	
-	if not is_hit_animating:
-		sprite.texture = STATE_TEXTURES[state_index]
+	# Play the corresponding animation
+	if animated_sprite and animated_sprite.sprite_frames.has_animation("state_" + str(state_index)):
+		animated_sprite.play("state_" + str(state_index))
 
 var is_hit_animating: bool = false
 
@@ -159,17 +174,24 @@ func play_hit_effect(type: Utils.ItemType):
 	var tween = create_tween().set_parallel(true)
 
 	# Stretch / Squash
-	sprite.scale = Vector2(0.9, 0.7)
-	# Use setTexture for the temporary hit reaction
-	sprite.texture = setTexture[3] if type == Utils.ItemType.FRUIT else setTexture[0]
-	tween.tween_property(sprite, "scale", Vector2.ONE, 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	animated_sprite.scale = Vector2(0.9, 0.7)
+	
+	# Temporary Animation Switch for Hit
+	# Happy (Fruit) -> State 3 (Old B3) -> state_3
+	# Sad (Trap) -> State 0 (Old B0) -> state_0
+	if type == Utils.ItemType.FRUIT:
+		animated_sprite.play("state_3")
+	else:
+		animated_sprite.play("state_0")
+		
+	tween.tween_property(animated_sprite, "scale", Vector2.ONE, 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
 	# Color Flash
 	var flash_color = Color(0.5, 1.5, 0.5) if type == Utils.ItemType.FRUIT else Color(1.5, 0.5, 0.5)
-	sprite.modulate = flash_color
-	tween.tween_property(sprite, "modulate", Color.WHITE, 0.3)
+	animated_sprite.modulate = flash_color
+	tween.tween_property(animated_sprite, "modulate", Color.WHITE, 0.3)
 	
-	# Revert to state texture after effect
+	# Revert to correct state texture after effect
 	tween.chain().tween_callback(func():
 		is_hit_animating = false
 		update_appearance()
