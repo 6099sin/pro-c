@@ -11,7 +11,7 @@ const SFX_ERROR = preload("res://assets/Sound/1_Error_C.wav")
 @onready var visual_container: Node2D = $Node2D
 @onready var aura_face: Sprite2D = $Node2D/aura_face
 @onready var aura_body: Sprite2D = $Node2D/aura_body
-@export_range(0.0, 1.0) var vertical_ratio: float = 0.75   # 0.75 คืออยู่ค่อนไปทางล่าง (75% ของจอ)
+@export_range(0.0, 1.0) var vertical_ratio: float = 0.75 # 0.75 คืออยู่ค่อนไปทางล่าง (75% ของจอ)
 
 const AURA_BODY_1 = preload("res://assets/UI/Baby/aura_body_1.png")
 const AURA_BODY_2 = preload("res://assets/UI/Baby/aura_body_2.png")
@@ -139,9 +139,9 @@ func trigger_vfx(item: Item):
 		var id = item.item_id
 		if id == "fruit_1":
 			new_vfx.position.y = -7
-		elif id == "fruit_2":
+		elif id == "fruit_2" or id == "fruit_3":
 			new_vfx.position.y = 6
-
+			
 		var emitter = new_vfx.get_node("GPUParticles2D")
 		emitter.emitting = true
 
@@ -158,7 +158,7 @@ func process_item(item: Item):
 	if id == "fruit_1": # This is "alphaFood"
 		GameManager.add_score_alpha(item.score)
 		sfx_pick(1)
-	elif id == "fruit_2": # This is "betaFood"
+	elif id == "fruit_2" or id == "fruit_3": # This is "betaFood" (fruit_2) or Bonus-only fruit_3
 		GameManager.add_score_beta(item.score)
 		sfx_pick(1)
 	elif id in ["trap_1", "trap_2", "trap_3"]:
@@ -188,13 +188,13 @@ func play_aura_effect(item: Item):
 	var id = item.item_id
 
 	# ตรวจสอบเงื่อนไขก่อน แล้วค่อยสร้าง Tween เมื่อจำเป็นเท่านั้น
-	if id == "fruit_1" : # Alpha items
+	if id == "fruit_1": # Alpha items
 		var tween = create_tween() # <--- ย้ายเข้ามาสร้างข้างในนี้
 		aura_face.self_modulate.a = 0
 		tween.tween_property(aura_face, "self_modulate:a", 1.0, 0.2)
 		tween.tween_property(aura_face, "self_modulate:a", 0.0, 0.2)
-
-	elif id == "fruit_2" : # Beta items
+		
+	elif id == "fruit_2" or id == "fruit_3": # Beta items
 		var tween = create_tween() # <--- ย้ายเข้ามาสร้างข้างในนี้
 
 		# Texture switching

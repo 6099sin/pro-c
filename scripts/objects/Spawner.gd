@@ -111,17 +111,17 @@ func spawn_item(item: Item):
 	var start_y = randf_range(screen_h * spawn_y_min_ratio, screen_h * spawn_y_max_ratio)
 
 	var all_items = Utils.ITEM_DATA.keys()
-	# Don't natively pick bonus from the main list unless we explicitly want to add it there
+	# Don't natively pick bonus or fruit_3 from the main list unless we explicitly want to add it there
 	all_items.erase("bonus")
+	all_items.erase("fruit_3")
 	
 	var picked_id = ""
 
 	# Check Bonus Mode
 	if GameManager.is_bonus_active:
-		# 100% Fruit Ratio
-		picked_id = all_items.pick_random()
-		while Utils.ITEM_DATA[picked_id].type != Utils.ItemType.FRUIT:
-			picked_id = all_items.pick_random()
+		# 100% Fruit Ratio - Pick from specific fruits
+		var bonus_pool = ["fruit_1", "fruit_2", "fruit_3"]
+		picked_id = bonus_pool.pick_random()
 	else:
 		# Normal Spawn Logic
 		var current_time = Time.get_ticks_msec()
