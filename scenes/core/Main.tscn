@@ -32,6 +32,7 @@ anchor_mode = 0
 [node name="Basket" parent="Camera2D" instance=ExtResource("1_fun78")]
 position = Vector2(144, 854)
 scale = Vector2(12, 12)
+vertical_ratio = 0.71
 
 [node name="Spawner" parent="." instance=ExtResource("2_5pwbx")]
 fruit_ratio = 0.4
