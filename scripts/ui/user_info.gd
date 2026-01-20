@@ -146,8 +146,11 @@ func flash_error(control: Control):
 
 func _mute_button_pressed() -> void:
 	if flipflop:
+		$MarginContainer/TextureRect2.visible=true
 		audio_stream_player.volume_db = -100
 		flipflop = false
+		
 	else:
+		$MarginContainer/TextureRect2.visible=false
 		audio_stream_player.volume_db = 0
 		flipflop = true
