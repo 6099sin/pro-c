@@ -76,6 +76,11 @@ func _on_bonus_event(is_active: bool):
 	if is_active:
 		# Expand pool to 50 for bonus event
 		ensure_pool_size(50)
+		
+	# Update gravity for all items in the pool (active and inactive)
+	var target_gravity = 0.8 if is_active else 1.0
+	for item in pool:
+		item.gravity_scale = target_gravity
 
 func get_inactive_item() -> Item:
 	for item in pool:
@@ -137,6 +142,9 @@ func spawn_item(item: Item):
 					picked_id = all_items.pick_random()
 
 	item.activate(Vector2(start_x, start_y), picked_id, self)
+	
+	# Apply gravity scale based on bonus mode
+	item.gravity_scale = 0.8 if GameManager.is_bonus_active else 1.0
 
 	# Random Scale
 	var rnd_scale = randf_range(min_scale, max_scale)
