@@ -11,6 +11,43 @@
 [ext_resource type="Texture2D" uid="uid://dfi1sk31wl2kx" path="res://assets/UI/UI1/Button1.png" id="7_jn2uc"]
 [ext_resource type="Texture2D" uid="uid://dg8wrf21lbngy" path="res://assets/UI/UI1/Boxถัดไป.png" id="8_7c47n"]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1525q"]
+texture = ExtResource("8_7c47n")
+expand_margin_left = 20.0
+expand_margin_top = 7.0
+expand_margin_right = 20.0
+expand_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_855qe"]
+texture = ExtResource("8_7c47n")
+expand_margin_left = 20.0
+expand_margin_top = 7.0
+expand_margin_right = 20.0
+expand_margin_bottom = 7.0
+modulate_color = Color(0.67894405, 0.6789436, 0.6789437, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nyp2j"]
+texture = ExtResource("8_7c47n")
+expand_margin_left = 20.0
+expand_margin_top = 7.0
+expand_margin_right = 20.0
+expand_margin_bottom = 7.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k6gj8"]
+texture = ExtResource("8_7c47n")
+expand_margin_left = 20.0
+expand_margin_top = 7.0
+expand_margin_right = 20.0
+expand_margin_bottom = 7.0
+modulate_color = Color(0.6255971, 0.6255971, 0.6255971, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2ppgi"]
+texture = ExtResource("8_7c47n")
+expand_margin_left = 20.0
+expand_margin_top = 7.0
+expand_margin_right = 20.0
+expand_margin_bottom = 7.0
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k6gj8"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -63,7 +100,6 @@ region_rect = Rect2(12, 0, 336, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7c47n"]
 atlas = ExtResource("5_jn2uc")
-region = Rect2(8, 16, 104, 88)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhgty"]
 content_margin_left = 0.0
@@ -76,43 +112,6 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 corner_detail = 5
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1525q"]
-texture = ExtResource("8_7c47n")
-expand_margin_left = 20.0
-expand_margin_top = 7.0
-expand_margin_right = 20.0
-expand_margin_bottom = 7.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_855qe"]
-texture = ExtResource("8_7c47n")
-expand_margin_left = 20.0
-expand_margin_top = 7.0
-expand_margin_right = 20.0
-expand_margin_bottom = 7.0
-modulate_color = Color(0.67894405, 0.6789436, 0.6789437, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nyp2j"]
-texture = ExtResource("8_7c47n")
-expand_margin_left = 20.0
-expand_margin_top = 7.0
-expand_margin_right = 20.0
-expand_margin_bottom = 7.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k6gj8"]
-texture = ExtResource("8_7c47n")
-expand_margin_left = 20.0
-expand_margin_top = 7.0
-expand_margin_right = 20.0
-expand_margin_bottom = 7.0
-modulate_color = Color(0.6255971, 0.6255971, 0.6255971, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2ppgi"]
-texture = ExtResource("8_7c47n")
-expand_margin_left = 20.0
-expand_margin_top = 7.0
-expand_margin_right = 20.0
-expand_margin_bottom = 7.0
 
 [node name="EndGame" type="Control"]
 layout_mode = 3
@@ -132,6 +131,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_jn2uc")
+
+[node name="MarginContainer4" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -88.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_bottom = 95
+
+[node name="Next1" type="CenterContainer" parent="MarginContainer4"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="BackToPlay" type="Button" parent="MarginContainer4/Next1"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
+theme_override_colors/font_hover_color = Color(0, 0.08627451, 0.5372549, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(0, 0.08627451, 0.5372549, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxTexture_1525q")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_855qe")
+theme_override_styles/hover = SubResource("StyleBoxTexture_nyp2j")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_k6gj8")
+theme_override_styles/focus = SubResource("StyleBoxTexture_2ppgi")
+text = "เล่นใหม่"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -225,10 +261,10 @@ custom_minimum_size = Vector2(1.69, 1.885)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/margin_left = -45
-theme_override_constants/margin_top = 25
+theme_override_constants/margin_top = 20
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer3/MarginContainer"]
-custom_minimum_size = Vector2(120, 120)
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture = SubResource("AtlasTexture_7c47n")
 expand_mode = 1
@@ -277,7 +313,7 @@ size_flags_horizontal = 0
 theme_override_constants/margin_left = -45
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer2/MarginContainer"]
-custom_minimum_size = Vector2(120, 120)
+custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 texture = ExtResource("6_7c47n")
 expand_mode = 1
@@ -299,7 +335,8 @@ text = "700"
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = -50
+theme_override_constants/margin_top = -30
+theme_override_constants/margin_right = -45
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer3"]
 layout_mode = 2
@@ -307,7 +344,7 @@ layout_mode = 2
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_right = 65
+theme_override_constants/margin_right = 35
 
 [node name="Label" type="Label" parent="VBoxContainer/MarginContainer3/HBoxContainer/MarginContainer"]
 layout_mode = 2
@@ -357,33 +394,6 @@ theme_override_constants/outline_size = 6
 theme_override_font_sizes/font_size = 95
 text = "1000"
 horizontal_alignment = 1
-
-[node name="MarginContainer4" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_top = 15
-
-[node name="Next1" type="CenterContainer" parent="VBoxContainer/MarginContainer4"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="BackToPlay" type="Button" parent="VBoxContainer/MarginContainer4/Next1"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
-theme_override_colors/font_hover_color = Color(0, 0.08627451, 0.5372549, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
-theme_override_colors/icon_focus_color = Color(0, 0.08627451, 0.5372549, 1)
-theme_override_constants/outline_size = 8
-theme_override_font_sizes/font_size = 41
-theme_override_styles/normal = SubResource("StyleBoxTexture_1525q")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_855qe")
-theme_override_styles/hover = SubResource("StyleBoxTexture_nyp2j")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_k6gj8")
-theme_override_styles/focus = SubResource("StyleBoxTexture_2ppgi")
-text = "เล่นใหม่"
 
 [node name="confitte" type="TextureRect" parent="."]
 visible = false

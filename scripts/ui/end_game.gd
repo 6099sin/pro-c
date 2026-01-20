@@ -3,7 +3,7 @@ extends Control
 @onready var label_alpha: Label = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer3/MarginContainer2/addPointAlpha
 @onready var label_beta: Label = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer2/MarginContainer2/addPointBeta
 @onready var label_sum: Label = $VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer2/MarginContainer2/allPoint
-@onready var back_to_play: Button = $VBoxContainer/MarginContainer4/Next1/BackToPlay
+@onready var back_to_play: Button = $MarginContainer4/Next1/BackToPlay
 
 # URL ของ Google Apps Script (อันใหม่ล่าสุดที่ลงท้ายด้วย /exec)
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxMJEdN0VfFA5rKxS-kYqWYu-9EUP19JIPddGj3Q5w5nV8P5jwfUTcG7vhgDJwK_ZjN/exec"
