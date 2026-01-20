@@ -575,9 +575,10 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 7
-theme_override_font_sizes/font_size = 42
-text = "รู้หรือไหม?
-สมองและภูมิคุ้มกันของเด็กผ่าคลอด"
+theme_override_font_sizes/font_size = 50
+text = "เสริมสารอาหารที่ช่วยในการ
+พัฒนาสมองและภูมิคุ้นกัน
+ให้กับเด็กน้อยกันเถอะ"
 horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="before_start/MarginContainer/TextureRect2"]
@@ -650,7 +651,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 7
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 50
 text = "ทำการปัดอุปสรรคที่ไม่ส่งเสริม
 พัฒนาการไม่ให้โดนตัวเด็กน้อย"
 horizontal_alignment = 1
