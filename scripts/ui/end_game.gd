@@ -3,6 +3,7 @@ extends Control
 @onready var label_alpha: Label = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/PanelContainer3/MarginContainer2/addPointAlpha
 @onready var label_beta: Label = $VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer3/PanelContainer2/MarginContainer2/addPointBeta
 @onready var label_sum: Label = $VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer2/MarginContainer2/allPoint
+@onready var back_to_play: Button = $VBoxContainer/MarginContainer4/Next1/BackToPlay
 
 # URL ของ Google Apps Script (อันใหม่ล่าสุดที่ลงท้ายด้วย /exec)
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxMJEdN0VfFA5rKxS-kYqWYu-9EUP19JIPddGj3Q5w5nV8P5jwfUTcG7vhgDJwK_ZjN/exec"
@@ -38,7 +39,7 @@ func _ready() -> void:
 	#submit_score(GameManager.user_name, GameManager.user_tel, GameManager.score)
 	#submit_score("cd","1234567890",12,"Level_1")
 	submit_score(GameManager.user_name,Utils.format_phone_number(GameManager.user_tel),int(GameManager.score_alpha+GameManager.score_beta),"Level_1")
-
+	back_to_play.pressed.connect(_press_backToPlay)
 func submit_score(p_name: String, p_phone: String, p_score: int, sheet_name: String = "Sheet1"):
 	# var final_name = p_name if not p_name.is_empty() else GameManager.user_name
 	# var final_phone = final_name if not p_phone.is_empty() else GameManager.user_tel
@@ -85,3 +86,12 @@ func _on_submit_completed(_result, response_code, _headers, body):
 		print("⚠️ เจอ Redirect (302) - ข้อมูลน่าจะเข้าแล้ว")
 	else:
 		print("❌ ส่งไม่สำเร็จ Error Code: ", response_code)
+
+func _press_backToPlay()->void:
+	# ก่อนอื่น ตรวจสอบว่าเกมกำลังรันอยู่บนเว็บเบราว์เซอร์หรือไม่
+	if OS.has_feature("web"):
+		# เราใช้ JavaScriptBridge เพื่อรันโค้ด JavaScript แบบดิบๆ (Raw JavaScript)
+		# window.location.reload() คือคำสั่งรีเฟรช URL ปัจจุบัน
+		JavaScriptBridge.eval("window.location.reload();")
+	else:
+		print("Refresh Browser: ไม่ได้รันบนแพลตฟอร์มเว็บ ข้ามการทำงานนี้")
