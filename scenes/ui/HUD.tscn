@@ -724,7 +724,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 110
+theme_override_constants/margin_top = 70
 
 [node name="BonusTimer" type="Label" parent="MarginContainer3"]
 visible = false
