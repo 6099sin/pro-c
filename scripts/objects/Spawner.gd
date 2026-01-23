@@ -76,6 +76,11 @@ func _on_bonus_event(is_active: bool):
 	if is_active:
 		# Expand pool to 50 for bonus event
 		ensure_pool_size(50)
+		
+	# Update gravity for all items in the pool (active and inactive)
+	var target_gravity = 0.8 if is_active else 1.0
+	for item in pool:
+		item.gravity_scale = target_gravity
 
 func get_inactive_item() -> Item:
 	for item in pool:
@@ -106,17 +111,17 @@ func spawn_item(item: Item):
 	var start_y = randf_range(screen_h * spawn_y_min_ratio, screen_h * spawn_y_max_ratio)
 
 	var all_items = Utils.ITEM_DATA.keys()
-	# Don't natively pick bonus from the main list unless we explicitly want to add it there
+	# Don't natively pick bonus or fruit_3 from the main list unless we explicitly want to add it there
 	all_items.erase("bonus")
+	all_items.erase("fruit_3")
 	
 	var picked_id = ""
 
 	# Check Bonus Mode
 	if GameManager.is_bonus_active:
-		# 100% Fruit Ratio
-		picked_id = all_items.pick_random()
-		while Utils.ITEM_DATA[picked_id].type != Utils.ItemType.FRUIT:
-			picked_id = all_items.pick_random()
+		# 100% Fruit Ratio - Pick from specific fruits
+		var bonus_pool = ["fruit_1", "fruit_2", "fruit_3"]
+		picked_id = bonus_pool.pick_random()
 	else:
 		# Normal Spawn Logic
 		var current_time = Time.get_ticks_msec()
@@ -137,6 +142,9 @@ func spawn_item(item: Item):
 					picked_id = all_items.pick_random()
 
 	item.activate(Vector2(start_x, start_y), picked_id, self)
+	
+	# Apply gravity scale based on bonus mode
+	item.gravity_scale = 0.8 if GameManager.is_bonus_active else 1.0
 
 	# Random Scale
 	var rnd_scale = randf_range(min_scale, max_scale)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://hudscene"]
+[gd_scene load_steps=25 format=3 uid="uid://hudscene"]
 
 [ext_resource type="Script" uid="uid://cpgkposixu2d6" path="res://scripts/ui/HUD.gd" id="1_hud"]
 [ext_resource type="Texture2D" uid="uid://dbgi1yh3bas4b" path="res://assets/UI/Item/Alpha.png" id="2_6ll6g"]
@@ -9,7 +9,12 @@
 [ext_resource type="Texture2D" uid="uid://dj5r6e7msl5xv" path="res://assets/UI/UI1/Panel1.png" id="7_jlufg"]
 [ext_resource type="Texture2D" uid="uid://b0wnhjrwcwvj2" path="res://assets/UI/UI3/confitte.png" id="8_l20r4"]
 [ext_resource type="Texture2D" uid="uid://c4j4kmdsnv14e" path="res://assets/UI/UI3/panel1.png" id="9_jvmx1"]
+[ext_resource type="Texture2D" uid="uid://bp1r0q0oamxdj" path="res://assets/UI/Item/Candy2.png" id="10_4wy6o"]
 [ext_resource type="AudioStream" uid="uid://c2i5usqfh7hdq" path="res://assets/Sound/crowd-cheers-314921.ogg" id="10_cheer"]
+[ext_resource type="Texture2D" uid="uid://cjopou30n043o" path="res://assets/UI/Item/Candy5.png" id="11_blesy"]
+[ext_resource type="Texture2D" uid="uid://bvnwqpldvuac5" path="res://assets/UI/Item/Candy1.png" id="12_lo123"]
+[ext_resource type="Texture2D" uid="uid://c37iyk86s1udk" path="res://assets/UI/Item/Candy3.png" id="13_dbt7h"]
+[ext_resource type="Texture2D" uid="uid://cr6ar86310dg8" path="res://assets/UI/Item/Candy4.png" id="14_ffvok"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ll6g"]
 content_margin_left = 0.0
@@ -523,6 +528,7 @@ layout_mode = 2
 texture = ExtResource("8_l20r4")
 
 [node name="before_start" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -569,9 +575,10 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 7
-theme_override_font_sizes/font_size = 42
-text = "รู้หรือไหม?
-สมองและภูมิคุ้มกันของเด็กผ่าคลอด"
+theme_override_font_sizes/font_size = 50
+text = "เสริมสารอาหารที่ช่วยในการ
+พัฒนาสมองและภูมิคุ้นกัน
+ให้กับเด็กน้อยกันเถอะ"
 horizontal_alignment = 1
 
 [node name="MarginContainer2" type="MarginContainer" parent="before_start/MarginContainer/TextureRect2"]
@@ -596,6 +603,114 @@ theme_override_constants/margin_bottom = -50
 layout_mode = 2
 texture = ExtResource("3_ig75s")
 
+[node name="before_start2" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -212.5
+offset_right = 212.5
+offset_bottom = 504.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 155
+theme_override_constants/margin_bottom = 160
+
+[node name="MarginContainer" type="MarginContainer" parent="before_start2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect2" type="PanelContainer" parent="before_start2/MarginContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="before_start2/MarginContainer/TextureRect2"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="TextureRect" type="TextureRect" parent="before_start2/MarginContainer/TextureRect2/MarginContainer4"]
+layout_mode = 2
+texture = ExtResource("9_jvmx1")
+
+[node name="MarginContainer" type="MarginContainer" parent="before_start2/MarginContainer/TextureRect2"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="before_start2/MarginContainer/TextureRect2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="before_start2/MarginContainer/TextureRect2/MarginContainer/CenterContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 50
+text = "ทำการปัดอุปสรรคที่ไม่ส่งเสริม
+พัฒนาการไม่ให้โดนตัวเด็กน้อย"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="before_start2/MarginContainer/TextureRect2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = -40
+theme_override_constants/margin_top = -80
+
+[node name="TextureRect" type="TextureRect" parent="before_start2/MarginContainer/TextureRect2/MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("10_4wy6o")
+
+[node name="MarginContainer5" type="MarginContainer" parent="before_start2/MarginContainer/TextureRect2"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_bottom = -70
+
+[node name="TextureRect" type="TextureRect" parent="before_start2/MarginContainer/TextureRect2/MarginContainer5"]
+layout_mode = 2
+texture = ExtResource("11_blesy")
+
+[node name="MarginContainer3" type="MarginContainer" parent="before_start2/MarginContainer/TextureRect2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/margin_right = -50
+theme_override_constants/margin_bottom = -50
+
+[node name="TextureRect" type="TextureRect" parent="before_start2/MarginContainer/TextureRect2/MarginContainer3"]
+layout_mode = 2
+texture = ExtResource("12_lo123")
+
+[node name="MarginContainer6" type="MarginContainer" parent="before_start2/MarginContainer/TextureRect2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_constants/margin_top = -90
+theme_override_constants/margin_right = -35
+
+[node name="TextureRect" type="TextureRect" parent="before_start2/MarginContainer/TextureRect2/MarginContainer6"]
+layout_mode = 2
+texture = ExtResource("13_dbt7h")
+
+[node name="MarginContainer7" type="MarginContainer" parent="before_start2/MarginContainer/TextureRect2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/margin_top = -90
+theme_override_constants/margin_right = -35
+
+[node name="TextureRect" type="TextureRect" parent="before_start2/MarginContainer/TextureRect2/MarginContainer7"]
+layout_mode = 2
+texture = ExtResource("14_ffvok")
+
 [node name="MarginContainer3" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -609,7 +724,7 @@ offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 110
+theme_override_constants/margin_top = 70
 
 [node name="BonusTimer" type="Label" parent="MarginContainer3"]
 visible = false

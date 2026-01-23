@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://wdpx1dg4ece6"]
+[gd_scene load_steps=35 format=3 uid="uid://wdpx1dg4ece6"]
 
 [ext_resource type="StyleBox" uid="uid://bbt4dpb0ysphk" path="res://theme/style_box_flat_Round.tres" id="1_00e66"]
 [ext_resource type="Script" uid="uid://c1anqrg83g0gl" path="res://scripts/ui/user_info.gd" id="1_bh2g3"]
@@ -16,7 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://dbgi1yh3bas4b" path="res://assets/UI/Item/Alpha.png" id="13_eotbs"]
 [ext_resource type="Texture2D" uid="uid://bp41wh7ort5ab" path="res://assets/UI/Item/Beta.png" id="14_4jegu"]
 [ext_resource type="Texture2D" uid="uid://37c150l1a6xo" path="res://assets/UI/UI1/SoundOption.png" id="15_g5avq"]
-[ext_resource type="AudioStream" uid="uid://bsah4xi2vfsqw" path="res://assets/Sound/adventureSonati/sonatina_letsadventure_6Flying.ogg" id="16_w5r3j"]
+[ext_resource type="Texture2D" uid="uid://dd27m05uxe71o" path="res://assets/UI/UI1/Mute.png" id="17_eotbs"]
+[ext_resource type="AudioStream" uid="uid://h3yhm5ifbx1e" path="res://assets/Sound/PRO_HA_SONGBG.ogg" id="18_eotbs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ybqoc"]
 content_margin_left = 0.0
@@ -359,9 +360,10 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 7
-theme_override_font_sizes/font_size = 42
-text = "รู้หรือไหม?
-สมองและภูมิคุ้มกันของเด็กผ่าคลอด"
+theme_override_font_sizes/font_size = 55
+text = "รู้หรือไหม? 
+สมองและภูมิคุ้มกัน
+ของเด็กผ่าคลอด"
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PlayAnimationScene/MarginContainer1/PanelContainer2/VBoxContainer"]
@@ -449,7 +451,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 7
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 55
 text = "มีความแตกต่าง
 จากเด็กที่คลอดธรรมชาติ"
 horizontal_alignment = 1
@@ -538,7 +540,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 7
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 55
 text = "มาช่วยกันเสริมสมองไว
 และภูมิคุ้มกันให้กับเด็กผ่าคลอด"
 horizontal_alignment = 1
@@ -627,7 +629,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.08627451, 0.5372549, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 7
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 55
 text = "ด้วย 2 สารอาหารสำคัญ
 แอลฟา สฟิงโกไมโอดีน
 และ โพรไบโอติก บี แล็กทิส"
@@ -717,7 +719,7 @@ layout_mode = 2
 texture = ExtResource("15_g5avq")
 
 [node name="MuteSoundButton" type="Button" parent="MarginContainer/TextureRect"]
-self_modulate = Color(1, 1, 1, 0.19607843)
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -726,8 +728,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxFlat_wcnxs")
 
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("17_eotbs")
+expand_mode = 1
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_w5r3j")
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_eotbs")
+volume_db = -25.0
 autoplay = true
 
 [connection signal="pressed" from="MarginContainer/TextureRect/MuteSoundButton" to="." method="_mute_button_pressed"]

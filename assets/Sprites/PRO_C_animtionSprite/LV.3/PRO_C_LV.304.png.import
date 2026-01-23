@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqbltxh2fedro"
-path="res://.godot/imported/Frame-2.png-181864c6130d5bbfb0d2a070d9d3ad5a.ctex"
+uid="uid://fo00q4l2c6hm"
+path="res://.godot/imported/PRO_C_LV.304.png-8b10125a9902b0b5c4f4a07ba219bec9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/Text/Frame-2.png"
-dest_files=["res://.godot/imported/Frame-2.png-181864c6130d5bbfb0d2a070d9d3ad5a.ctex"]
+source_file="res://assets/Sprites/PRO_C_animtionSprite/LV.3/PRO_C_LV.304.png"
+dest_files=["res://.godot/imported/PRO_C_LV.304.png-8b10125a9902b0b5c4f4a07ba219bec9.ctex"]
 
 [params]
 
-compress/mode=4
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0

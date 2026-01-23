@@ -4,10 +4,7 @@ extends Control
 @onready var input_name: LineEdit = $PanelContainer/MarginContainer/VBoxContainer/MarginContainer2/LineEditName
 @onready var check_box: CheckBox = $PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/CheckBox
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-@onready var button1: Button = $PlayAnimationScene/MarginContainer1/Next1/Button
-@onready var button2: Button = $PlayAnimationScene/MarginContainer2/Next1/Button
-@onready var button3: Button = $PlayAnimationScene/MarginContainer3/Next1/Button
-@onready var button4: Button = $PlayAnimationScene/MarginContainer4/Next1/Button
+
 
 # Variable to store the last valid phone number
 var old_tel_text = ""
@@ -88,24 +85,28 @@ func start_dialog_sequence() -> void:
 	if has_node("PlayAnimationScene"):
 		$PlayAnimationScene.visible = true
 		
-		# Step 1
-		await play_dialog_step($PlayAnimationScene/MarginContainer1, "res://assets/Sound/info/1_info.ogg", button1)
+		# Hide Next buttons
+		if has_node("PlayAnimationScene/MarginContainer1/Next1"): $PlayAnimationScene/MarginContainer1/Next1.visible = false
+		if has_node("PlayAnimationScene/MarginContainer2/Next1"): $PlayAnimationScene/MarginContainer2/Next1.visible = false
+		if has_node("PlayAnimationScene/MarginContainer3/Next1"): $PlayAnimationScene/MarginContainer3/Next1.visible = false
+		if has_node("PlayAnimationScene/MarginContainer4/Next1"): $PlayAnimationScene/MarginContainer4/Next1.visible = false
+		
+	# Step 1
+		await play_dialog_step($PlayAnimationScene/MarginContainer1, "res://assets/Sound/info/1_info.ogg")
 		# Step 2
-		await play_dialog_step($PlayAnimationScene/MarginContainer2, "res://assets/Sound/info/2_info.ogg", button2)
+		await play_dialog_step($PlayAnimationScene/MarginContainer2, "res://assets/Sound/info/2_info.ogg")
 		# Step 3
-		await play_dialog_step($PlayAnimationScene/MarginContainer3, "res://assets/Sound/info/3_info.ogg", button3)
+		await play_dialog_step($PlayAnimationScene/MarginContainer3, "res://assets/Sound/info/3_info.ogg")
 		# Step 4
-		await play_dialog_step($PlayAnimationScene/MarginContainer4, "res://assets/Sound/info/4_info.ogg", button4)
+		await play_dialog_step($PlayAnimationScene/MarginContainer4, "res://assets/Sound/info/4_info.ogg")
 		
 		# Finish
 		get_tree().change_scene_to_file("res://scenes/ui/SplashScreen.tscn")
 
-func play_dialog_step(container: Control, sound_path: String, next_btn: Button) -> void:
+func play_dialog_step(container: Control, sound_path: String) -> void:
 	# Initialize state
 	container.modulate.a = 0.0
 	container.visible = true
-	if next_btn:
-		next_btn.visible = false
 		
 	# Fade In Container
 	var tween_in = create_tween()
@@ -122,13 +123,8 @@ func play_dialog_step(container: Control, sound_path: String, next_btn: Button) 
 		# Fallback if sound missing
 		await get_tree().create_timer(1.0).timeout
 		
-	# Show Next Button
-	if next_btn:
-		next_btn.visible = true
-		next_btn.disabled = false
-		
-		# Wait for button press
-		await next_btn.pressed
+	# Small pause for smoothness
+	await get_tree().create_timer(0.5).timeout
 		
 	# Fade Out Container
 	var tween_out = create_tween()
@@ -146,8 +142,11 @@ func flash_error(control: Control):
 
 func _mute_button_pressed() -> void:
 	if flipflop:
+		$MarginContainer/TextureRect2.visible = true
 		audio_stream_player.volume_db = -100
 		flipflop = false
+		
 	else:
+		$MarginContainer/TextureRect2.visible = false
 		audio_stream_player.volume_db = 0
 		flipflop = true
